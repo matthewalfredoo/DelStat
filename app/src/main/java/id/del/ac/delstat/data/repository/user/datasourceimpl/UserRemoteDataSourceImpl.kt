@@ -23,9 +23,10 @@ class UserRemoteDataSourceImpl(private val delStatApiService: DelStatApiService)
 
     override suspend fun login(email: String, password: String): Response<UserApiResponse> {
         return delStatApiService.login(email, password)
-        /*val data = HashMap<String, String>()
-        data.put("email", email)
-        data.put("password", password)
-        return delStatApiService.login(data)*/
     }
+
+    override suspend fun logout(bearerToken: String): Response<UserApiResponse> {
+        return delStatApiService.logout(bearerToken)
+    }
+
 }

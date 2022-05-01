@@ -2,10 +2,7 @@ package id.del.ac.delstat.data.api
 
 import id.del.ac.delstat.data.model.user.UserApiResponse
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface DelStatApiService {
     /* User-related Services */
@@ -40,6 +37,13 @@ interface DelStatApiService {
 
         @Field("password")
         password: String
+    ): Response<UserApiResponse>
+
+    @FormUrlEncoded
+    @POST("logout")
+    suspend fun logout(
+        @Header("Authorization")
+        bearerToken: String
     ): Response<UserApiResponse>
 
     /* End of User-related Services */

@@ -30,6 +30,17 @@ class UserRepositoryImpl(
         return null
     }
 
+    override suspend fun logout(bearToken: String): UserApiResponse? {
+        try {
+            val response = userRemoteDataSource.logout(bearToken)
+            return response.body()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
     override suspend fun currentUser(): UserApiResponse? {
         TODO("Not yet implemented")
     }

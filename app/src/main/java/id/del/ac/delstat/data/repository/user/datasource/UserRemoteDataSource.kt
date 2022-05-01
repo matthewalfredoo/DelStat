@@ -8,5 +8,6 @@ interface UserRemoteDataSource {
 
     suspend fun register(user: User, password: String, passwordConfirmation: String): Response<UserApiResponse>
     suspend fun login(email: String, password: String): Response<UserApiResponse>
+    suspend fun logout(bearerToken: String): Response<UserApiResponse>
 
 }

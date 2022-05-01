@@ -34,9 +34,9 @@ class UserPreferences(private val context: Context) {
             it[USER_ID] ?: 0
         }
 
-    suspend fun setUserId(id: Int) {
+    suspend fun setUserId(id: Int?) {
         context.dataStore.edit {
-            it[USER_ID] = id
+            it[USER_ID] = id ?: 0
         }
     }
     /* END USER_ID Preferences */
@@ -47,9 +47,9 @@ class UserPreferences(private val context: Context) {
             it[USER_NAMA] ?: ""
         }
 
-    suspend fun setUserNama(nama: String) {
+    suspend fun setUserNama(nama: String?) {
         context.dataStore.edit {
-            it[USER_NAMA] = nama
+            it[USER_NAMA] = nama ?: ""
         }
     }
     /* END USER_NAMA Preferences */
@@ -60,9 +60,9 @@ class UserPreferences(private val context: Context) {
             it[USER_EMAIL] ?: ""
         }
 
-    suspend fun setUserEmail(email: String) {
+    suspend fun setUserEmail(email: String?) {
         context.dataStore.edit {
-            it[USER_EMAIL] = email
+            it[USER_EMAIL] = email ?: ""
         }
     }
     /* END USER_EMAIL Preferences */
@@ -73,9 +73,9 @@ class UserPreferences(private val context: Context) {
             it[USER_NO_HP] ?: ""
         }
 
-    suspend fun setUserNoHp(noHp: String) {
+    suspend fun setUserNoHp(noHp: String?) {
         context.dataStore.edit {
-            it[USER_NO_HP] = noHp
+            it[USER_NO_HP] = noHp ?: ""
         }
     }
     /* END USER_NO_HP Preferences */
@@ -86,9 +86,9 @@ class UserPreferences(private val context: Context) {
             it[USER_FOTO_PROFIL] ?: ""
         }
 
-    suspend fun setUserFotoProfil(fotoProfil: String) {
+    suspend fun setUserFotoProfil(fotoProfil: String?) {
         context.dataStore.edit {
-            it[USER_FOTO_PROFIL] = fotoProfil
+            it[USER_FOTO_PROFIL] = fotoProfil ?: ""
         }
     }
     /* END USER_FOTO_PROFIL Preferences */
@@ -99,9 +99,9 @@ class UserPreferences(private val context: Context) {
             it[USER_JENJANG] ?: ""
         }
 
-    suspend fun setUserJenjang(jenjang: String) {
+    suspend fun setUserJenjang(jenjang: String?) {
         context.dataStore.edit {
-            it[USER_JENJANG] = jenjang
+            it[USER_JENJANG] = jenjang ?: ""
         }
     }
     /* END USER_JENJANG Preferences */
@@ -112,9 +112,9 @@ class UserPreferences(private val context: Context) {
             it[USER_TOKEN] ?: ""
         }
 
-    suspend fun setUserToken(token: String) {
+    suspend fun setUserToken(token: String?) {
         context.dataStore.edit {
-            it[USER_TOKEN] = token
+            it[USER_TOKEN] = token ?: ""
         }
     }
     /* END USER_TOKEN Preferences */

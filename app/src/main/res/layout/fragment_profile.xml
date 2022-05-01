@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.del.ac.delstat.presentation.fragment.ProfileFragment">
+
+    <LinearLayout
+        android:id="@+id/container_not_login"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/svg_not_login_280dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Oops, sepertinya Anda belum login"
+            android:textColor="@color/blue_primary"
+            android:textSize="16sp"
+            android:textAlignment="center"/>
+        
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white_secondary"
+            android:textColor="@color/blue_primary"
+            android:text="Login"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_login"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <!--    Header    -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/blue_primary"
+                android:text="Data Anda"
+                android:textColor="@color/white_secondary"
+                android:textAlignment="center"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <!--    Body - Foto Profil    -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Foto Profil"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_margin="8dp"
+                android:layout_gravity="center_vertical"/>
+            
+            <ImageView
+                android:id="@+id/image_view_profile"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="50dp"
+                android:layout_marginVertical="8dp"
+                tools:src="@tools:sample/avatars"/>
+
+        </LinearLayout>
+
+        <!--    Body - Nama    -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_margin="8dp"/>
+
+            <TextView
+                android:id="@+id/text_view_nama_profile"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginVertical="8dp"/>
+
+        </LinearLayout>
+
+        <!--    Body - Email    -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_margin="8dp"/>
+
+            <TextView
+                android:id="@+id/text_view_email_profile"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginVertical="8dp"/>
+
+        </LinearLayout>
+
+        <!--    Body - Nomor HP    -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Nomor HP"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_margin="8dp"/>
+
+            <TextView
+                android:id="@+id/text_view_no_hp_profile"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginVertical="8dp"/>
+
+        </LinearLayout>
+
+        <!--    Body - Jenjang    -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Jenjang"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_margin="8dp"/>
+
+            <TextView
+                android:id="@+id/text_view_jenjang_profile"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginVertical="8dp"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_hasil_kuis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Hasil Kuis"
+            android:textAllCaps="false"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_primary"
+            android:backgroundTint="@color/white" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

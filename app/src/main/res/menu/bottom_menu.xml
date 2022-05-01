@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/materiFragment"
+        android:icon="@drawable/ic_materi_24dp_white"
+        android:title="Materi"/>
+
+    <item
+        android:id="@+id/literaturFragment"
+        android:icon="@drawable/ic_literatur_24dp_white"
+        android:title="Literatur"/>
+
+    <item
+        android:id="@+id/quizFragment"
+        android:icon="@drawable/ic_quiz_24dp_white"
+        android:title="Quiz"/>
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_profile_24dp_white"
+        android:title="Profile"/>
+
+</menu>

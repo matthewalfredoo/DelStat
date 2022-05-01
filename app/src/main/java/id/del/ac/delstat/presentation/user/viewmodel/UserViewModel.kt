@@ -62,7 +62,7 @@ class UserViewModel(
             try {
                 if (checkNetwork()) {
                     val response = userRepository.register(user, password, passwordConfirmation)
-                    if (response == null){
+                    if (response == null) {
                         error()
                         return@launch
                     }
@@ -80,7 +80,7 @@ class UserViewModel(
             try {
                 if (checkNetwork()) {
                     val response = userRepository.login(email, password)
-                    if(response == null){
+                    if (response == null) {
                         error()
                         return@launch
                     }
@@ -91,9 +91,37 @@ class UserViewModel(
                     userPreferences.setUserNama(response.user.nama!!)
                     userPreferences.setUserEmail(response.user.email!!)
                     userPreferences.setUserNoHp(response.user.noHp!!)
-                    userPreferences.setUserFotoProfil(response.user.fotoProfil?:"")
+                    userPreferences.setUserFotoProfil(response.user.fotoProfil ?: "")
                     userPreferences.setUserJenjang(response.user.jenjang!!)
                     userPreferences.setUserToken(response.token!!)
+                }
+            } catch (e: Exception) {
+                error("Terjadi exception")
+                Log.e("MyTag", "exception", e)
+            }
+        }
+    }
+
+    // TODO : this function hasn't worked at all
+    fun logout(bearerToken: String) {
+        viewModelScope.launch {
+            try {
+                if (checkNetwork()) {
+                    val response = userRepository.logout(bearerToken)
+                    if (response == null) {
+                        error("Terjadi null")
+                        return@launch
+                    }
+                    userApiResponse.value = response!!
+                    Log.d("MyTag", response.toString())
+
+                    userPreferences.setUserId(null)
+                    userPreferences.setUserNama(null)
+                    userPreferences.setUserEmail(null)
+                    userPreferences.setUserNoHp(null)
+                    userPreferences.setUserFotoProfil(null)
+                    userPreferences.setUserJenjang(null)
+                    userPreferences.setUserToken(null)
                 }
             } catch (e: Exception) {
                 error("Terjadi exception")

@@ -7,6 +7,7 @@ interface UserRepository {
 
     suspend fun register(user: User, password: String, passwordConfirmation: String): UserApiResponse?
     suspend fun login(email: String, password: String): UserApiResponse?
+    suspend fun logout(bearToken: String): UserApiResponse?
     suspend fun currentUser(): UserApiResponse?
     suspend fun editProfile(user: User): UserApiResponse?
     suspend fun editPassword(user: User): UserApiResponse?

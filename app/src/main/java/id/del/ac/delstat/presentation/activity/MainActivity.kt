@@ -1,8 +1,7 @@
-package id.del.ac.delstat
+package id.del.ac.delstat.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
@@ -33,7 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         (application as Injector).createUserSubComponent().inject(this)
 
-        userViewModel = ViewModelProvider(this, userViewModelFactory).get(UserViewModel::class.java)
+        userViewModel = ViewModelProvider(this, userViewModelFactory)
+            .get(UserViewModel::class.java)
 
         userViewModel.userApiResponse.observe(this, Observer {
             Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
@@ -54,6 +54,18 @@ class MainActivity : AppCompatActivity() {
         binding.buttonSignup.setOnClickListener {
             register()
         }
+
+        binding.buttonLogout.setOnClickListener {
+            logout()
+        }
+    }
+
+    private fun logout() {
+        var bearerToken: String? = null
+        userPreferences.getUserToken.asLiveData().observe(this, Observer {
+            bearerToken = it
+        })
+        userViewModel.logout(bearerToken!!)
     }
 
     fun login() {
