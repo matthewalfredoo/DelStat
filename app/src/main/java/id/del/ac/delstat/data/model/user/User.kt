@@ -3,33 +3,36 @@ package id.del.ac.delstat.data.model.user
 import com.google.gson.annotations.SerializedName
 
 data class User(
-    @SerializedName("created_at")
-    val createdAt: String,
+    @SerializedName("id")
+    val id: Int? = null,
 
     @SerializedName("email")
-    val email: String,
+    val email: String? = null,
 
-    @SerializedName("email_verified_at")
-    val emailVerifiedAt: String? = null,
+    @SerializedName("no_hp")
+    val noHp: String? = null,
+
+    @SerializedName("nama")
+    val nama: String? = null,
 
     @SerializedName("foto_profil")
     val fotoProfil: String? = null,
 
-    @SerializedName("id")
-    val id: Int,
+    @SerializedName("role")
+    val role: String? = null,
 
     @SerializedName("jenjang")
-    val jenjang: String,
+    val jenjang: String? = null,
 
-    @SerializedName("nama")
-    val nama: String,
+    @SerializedName("email_verified_at")
+    val emailVerifiedAt: String? = null,
 
-    @SerializedName("no_hp")
-    val noHp: String,
-
-    @SerializedName("role")
-    val role: String,
+    @SerializedName("created_at")
+    val createdAt: String? = null,
 
     @SerializedName("updated_at")
-    val updatedAt: String
+    val updatedAt: String? = null,
+
+    @SerializedName("api_token")
+    val apiToken: String? = null
 )

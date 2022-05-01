@@ -60,6 +60,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
     // Annotation Processor
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    // DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
 
     // Room
     def room_version = "2.4.2"

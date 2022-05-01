@@ -12,12 +12,12 @@ class UserRemoteDataSourceImpl(private val delStatApiService: DelStatApiService)
         user: User, password: String, passwordConfirmation: String
     ): Response<UserApiResponse> {
         return delStatApiService.register(
-            user.nama,
-            user.email,
-            user.noHp,
+            user.nama!!,
+            user.email!!,
+            user.noHp!!,
             password,
             passwordConfirmation,
-            user.jenjang,
+            user.jenjang!!,
         )
     }
 

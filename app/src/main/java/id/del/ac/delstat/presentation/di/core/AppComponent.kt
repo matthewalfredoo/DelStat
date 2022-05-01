@@ -8,6 +8,7 @@ import javax.inject.Singleton
 @Component(modules = [
     NetModule::class,
     RemoteDataModule::class,
+    LocalDataModule::class,
     RepositoryModule::class,
     AppModule::class
 ])

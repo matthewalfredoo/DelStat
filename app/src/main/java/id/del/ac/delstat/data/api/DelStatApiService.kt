@@ -1,6 +1,5 @@
 package id.del.ac.delstat.data.api
 
-import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.model.user.UserApiResponse
 import retrofit2.Response
 import retrofit2.http.Field
@@ -9,8 +8,9 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface DelStatApiService {
+    /* User-related Services */
 
-    @Headers("Accept: application/json")
+    @FormUrlEncoded
     @POST("register")
     suspend fun register(
         @Field("nama")
@@ -42,4 +42,5 @@ interface DelStatApiService {
         password: String
     ): Response<UserApiResponse>
 
+    /* End of User-related Services */
 }
