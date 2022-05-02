@@ -8,7 +8,7 @@ interface DelStatApiService {
     /* User-related Services */
 
     @FormUrlEncoded
-    @POST("register")
+    @POST("api/register")
     suspend fun register(
         @Field("nama")
         nama: String,
@@ -30,7 +30,7 @@ interface DelStatApiService {
     ): Response<UserApiResponse>
 
     @FormUrlEncoded
-    @POST("login")
+    @POST("api/login")
     suspend fun login(
         @Field("email")
         email: String,
@@ -39,7 +39,7 @@ interface DelStatApiService {
         password: String
     ): Response<UserApiResponse>
 
-    @POST("logout")
+    @POST("api/logout")
     suspend fun logout(
         @Header("Authorization")
         bearerToken: String

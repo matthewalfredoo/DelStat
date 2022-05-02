@@ -86,14 +86,15 @@ class UserViewModel(
                     }
                     userApiResponse.value = response!!
                     // Log.d("MyTag", response.toString())
-
-                    userPreferences.setUserId(response.user!!.id!!)
-                    userPreferences.setUserNama(response.user.nama!!)
-                    userPreferences.setUserEmail(response.user.email!!)
-                    userPreferences.setUserNoHp(response.user.noHp!!)
-                    userPreferences.setUserFotoProfil(response.user.fotoProfil ?: "")
-                    userPreferences.setUserJenjang(response.user.jenjang!!)
-                    userPreferences.setUserToken(response.token!!)
+                    if(response.code == 200) {
+                        userPreferences.setUserId(response.user!!.id!!)
+                        userPreferences.setUserNama(response.user.nama!!)
+                        userPreferences.setUserEmail(response.user.email!!)
+                        userPreferences.setUserNoHp(response.user.noHp!!)
+                        userPreferences.setUserFotoProfil(response.user.fotoProfil ?: "")
+                        userPreferences.setUserJenjang(response.user.jenjang!!)
+                        userPreferences.setUserToken(response.token!!)
+                    }
                 }
             } catch (e: Exception) {
                 error("Terjadi exception")
