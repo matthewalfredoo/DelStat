@@ -99,6 +99,6 @@ class MainActivity : AppCompatActivity() {
             jenjang = jenjang,
         )
 
-        userViewModel.register(user, password, passwordConfirmation)
+        userViewModel.register(nama, email, noHp, password)
     }
 }

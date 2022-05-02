@@ -9,15 +9,10 @@ import retrofit2.Response
 class UserRemoteDataSourceImpl(private val delStatApiService: DelStatApiService): UserRemoteDataSource {
 
     override suspend fun register(
-        user: User, password: String, passwordConfirmation: String
+        nama: String, email: String, noHp: String, password: String
     ): Response<UserApiResponse> {
         return delStatApiService.register(
-            user.nama!!,
-            user.email!!,
-            user.noHp!!,
-            password,
-            passwordConfirmation,
-            user.jenjang!!,
+            nama, email, noHp, password
         )
     }
 

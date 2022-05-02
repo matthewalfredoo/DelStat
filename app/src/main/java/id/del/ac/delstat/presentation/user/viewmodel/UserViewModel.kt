@@ -57,11 +57,11 @@ class UserViewModel(
 
     }
 
-    fun register(user: User, password: String, passwordConfirmation: String) {
+    fun register(nama: String, email: String, noHp: String, password: String) {
         viewModelScope.launch {
             try {
                 if (checkNetwork()) {
-                    val response = userRepository.register(user, password, passwordConfirmation)
+                    val response = userRepository.register(nama, email, noHp, password)
                     if (response == null) {
                         error()
                         return@launch

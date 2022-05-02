@@ -8,9 +8,9 @@ import id.del.ac.delstat.domain.repository.UserRepository
 class UserRepositoryImpl(
     private val userRemoteDataSource: UserRemoteDataSource
 ): UserRepository {
-    override suspend fun register(user: User, password: String, passwordConfirmation: String): UserApiResponse? {
+    override suspend fun register(nama: String, email: String, noHp: String, password: String): UserApiResponse? {
         try {
-            val response = userRemoteDataSource.register(user, password, passwordConfirmation)
+            val response = userRemoteDataSource.register(nama, email, noHp, password)
             return response.body()
         }
         catch (e: Exception) {

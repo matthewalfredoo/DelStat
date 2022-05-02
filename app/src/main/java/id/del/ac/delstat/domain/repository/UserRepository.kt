@@ -5,7 +5,7 @@ import id.del.ac.delstat.data.model.user.UserApiResponse
 
 interface UserRepository {
 
-    suspend fun register(user: User, password: String, passwordConfirmation: String): UserApiResponse?
+    suspend fun register(nama: String, email: String, noHp: String, password: String): UserApiResponse?
     suspend fun login(email: String, password: String): UserApiResponse?
     suspend fun logout(bearToken: String): UserApiResponse?
     suspend fun currentUser(): UserApiResponse?

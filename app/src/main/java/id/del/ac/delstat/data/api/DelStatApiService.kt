@@ -21,12 +21,6 @@ interface DelStatApiService {
 
         @Field("password")
         password: String,
-
-        @Field("password_confirmation")
-        passwordConfirmation: String,
-
-        @Field("jenjang")
-        jenjang: String
     ): Response<UserApiResponse>
 
     @FormUrlEncoded
