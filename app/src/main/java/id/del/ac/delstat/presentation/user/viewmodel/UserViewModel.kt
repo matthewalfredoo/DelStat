@@ -102,7 +102,6 @@ class UserViewModel(
         }
     }
 
-    // TODO : this function hasn't worked at all
     fun logout(bearerToken: String) {
         viewModelScope.launch {
             try {

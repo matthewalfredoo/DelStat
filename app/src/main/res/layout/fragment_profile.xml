@@ -10,6 +10,7 @@
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="gone"
         android:layout_centerInParent="true">
 
         <ImageView
@@ -41,6 +42,7 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="gone"
         android:layout_centerInParent="true">
 
         <!--    Header    -->
