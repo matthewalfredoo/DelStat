@@ -39,7 +39,6 @@ interface DelStatApiService {
         password: String
     ): Response<UserApiResponse>
 
-    @FormUrlEncoded
     @POST("logout")
     suspend fun logout(
         @Header("Authorization")

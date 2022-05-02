@@ -119,4 +119,10 @@ class UserPreferences(private val context: Context) {
     }
     /* END USER_TOKEN Preferences */
 
+    suspend fun clear() {
+        context.dataStore.edit {
+            it.clear()
+        }
+    }
+
 }

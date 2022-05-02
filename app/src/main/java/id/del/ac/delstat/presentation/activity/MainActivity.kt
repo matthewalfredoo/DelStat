@@ -2,16 +2,20 @@ package id.del.ac.delstat.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
+import id.del.ac.delstat.data.api.DelStatApiService
 import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityMainBinding
 import id.del.ac.delstat.presentation.di.Injector
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModelFactory
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +28,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var userPreferences: UserPreferences
+
+    @Inject
+    lateinit var delStatApiService: DelStatApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +72,9 @@ class MainActivity : AppCompatActivity() {
         userPreferences.getUserToken.asLiveData().observe(this, Observer {
             bearerToken = it
         })
+        // Log.d("MyTag", "logout: $bearerToken")
+        bearerToken = "Bearer $bearerToken"
+
         userViewModel.logout(bearerToken!!)
     }
 

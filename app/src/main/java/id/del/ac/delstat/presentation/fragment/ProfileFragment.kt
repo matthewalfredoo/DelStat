@@ -42,6 +42,10 @@ class ProfileFragment : Fragment() {
         fragmentProfileBinding = FragmentProfileBinding.bind(view)
         userViewModel = (activity as HomeActivity).userViewModel
         userPreferences = (activity as HomeActivity).userPreferences
+
+        fragmentProfileBinding.buttonLogout.setOnClickListener {
+            startActivity(Intent(activity, MainActivity::class.java))
+        }
     }
 
 }

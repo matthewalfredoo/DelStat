@@ -115,13 +115,7 @@ class UserViewModel(
                     userApiResponse.value = response!!
                     Log.d("MyTag", response.toString())
 
-                    userPreferences.setUserId(null)
-                    userPreferences.setUserNama(null)
-                    userPreferences.setUserEmail(null)
-                    userPreferences.setUserNoHp(null)
-                    userPreferences.setUserFotoProfil(null)
-                    userPreferences.setUserJenjang(null)
-                    userPreferences.setUserToken(null)
+                    userPreferences.clear()
                 }
             } catch (e: Exception) {
                 error("Terjadi exception")
