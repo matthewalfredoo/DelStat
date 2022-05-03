@@ -131,7 +131,7 @@
                     android:id="@+id/edit_text_email_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:maxLength="64"
                     android:background="@color/white_tertiary"/>
 
@@ -168,7 +168,7 @@
                     android:id="@+id/edit_text_no_hp_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="text|phone"
                     android:maxLength="64"
                     android:background="@color/white_tertiary"/>
 

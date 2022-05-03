@@ -19,7 +19,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.signature.ObjectKey
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
@@ -27,13 +31,23 @@ import com.del.d3ti20.util.RealPathUtil
 import com.google.android.material.snackbar.Snackbar
 import id.del.ac.delstat.BuildConfig
 import id.del.ac.delstat.R
+import id.del.ac.delstat.data.api.DelStatApiService
+import id.del.ac.delstat.data.model.user.UserApiResponse
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.FragmentEditProfileBinding
 import id.del.ac.delstat.presentation.activity.HomeActivity
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Response
+import java.io.File
 
 class EditProfileFragment : Fragment() {
     private lateinit var binding: FragmentEditProfileBinding
@@ -44,41 +58,50 @@ class EditProfileFragment : Fragment() {
     private lateinit var email: String
     private lateinit var noHp: String
     private lateinit var jenjang: String
+    private lateinit var fotoProfil: String
+    private lateinit var bearerToken: String
 
     private var intentData: Intent? = null
     private var selectedImageUri: Uri? = null
     private var selectedImagePath: String? = null
+    private var selectedImageFile: File? = null
 
-    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-        val granted = permissions.entries.all {
-            it.value == true
-        }
-        if (granted) {
-            Log.d("MyTag", "Access to external storage granted")
-            selectPhoto()
-        }
-    }
+    private lateinit var delStatApiService: DelStatApiService
 
-    private val selectPhotoResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if(result.resultCode == Activity.RESULT_OK) {
-            intentData = result.data
-            if(intentData != null) {
-                selectedImageUri = intentData!!.data
-                selectPhotoResult()
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            val granted = permissions.entries.all {
+                it.value == true
+            }
+            if (granted) {
+                Log.d("MyTag", "Access to external storage granted")
+                selectPhoto()
             }
         }
-        else {
-            Snackbar.make(binding.root, "Terjadi kesalahan saat memilih foto", Snackbar.LENGTH_SHORT).show()
+
+    private val selectPhotoResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                intentData = result.data
+                if (intentData != null) {
+                    selectedImageUri = intentData!!.data
+                    selectPhotoResult()
+                }
+            } else {
+                Snackbar.make(
+                    binding.root,
+                    "Batal mengubah foto.",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
         }
-    }
 
     private val cropPhotoLauncher = registerForActivityResult(CropImageContract()) { result ->
-        if(result.isSuccessful){
+        if (result.isSuccessful) {
             selectedImageUri = result.uriContent
             selectedImagePath = result.getUriFilePath(requireContext())
             cropPhotoResult()
-        }
-        else{
+        } else {
             Snackbar.make(binding.root, "Batal mengubah foto.", Snackbar.LENGTH_SHORT).show()
             Log.e("MyTag", "Crop image failed", result.error)
         }
@@ -104,22 +127,23 @@ class EditProfileFragment : Fragment() {
         binding = FragmentEditProfileBinding.bind(view)
         userViewModel = (activity as HomeActivity).userViewModel
         userPreferences = (activity as HomeActivity).userPreferences
+        delStatApiService = (activity as HomeActivity).delStatApiService
 
         prepareUI()
     }
 
     private fun selectPhoto() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             Log.d("MyTag", "No permission needed, and do something")
         }
         activity?.let {
-            if(hasPermissions(requireContext(), PERMISSIONS)) {
+            if (hasPermissions(requireContext(), PERMISSIONS)) {
                 Log.d("MyTag", "Permission granted, and do something")
-                val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    .setType("image/*")
+                val intent =
+                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                        .setType("image/*")
                 selectPhotoResultLauncher.launch(intent)
-            }
-            else {
+            } else {
                 requestPermissionLauncher.launch(PERMISSIONS)
             }
         }
@@ -131,25 +155,30 @@ class EditProfileFragment : Fragment() {
                 setGuidelines(CropImageView.Guidelines.ON)
                 setAspectRatio(1, 1)
                 setOutputCompressQuality(80)
-                setOutputCompressFormat(Bitmap.CompressFormat.PNG)
+                setOutputCompressFormat(Bitmap.CompressFormat.JPEG)
             }
         )
     }
 
     private fun selectPhotoResult() {
         // binding.imageViewProfile.setImageURI(selectedImageUri)
-        Log.d("MyTag", "SelectPhotoResult: ${RealPathUtil.getRealPath(requireContext(), selectedImageUri!!)}")
+        /*Log.d(
+            "MyTag",
+            "SelectPhotoResult: ${RealPathUtil.getRealPath(requireContext(), selectedImageUri!!)}"
+        )*/
         cropPhoto()
     }
 
     private fun cropPhotoResult() {
         binding.imageViewProfile.setImageURI(selectedImageUri)
         Log.d("MyTag", "CropPhotoResult: $selectedImagePath")
+        selectedImageFile = File(selectedImagePath!!)
     }
 
-    private fun hasPermissions(context: Context, permissions: Array<String>): Boolean = permissions.all {
-        ActivityCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
-    }
+    private fun hasPermissions(context: Context, permissions: Array<String>): Boolean =
+        permissions.all {
+            ActivityCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
+        }
 
     private fun prepareUI() {
         runBlocking(Dispatchers.IO) {
@@ -157,6 +186,8 @@ class EditProfileFragment : Fragment() {
             email = userPreferences.getUserEmail.first()!!
             noHp = userPreferences.getUserNoHp.first()!!
             jenjang = userPreferences.getUserJenjang.first()!!
+            fotoProfil = BuildConfig.BASE_URL + userPreferences.getUserFotoProfil.first()!!
+            bearerToken = userPreferences.getUserToken.first()!!
         }
 
         binding.apply {
@@ -164,6 +195,10 @@ class EditProfileFragment : Fragment() {
             editTextEmailEditProfile.setText(email)
             editTextNoHpEditProfile.setText(noHp)
             editTextJenjangEditProfile.setText(jenjang)
+            Glide.with(requireActivity().applicationContext)
+                .load(fotoProfil)
+                .apply(RequestOptions().signature(ObjectKey(System.currentTimeMillis().toString())))
+                .into(imageViewProfile)
         }
 
         binding.buttonEditProfile.setOnClickListener {
@@ -172,14 +207,6 @@ class EditProfileFragment : Fragment() {
 
         binding.imageViewProfile.setOnClickListener {
             selectPhoto()
-        }
-
-        userPreferences.getUserFotoProfil.asLiveData().observe(viewLifecycleOwner) {
-            val fotoProfilUrl = BuildConfig.BASE_URL + it
-            Log.d("MyTag", "FotoProfilUrl: $fotoProfilUrl")
-            Glide.with(requireActivity().applicationContext)
-                .load(fotoProfilUrl)
-                .into(binding.imageViewProfile)
         }
 
         inputValidation()
@@ -235,11 +262,20 @@ class EditProfileFragment : Fragment() {
 
     private fun editProfile() {
         if (checkInput()) {
-            Log.d("MyTag", "Edit Profile")
+            bearerToken = "Bearer $bearerToken"
+            /*Log.d("MyTag", "Edit Profile")
             Log.d("MyTag", binding.editTextNamaEditProfile.text.toString())
             Log.d("MyTag", binding.editTextEmailEditProfile.text.toString())
             Log.d("MyTag", binding.editTextNoHpEditProfile.text.toString())
-            Log.d("MyTag", binding.editTextJenjangEditProfile.text.toString())
+            Log.d("MyTag", binding.editTextJenjangEditProfile.text.toString())*/
+            nama = binding.editTextNamaEditProfile.text.toString()
+            email = binding.editTextEmailEditProfile.text.toString()
+            noHp = binding.editTextNoHpEditProfile.text.toString()
+            jenjang = binding.editTextJenjangEditProfile.text.toString()
+            if (selectedImageFile != null) {
+                Log.d("MyTag", "Selected Image File: ${selectedImageFile!!.absolutePath}")
+            }
+            userViewModel.updateProfile(bearerToken, nama, email, noHp, jenjang, selectedImageFile)
         }
     }
 

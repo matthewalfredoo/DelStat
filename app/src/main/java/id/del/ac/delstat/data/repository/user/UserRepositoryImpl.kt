@@ -4,6 +4,7 @@ import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.model.user.UserApiResponse
 import id.del.ac.delstat.data.repository.user.datasource.UserRemoteDataSource
 import id.del.ac.delstat.domain.repository.UserRepository
+import java.io.File
 
 class UserRepositoryImpl(
     private val userRemoteDataSource: UserRemoteDataSource
@@ -41,12 +42,22 @@ class UserRepositoryImpl(
         return null
     }
 
-    override suspend fun currentUser(): UserApiResponse? {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun editProfile(user: User): UserApiResponse? {
-        TODO("Not yet implemented")
+    override suspend fun updateProfile(
+        bearerToken: String,
+        nama: String,
+        email: String,
+        noHp: String,
+        jenjang: String,
+        fotoProfil: File?
+    ): UserApiResponse? {
+        try {
+            val response = userRemoteDataSource.updateProfile(bearerToken, nama, email, noHp, jenjang, fotoProfil)
+            return response.body()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
     }
 
     override suspend fun editPassword(user: User): UserApiResponse? {

@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.signature.ObjectKey
 import id.del.ac.delstat.BuildConfig
 import id.del.ac.delstat.R
 import id.del.ac.delstat.data.preferences.UserPreferences
@@ -76,9 +79,12 @@ class ProfileFragment : Fragment() {
         userPreferences.getUserFotoProfil.asLiveData().observe(viewLifecycleOwner) {
             val fotoProfilUrl = BuildConfig.BASE_URL + it
             Log.d("MyTag", "FotoProfilUrl: $fotoProfilUrl")
-            Glide.with(requireActivity().applicationContext)
-                .load(fotoProfilUrl)
-                .into(binding.imageViewProfile)
+            if(!it.isNullOrEmpty()) {
+                Glide.with(this)
+                    .load(fotoProfilUrl)
+                    .apply(RequestOptions().signature(ObjectKey(System.currentTimeMillis().toString())))
+                    .into(binding.imageViewProfile)
+            }
         }
 
         binding.buttonLogin.setOnClickListener {

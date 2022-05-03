@@ -14,6 +14,7 @@ import id.del.ac.delstat.data.model.user.UserApiResponse
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.domain.repository.UserRepository
 import kotlinx.coroutines.launch
+import java.io.File
 
 class UserViewModel(
     private val app: Application,
@@ -86,7 +87,7 @@ class UserViewModel(
                     }
                     userApiResponse.value = response!!
                     // Log.d("MyTag", response.toString())
-                    if(response.code == 200) {
+                    if (response.code == 200) {
                         userPreferences.setUserId(response.user!!.id!!)
                         userPreferences.setUserNama(response.user.nama!!)
                         userPreferences.setUserEmail(response.user.email!!)
@@ -94,6 +95,40 @@ class UserViewModel(
                         userPreferences.setUserFotoProfil(response.user.fotoProfil ?: "")
                         userPreferences.setUserJenjang(response.user.jenjang!!)
                         userPreferences.setUserToken(response.token!!)
+                    }
+                }
+            } catch (e: Exception) {
+                error("Terjadi exception")
+                Log.e("MyTag", "exception", e)
+            }
+        }
+    }
+
+    fun updateProfile(
+        bearerToken: String,
+        nama: String,
+        email: String,
+        noHp: String,
+        jenjang: String,
+        fotoProfil: File? = null
+    ) {
+        viewModelScope.launch {
+            try {
+                if (checkNetwork()) {
+                    val response = userRepository.updateProfile( bearerToken, nama, email, noHp, jenjang, fotoProfil)
+                    if (response == null) {
+                        error("Terjadi kesalahan")
+                        return@launch
+                    }
+                    userApiResponse.value = response!!
+                    Log.d("MyTag", response.toString())
+                    if (response.code == 200) {
+                        userPreferences.setUserNama(response.user!!.nama!!)
+                        userPreferences.setUserEmail(response.user.email!!)
+                        userPreferences.setUserNoHp(response.user.noHp!!)
+                        userPreferences.setUserJenjang(response.user.jenjang!!)
+                        userPreferences.setUserFotoProfil(response.user.fotoProfil)
+                        // Log.d("MyTag", "update profile success")
                     }
                 }
             } catch (e: Exception) {
