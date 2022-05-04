@@ -60,7 +60,19 @@ class UserRepositoryImpl(
         return null
     }
 
-    override suspend fun editPassword(user: User): UserApiResponse? {
-        TODO("Not yet implemented")
+    override suspend fun updatePassword(
+        bearerToken: String,
+        password: String,
+        newPassword: String,
+        newPasswordConfirmation: String
+    ): UserApiResponse? {
+        try {
+            val response = userRemoteDataSource.updatePassword(bearerToken, password, newPassword, newPasswordConfirmation)
+            return response.body()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
     }
 }

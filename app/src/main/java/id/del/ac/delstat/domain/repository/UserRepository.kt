@@ -26,6 +26,11 @@ interface UserRepository {
         fotoProfil: File? = null
     ): UserApiResponse?
 
-    suspend fun editPassword(user: User): UserApiResponse?
+    suspend fun updatePassword(
+        bearerToken: String,
+        password: String,
+        newPassword: String,
+        newPasswordConfirmation: String
+    ): UserApiResponse?
 
 }

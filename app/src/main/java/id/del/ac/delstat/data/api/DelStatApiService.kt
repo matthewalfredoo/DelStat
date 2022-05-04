@@ -57,6 +57,22 @@ interface DelStatApiService {
         fotoProfil: MultipartBody.Part? = null
     ): Response<UserApiResponse>
 
+    @FormUrlEncoded
+    @POST("api/user/password")
+    suspend fun updatePassword(
+        @Header("Authorization")
+        berarerToken: String,
+
+        @Field("password")
+        password: String,
+
+        @Field("new_password")
+        newPassword: String,
+
+        @Field("new_password_confirmation")
+        newPasswordConfirmation: String
+    ): Response<UserApiResponse>
+
     @POST("api/logout")
     suspend fun logout(
         @Header("Authorization")

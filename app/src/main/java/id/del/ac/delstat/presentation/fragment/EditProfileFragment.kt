@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -65,8 +66,6 @@ class EditProfileFragment : Fragment() {
     private var selectedImageUri: Uri? = null
     private var selectedImagePath: String? = null
     private var selectedImageFile: File? = null
-
-    private lateinit var delStatApiService: DelStatApiService
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -127,7 +126,6 @@ class EditProfileFragment : Fragment() {
         binding = FragmentEditProfileBinding.bind(view)
         userViewModel = (activity as HomeActivity).userViewModel
         userPreferences = (activity as HomeActivity).userPreferences
-        delStatApiService = (activity as HomeActivity).delStatApiService
 
         prepareUI()
     }
@@ -203,6 +201,10 @@ class EditProfileFragment : Fragment() {
 
         binding.buttonEditProfile.setOnClickListener {
             editProfile()
+        }
+
+        binding.buttonEditPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_editProfileFragment_to_editPasswordFragment)
         }
 
         binding.imageViewProfile.setOnClickListener {

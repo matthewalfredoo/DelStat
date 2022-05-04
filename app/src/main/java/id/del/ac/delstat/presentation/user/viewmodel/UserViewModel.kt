@@ -138,6 +138,30 @@ class UserViewModel(
         }
     }
 
+    fun updatePassword(
+        bearerToken: String,
+        password: String,
+        newPassword: String,
+        newPasswordConfirmation: String
+    ) {
+        viewModelScope.launch {
+            try {
+                if (checkNetwork()) {
+                    val response = userRepository.updatePassword( bearerToken, password, newPassword, newPasswordConfirmation)
+                    if (response == null) {
+                        error("Terjadi kesalahan")
+                        return@launch
+                    }
+                    userApiResponse.value = response!!
+                    Log.d("MyTag", response.toString())
+                }
+            } catch (e: Exception) {
+                error("Terjadi exception")
+                Log.e("MyTag", "exception", e)
+            }
+        }
+    }
+
     fun logout(bearerToken: String) {
         viewModelScope.launch {
             try {
@@ -148,7 +172,7 @@ class UserViewModel(
                         return@launch
                     }
                     userApiResponse.value = response!!
-                    Log.d("MyTag", response.toString())
+                    // Log.d("MyTag", response.toString())
 
                     userPreferences.clear()
                 }

@@ -20,4 +20,7 @@
     <string name="nama">Nama</string>
     <string name="message_not_login">Oops, sepertinya Anda belum login</string>
     <string name="edit_password">Edit Password</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="password_saat_ini">Password saat ini</string>
+    <string name="password_baru">Password baru</string>
 </resources>

@@ -1,34 +1,31 @@
 package id.del.ac.delstat.presentation.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import id.del.ac.delstat.R
+import id.del.ac.delstat.data.preferences.UserPreferences
+import id.del.ac.delstat.databinding.FragmentEditPasswordBinding
+import id.del.ac.delstat.databinding.FragmentEditProfileBinding
+import id.del.ac.delstat.presentation.activity.HomeActivity
+import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [EditPasswordFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class EditPasswordFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentEditPasswordBinding
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var userPreferences: UserPreferences
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var password: String
+    private lateinit var newPassword: String
+    private lateinit var newPasswordConfirmation: String
+    private lateinit var bearerToken: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +35,102 @@ class EditPasswordFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_edit_password, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EditPasswordFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EditPasswordFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentEditPasswordBinding.bind(view)
+        userViewModel = (activity as HomeActivity).userViewModel
+        userPreferences = (activity as HomeActivity).userPreferences
+
+        prepareUI()
     }
+
+    private fun prepareUI() {
+        runBlocking(Dispatchers.IO) {
+            bearerToken = userPreferences.getUserToken.first()!!
+        }
+
+        binding.buttonEditPassword.setOnClickListener {
+            updatePassword()
+        }
+
+        inputValidation()
+    }
+
+    private fun checkInput(): Boolean {
+        val validInput =
+            binding.textInputLayout1.error == null &&
+                    binding.textInputLayout2.error == null &&
+                    binding.textInputLayout3.error == null
+
+        return validInput
+    }
+
+    private fun inputValidation() {
+        binding.editTextPasswordSaatIni.doOnTextChanged { text, start, before, count ->
+            if (text == null || text.isEmpty()) {
+                binding.textInputLayout1.error = "Password saat ini harus diisi"
+            } else {
+                binding.textInputLayout1.error = null
+            }
+        }
+
+        binding.editTextPasswordBaru.doOnTextChanged { text, start, before, count ->
+            if (text == null || text.isEmpty()) {
+                binding.textInputLayout2.error = "Password baru harus diisi"
+            } else if (text.length < 8) {
+                binding.textInputLayout2.error = "Password minimal 8 karakter"
+            } else {
+                binding.textInputLayout2.error = null
+            }
+
+            if (binding.editTextPasswordBaru.text.toString() != binding.editTextPasswordBaruKonfirmasi.text.toString()) {
+                binding.textInputLayout3.error = "Password tidak sama"
+            } else if (binding.editTextPasswordBaru.text.toString() == binding.editTextPasswordBaruKonfirmasi.text.toString()) {
+                binding.textInputLayout3.error = null
+            }
+        }
+
+        binding.editTextPasswordBaruKonfirmasi.doOnTextChanged { text, start, before, count ->
+            if (text == null || text.isEmpty()) {
+                binding.textInputLayout3.error = "Konfirmasi password baru harus diisi"
+            } else if (text.length < 8) {
+                binding.textInputLayout3.error = "Password minimal 8 karakter"
+            } else if (binding.editTextPasswordBaru.text.toString() != binding.editTextPasswordBaruKonfirmasi.text.toString()) {
+                binding.textInputLayout3.error = "Password tidak sama"
+            } else {
+                binding.textInputLayout3.error = null
+            }
+        }
+    }
+
+    private fun updatePassword() {
+        if (checkInput()) {
+            bearerToken = "Bearer $bearerToken"
+
+            Log.d("MyTag", "updatePassword")
+            Log.d(
+                "MyTag",
+                "password saat ini: ${binding.editTextPasswordSaatIni.text.toString()}"
+            )
+            Log.d("MyTag", "updatePassword: " + binding.editTextPasswordBaru.text.toString())
+            Log.d(
+                "MyTag",
+                "updatePassword: " + binding.editTextPasswordBaruKonfirmasi.text.toString()
+            )
+            Log.d("MyTag", "bearerToken: $bearerToken")
+
+            password = binding.editTextPasswordSaatIni.text.toString()
+            newPassword = binding.editTextPasswordBaru.text.toString()
+            newPasswordConfirmation = binding.editTextPasswordBaruKonfirmasi.text.toString()
+
+            userViewModel.updatePassword(
+                bearerToken,
+                password,
+                newPassword,
+                newPasswordConfirmation
+            )
+        }
+    }
+
 }

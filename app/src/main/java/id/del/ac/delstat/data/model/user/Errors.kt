@@ -18,4 +18,7 @@ data class Errors(
 
     @SerializedName("password")
     val password: List<String?>? = null,
+
+    @SerializedName("new_password")
+    val newPassword: List<String?>? = null,
 )

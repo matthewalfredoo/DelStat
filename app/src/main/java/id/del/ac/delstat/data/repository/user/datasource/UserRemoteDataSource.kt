@@ -25,6 +25,13 @@ interface UserRemoteDataSource {
         fotoProfil: File? = null
     ): Response<UserApiResponse>
 
+    suspend fun updatePassword(
+        bearerToken: String,
+        password: String,
+        newPassword: String,
+        newPasswordConfirmation: String
+    ): Response<UserApiResponse>
+
     suspend fun logout(bearerToken: String): Response<UserApiResponse>
 
 }

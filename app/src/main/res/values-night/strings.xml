@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">DelStat</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login">Login</string>
+    <string name="delstat_icon">DelStat icon</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
     <string name="login_masuk">Masuk</string>
     <string name="masuk">Masuk</string>
     <string name="lupa_password">Lupa Password?</string>
@@ -9,11 +15,13 @@
     <string name="edit_profil">Edit Profil</string>
     <string name="hasil_kuis">Hasil Kuis</string>
     <string name="logout">Logout</string>
-    <string name="nomor_telepon">Nomor Telepon</string>
     <string name="jenjang">Jenjang</string>
     <string name="data_anda">Data Anda</string>
     <string name="foto_profil">Foto Profil</string>
     <string name="nama">Nama</string>
     <string name="message_not_login">Oops, sepertinya Anda belum login</string>
     <string name="edit_password">Edit Password</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="password_saat_ini">Password saat ini</string>
+    <string name="password_baru">Password baru</string>
 </resources>
