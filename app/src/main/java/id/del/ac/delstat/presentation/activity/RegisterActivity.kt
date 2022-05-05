@@ -66,9 +66,26 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun inputValidation() {
+        userViewModel.userApiResponse.observe(this, Observer {
+            if(it.code == 400 && it.errors != null) {
+                if(it.errors.nama != null) {
+                    binding.textInputLayout1.error = it.errors.nama.get(0)
+                }
+                if(it.errors.email != null) {
+                    binding.textInputLayout2.error = it.errors.email.get(0)
+                }
+                if(it.errors.noHp != null) {
+                    binding.textInputLayout3.error = it.errors.noHp.get(0)
+                }
+                if(it.errors.password != null) {
+                    binding.textInputLayout4.error = it.errors.password.get(0)
+                }
+            }
+        })
+
         binding.editTextNamaRegister.doOnTextChanged { text, start, before, count ->
             if (text == null || text.isEmpty()) {
-                binding.textInputLayout1.error = "Nama harus diisi"
+                binding.textInputLayout1.error = "Field nama wajib diisi"
             } else {
                 binding.textInputLayout1.error = null
             }
@@ -76,7 +93,7 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.editTextEmailRegister.doOnTextChanged { text, start, before, count ->
             if (text == null || text.isEmpty()) {
-                binding.textInputLayout2.error = "Email harus diisi"
+                binding.textInputLayout2.error = "Field email wajib diisi"
             } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(text).matches()) {
                 binding.textInputLayout2.error = "Email tidak valid"
             } else {
@@ -86,7 +103,7 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.editTextNoHpRegister.doOnTextChanged { text, start, before, count ->
             if (text == null || text.isEmpty()) {
-                binding.textInputLayout3.error = "Nomor telepon harus diisi"
+                binding.textInputLayout3.error = "Field nomor telepon wajib diisi"
             } else if (text.length < 10) {
                 binding.textInputLayout3.error = "Nomor telepon tidak valid"
             } else {
@@ -96,7 +113,7 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.editTextPasswordRegister.doOnTextChanged { text, start, before, count ->
             if (text == null || text.isEmpty()) {
-                binding.textInputLayout4.error = "Password harus diisi"
+                binding.textInputLayout4.error = "Field password wajib diisi"
             } else {
                 binding.textInputLayout4.error = null
             }

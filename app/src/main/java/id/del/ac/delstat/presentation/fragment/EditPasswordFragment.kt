@@ -67,6 +67,17 @@ class EditPasswordFragment : Fragment() {
     }
 
     private fun inputValidation() {
+        userViewModel.userApiResponse.observe(viewLifecycleOwner) {
+            if(it.code == 400 && it.errors != null) {
+                if(it.errors.password != null) {
+                    binding.textInputLayout1.error = it.errors.password.get(0)
+                }
+                if(it.errors.newPassword != null) {
+                    binding.textInputLayout2.error = it.errors.newPassword.get(0)
+                }
+            }
+        }
+
         binding.editTextPasswordSaatIni.doOnTextChanged { text, start, before, count ->
             if (text == null || text.isEmpty()) {
                 binding.textInputLayout1.error = "Password saat ini harus diisi"
@@ -94,8 +105,6 @@ class EditPasswordFragment : Fragment() {
         binding.editTextPasswordBaruKonfirmasi.doOnTextChanged { text, start, before, count ->
             if (text == null || text.isEmpty()) {
                 binding.textInputLayout3.error = "Konfirmasi password baru harus diisi"
-            } else if (text.length < 8) {
-                binding.textInputLayout3.error = "Password minimal 8 karakter"
             } else if (binding.editTextPasswordBaru.text.toString() != binding.editTextPasswordBaruKonfirmasi.text.toString()) {
                 binding.textInputLayout3.error = "Password tidak sama"
             } else {
