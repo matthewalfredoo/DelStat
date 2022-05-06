@@ -6,6 +6,7 @@ import id.del.ac.delstat.presentation.di.core.AppComponent
 import id.del.ac.delstat.presentation.di.core.AppModule
 import id.del.ac.delstat.presentation.di.core.DaggerAppComponent
 import id.del.ac.delstat.presentation.di.core.NetModule
+import id.del.ac.delstat.presentation.di.materi.MateriSubComponent
 import id.del.ac.delstat.presentation.di.user.UserSubComponent
 
 class App: Application(), Injector{
@@ -21,6 +22,10 @@ class App: Application(), Injector{
 
     override fun createUserSubComponent(): UserSubComponent {
         return appComponent.userSubComponent().create()
+    }
+
+    override fun createMateriSubComponent(): MateriSubComponent {
+        return appComponent.materiSubComponent().create()
     }
 
 }

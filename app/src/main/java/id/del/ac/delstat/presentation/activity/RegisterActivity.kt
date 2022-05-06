@@ -13,6 +13,7 @@ import id.del.ac.delstat.databinding.ActivityRegisterBinding
 import id.del.ac.delstat.presentation.di.Injector
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModelFactory
+import id.del.ac.delstat.util.Helper
 import javax.inject.Inject
 
 class RegisterActivity : AppCompatActivity() {
@@ -46,6 +47,14 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.buttonRegister.setOnClickListener {
             register()
+
+            /* Hiding the keyboard */
+            val view = this.currentFocus
+            if(view != null) {
+                /*hideKeyboardFrom(applicationContext, binding.root)*/
+                Helper.hideKeyboardFrom(applicationContext, view)
+            }
+            /* End of Hiding the keyboard */
         }
 
         binding.buttonLogin.setOnClickListener {

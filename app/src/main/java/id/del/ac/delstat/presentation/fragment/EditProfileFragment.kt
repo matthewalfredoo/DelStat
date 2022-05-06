@@ -38,6 +38,7 @@ import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.FragmentEditProfileBinding
 import id.del.ac.delstat.presentation.activity.HomeActivity
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
+import id.del.ac.delstat.util.Helper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -201,6 +202,14 @@ class EditProfileFragment : Fragment() {
 
         binding.buttonEditProfile.setOnClickListener {
             editProfile()
+
+            /* Hiding the keyboard */
+            val view = requireActivity().currentFocus
+            if(view != null) {
+                /*hideKeyboardFrom(applicationContext, binding.root)*/
+                Helper.hideKeyboardFrom(requireContext(), view)
+            }
+            /* End of Hiding the keyboard */
         }
 
         binding.buttonEditPassword.setOnClickListener {

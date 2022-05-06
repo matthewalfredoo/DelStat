@@ -21,6 +21,7 @@ import id.del.ac.delstat.databinding.ActivityLoginBinding
 import id.del.ac.delstat.presentation.di.Injector
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModelFactory
+import id.del.ac.delstat.util.Helper
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
@@ -55,8 +56,13 @@ class LoginActivity : AppCompatActivity() {
 
         binding.buttonLogin.setOnClickListener {
             login()
+
             /* Hiding the keyboard */
-            /*hideKeyboardFrom(applicationContext, binding.root)*/
+            val view = this.currentFocus
+            if(view != null) {
+                /*hideKeyboardFrom(applicationContext, binding.root)*/
+                Helper.hideKeyboardFrom(applicationContext, view)
+            }
             /* End of Hiding the keyboard */
         }
 
@@ -75,12 +81,6 @@ class LoginActivity : AppCompatActivity() {
         })
 
         inputValidation()
-    }
-
-    fun hideKeyboardFrom(context: Context, view: View) {
-        val imm: InputMethodManager =
-            context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
     }
 
     private fun inputValidation() {

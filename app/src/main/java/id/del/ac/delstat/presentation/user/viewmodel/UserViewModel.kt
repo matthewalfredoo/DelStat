@@ -13,6 +13,7 @@ import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.model.user.UserApiResponse
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.domain.repository.UserRepository
+import id.del.ac.delstat.util.Helper
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -24,39 +25,6 @@ class UserViewModel(
     /* Properties Declaration */
     val userApiResponse: MutableLiveData<UserApiResponse> = MutableLiveData()
     /* End of Properties Declaration */
-
-    /**
-     * This method is used to check if the device is connected to the internet
-     */
-    private fun isNetworkAvailable(context: Context?): Boolean {
-        if (context == null) return false
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val capabilities =
-                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                when {
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
-                        return true
-                    }
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
-                        return true
-                    }
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
-                        return true
-                    }
-                }
-            }
-        } else {
-            val activeNetworkInfo = connectivityManager.activeNetworkInfo
-            if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
-                return true
-            }
-        }
-        return false
-
-    }
 
     fun register(nama: String, email: String, noHp: String, password: String) {
         viewModelScope.launch {
@@ -188,7 +156,7 @@ class UserViewModel(
      * This is a shorthand method of isNetworkAvailable(Context)
      */
     private fun checkNetwork(): Boolean {
-        if (!isNetworkAvailable(app)) {
+        if (!Helper.isNetworkAvailable(app)) {
             error("Tidak dapat mengakses jaringan")
             return false
         }

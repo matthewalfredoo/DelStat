@@ -1,6 +1,7 @@
 package id.del.ac.delstat.presentation.di.core
 
 import dagger.Component
+import id.del.ac.delstat.presentation.di.materi.MateriSubComponent
 import id.del.ac.delstat.presentation.di.user.UserSubComponent
 import javax.inject.Singleton
 
@@ -15,5 +16,6 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun userSubComponent(): UserSubComponent.Factory
+    fun materiSubComponent(): MateriSubComponent.Factory
 
 }

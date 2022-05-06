@@ -1,5 +1,6 @@
 package id.del.ac.delstat.data.api
 
+import id.del.ac.delstat.data.model.materi.MateriApiResponse
 import id.del.ac.delstat.data.model.user.UserApiResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -80,4 +81,27 @@ interface DelStatApiService {
     ): Response<UserApiResponse>
 
     /* End of User-related Services */
+
+    /* Materi related Services */
+
+    @GET("api/materi/{id}")
+    suspend fun getMateri(
+        @Path("id")
+        id: Int
+    ): Response<MateriApiResponse>
+
+    @FormUrlEncoded
+    @POST("api/materi/update/{id}")
+    suspend fun updateMateri(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Path("id")
+        id: Int,
+
+        @Field("link_video")
+        linkVideo: String
+    ): Response<MateriApiResponse>
+
+    /* End of Materi related Services */
 }

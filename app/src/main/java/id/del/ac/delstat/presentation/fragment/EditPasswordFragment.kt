@@ -13,6 +13,7 @@ import id.del.ac.delstat.databinding.FragmentEditPasswordBinding
 import id.del.ac.delstat.databinding.FragmentEditProfileBinding
 import id.del.ac.delstat.presentation.activity.HomeActivity
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
+import id.del.ac.delstat.util.Helper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -52,6 +53,14 @@ class EditPasswordFragment : Fragment() {
 
         binding.buttonEditPassword.setOnClickListener {
             updatePassword()
+
+            /* Hiding the keyboard */
+            val view = requireActivity().currentFocus
+            if(view != null) {
+                /*hideKeyboardFrom(applicationContext, binding.root)*/
+                Helper.hideKeyboardFrom(requireContext(), view)
+            }
+            /* End of Hiding the keyboard */
         }
 
         inputValidation()
