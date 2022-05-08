@@ -2,10 +2,13 @@ package id.del.ac.delstat.presentation.di.core
 
 import dagger.Module
 import dagger.Provides
+import id.del.ac.delstat.data.repository.literatur.LiteraturRepositoryImpl
+import id.del.ac.delstat.data.repository.literatur.datasource.LiteraturRemoteDataSource
 import id.del.ac.delstat.data.repository.materi.MateriRepositoryImpl
 import id.del.ac.delstat.data.repository.materi.datasource.MateriRemoteDataSource
 import id.del.ac.delstat.data.repository.user.UserRepositoryImpl
 import id.del.ac.delstat.data.repository.user.datasource.UserRemoteDataSource
+import id.del.ac.delstat.domain.repository.LiteraturRepository
 import id.del.ac.delstat.domain.repository.MateriRepository
 import id.del.ac.delstat.domain.repository.UserRepository
 import javax.inject.Singleton
@@ -23,6 +26,12 @@ class RepositoryModule {
     @Provides
     fun provideMateriRepository(materiRemoteDataSource: MateriRemoteDataSource): MateriRepository {
         return MateriRepositoryImpl(materiRemoteDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideLiteraturRepository(literaturRemoteDataSource: LiteraturRemoteDataSource): LiteraturRepository {
+        return LiteraturRepositoryImpl(literaturRemoteDataSource)
     }
 
 }

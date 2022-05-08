@@ -19,6 +19,9 @@
         android:theme="@style/Theme.DelStat"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.testactivity.LiteraturActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.testactivity.MateriActivity"
             android:exported="false" />
         <activity

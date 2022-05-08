@@ -1,5 +1,6 @@
 package id.del.ac.delstat.util
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
@@ -11,6 +12,13 @@ import android.view.inputmethod.InputMethodManager
 class Helper {
 
     companion object {
+        /**
+         * Permissions needed for the app
+         */
+        var PERMISSIONS = arrayOf(
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+
         /**
          * This method is used to check if the device is connected to the internet
          */

@@ -3,6 +3,7 @@ package id.del.ac.delstat.presentation.testactivity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import id.del.ac.delstat.data.api.DelStatApiService
@@ -57,24 +58,20 @@ class MateriActivity : AppCompatActivity() {
         binding.btnGetMateriEdit.setOnClickListener {
             updateMateri()
         }
+
+        materiViewModel.materiApiResponse.observe(this, Observer {
+            Log.d("MyTag", it.toString())
+        })
     }
 
     private fun updateMateri() {
         val idMateri = binding.etIdMateriEdit.text.toString().toInt()
         val linkYoutube = binding.etLinkVideoMateriEdit.text.toString()
-        lifecycleScope.launch {
-            val response = delStatApiService.updateMateri(bearerToken, idMateri, linkYoutube)
-            Log.d("MyTag", response.toString())
-            Log.d("MyTag", response.body().toString())
-        }
+        materiViewModel.updateMateri(bearerToken, idMateri, linkYoutube)
     }
 
     private fun getMateri() {
         val idMateri = binding.etIdMateri.text.toString().toInt()
-        lifecycleScope.launch {
-            val response = delStatApiService.getMateri(idMateri)
-            Log.d("MyTag", response.toString())
-            Log.d("MyTag", response.body().toString())
-        }
+        materiViewModel.getMateri(idMateri)
     }
 }

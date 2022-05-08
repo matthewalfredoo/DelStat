@@ -6,6 +6,7 @@ import id.del.ac.delstat.presentation.di.core.AppComponent
 import id.del.ac.delstat.presentation.di.core.AppModule
 import id.del.ac.delstat.presentation.di.core.DaggerAppComponent
 import id.del.ac.delstat.presentation.di.core.NetModule
+import id.del.ac.delstat.presentation.di.literatur.LiteraturSubComponent
 import id.del.ac.delstat.presentation.di.materi.MateriSubComponent
 import id.del.ac.delstat.presentation.di.user.UserSubComponent
 
@@ -26,6 +27,10 @@ class App: Application(), Injector{
 
     override fun createMateriSubComponent(): MateriSubComponent {
         return appComponent.materiSubComponent().create()
+    }
+
+    override fun createLiteraturSubComponent(): LiteraturSubComponent {
+        return appComponent.literaturSubComponent().create()
     }
 
 }

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    tools:context=".presentation.testactivity.LiteraturActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Get Literatur" />
+
+            <Button
+                android:id="@+id/btn_get_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Get Literatur" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Get Detail Literatur" />
+
+            <EditText
+                android:id="@+id/et_id_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Literatur"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/btn_get_literatur_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Get Literatur Detail"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Literatur" />
+
+            <EditText
+                android:id="@+id/et_judul_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Judul"/>
+
+            <EditText
+                android:id="@+id/et_penulis_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Penulis"/>
+
+            <EditText
+                android:id="@+id/et_tahun_terbit_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Tahun Terbit"/>
+
+            <EditText
+                android:id="@+id/et_tag_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Tag"/>
+            
+            <TextView
+                android:id="@+id/file_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Pilih File"/>
+            
+            <Button
+                android:id="@+id/btn_add_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Literatur" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit Literatur" />
+
+            <EditText
+                android:id="@+id/et_id_edit_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="ID Literatur Edit"/>
+
+            <EditText
+                android:id="@+id/et_judul_edit_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Judul"/>
+
+            <EditText
+                android:id="@+id/et_penulis_edit_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Penulis"/>
+
+            <EditText
+                android:id="@+id/et_tahun_terbit_edit_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Tahun Terbit"/>
+
+            <EditText
+                android:id="@+id/et_tag_edit_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Tag"/>
+
+            <TextView
+                android:id="@+id/file_edit_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Pilih File"/>
+
+            <Button
+                android:id="@+id/btn_edit_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit Literatur" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delete Literatur" />
+
+            <EditText
+                android:id="@+id/et_id_delete_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="ID Literatur Delete"/>
+
+            <Button
+                android:id="@+id/btn_delete_literatur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delete Literatur" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -9,6 +9,12 @@ import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import android.provider.OpenableColumns
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
+
 
 /**
  * Reference:
@@ -159,5 +165,45 @@ object RealPathUtil {
      */
     fun isGooglePhotosUri(uri: Uri): Boolean {
         return "com.google.android.apps.photos.content" == uri.getAuthority()
+    }
+
+    /**
+     * Use this method to get file path from uri
+     * File like PDF, DOC, XLS, PPT, TXT, etc
+     * @param context
+     * @param uri
+     * @return file path
+     * @throws IOException
+     */
+    @SuppressLint("Range")
+    fun copyFileToInternal(context: Context, fileUri: Uri): String? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val cursor = context.contentResolver.query(
+                fileUri,
+                arrayOf(OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE),
+                null,
+                null
+            )
+            cursor!!.moveToFirst()
+            val displayName =
+                cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+            val size = cursor.getLong(cursor.getColumnIndex(OpenableColumns.SIZE))
+            val file = File(context.filesDir.toString() + "/" + displayName)
+            try {
+                val fileOutputStream = FileOutputStream(file)
+                val inputStream: InputStream? = context.contentResolver.openInputStream(fileUri)
+                val buffers = ByteArray(1024)
+                var read: Int
+                while (inputStream!!.read(buffers).also { read = it } != -1) {
+                    fileOutputStream.write(buffers, 0, read)
+                }
+                inputStream.close()
+                fileOutputStream.close()
+                return file.path
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+        return null
     }
 }

@@ -3,6 +3,8 @@ package id.del.ac.delstat.presentation.di.core
 import dagger.Module
 import dagger.Provides
 import id.del.ac.delstat.data.api.DelStatApiService
+import id.del.ac.delstat.data.repository.literatur.datasource.LiteraturRemoteDataSource
+import id.del.ac.delstat.data.repository.literatur.datasourceimpl.LiteraturRemoteDataSourceImpl
 import id.del.ac.delstat.data.repository.materi.datasource.MateriRemoteDataSource
 import id.del.ac.delstat.data.repository.materi.datasourceimpl.MateriRemoteDataSourceImpl
 import id.del.ac.delstat.data.repository.user.datasource.UserRemoteDataSource
@@ -22,6 +24,12 @@ class RemoteDataModule {
     @Provides
     fun provideMateriRemoteDataSource(delStatApiService: DelStatApiService): MateriRemoteDataSource {
         return MateriRemoteDataSourceImpl(delStatApiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideLiteraturRemoteDataSource(delStatApiService: DelStatApiService): LiteraturRemoteDataSource {
+        return LiteraturRemoteDataSourceImpl(delStatApiService)
     }
 
 }

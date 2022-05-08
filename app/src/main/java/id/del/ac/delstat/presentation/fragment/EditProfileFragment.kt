@@ -136,14 +136,14 @@ class EditProfileFragment : Fragment() {
             Log.d("MyTag", "No permission needed, and do something")
         }
         activity?.let {
-            if (hasPermissions(requireContext(), PERMISSIONS)) {
+            if (hasPermissions(requireContext(), Helper.PERMISSIONS)) {
                 Log.d("MyTag", "Permission granted, and do something")
                 val intent =
                     Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                         .setType("image/*")
                 selectPhotoResultLauncher.launch(intent)
             } else {
-                requestPermissionLauncher.launch(PERMISSIONS)
+                requestPermissionLauncher.launch(Helper.PERMISSIONS)
             }
         }
     }
