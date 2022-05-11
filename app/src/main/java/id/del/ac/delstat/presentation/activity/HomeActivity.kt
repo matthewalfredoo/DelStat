@@ -8,15 +8,16 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.R
 import id.del.ac.delstat.data.api.DelStatApiService
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityHomeBinding
-import id.del.ac.delstat.presentation.di.Injector
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModelFactory
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
 
@@ -35,8 +36,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        (application as Injector).createUserSubComponent().inject(this)
 
         userViewModel = ViewModelProvider(this, userViewModelFactory)
             .get(UserViewModel::class.java)

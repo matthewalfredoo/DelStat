@@ -9,13 +9,14 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.databinding.ActivityRegisterBinding
-import id.del.ac.delstat.presentation.di.Injector
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModelFactory
 import id.del.ac.delstat.util.Helper
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
 
@@ -27,8 +28,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        (application as Injector).createUserSubComponent().inject(this)
 
         userViewModel = ViewModelProvider(this, userViewModelFactory)
             .get(UserViewModel::class.java)

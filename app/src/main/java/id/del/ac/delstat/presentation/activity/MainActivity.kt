@@ -2,22 +2,20 @@ package id.del.ac.delstat.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.data.api.DelStatApiService
 import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityMainBinding
-import id.del.ac.delstat.presentation.di.Injector
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModelFactory
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
@@ -36,8 +34,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        (application as Injector).createUserSubComponent().inject(this)
 
         userViewModel = ViewModelProvider(this, userViewModelFactory)
             .get(UserViewModel::class.java)

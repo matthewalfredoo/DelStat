@@ -1,29 +1,22 @@
 package id.del.ac.delstat.presentation.activity
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import android.view.View
-import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-import id.del.ac.delstat.R
+import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.databinding.ActivityLoginBinding
-import id.del.ac.delstat.presentation.di.Injector
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModelFactory
 import id.del.ac.delstat.util.Helper
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
 
@@ -35,8 +28,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        (application as Injector).createUserSubComponent().inject(this)
 
         userViewModel = ViewModelProvider(this, userViewModelFactory)
             .get(UserViewModel::class.java)

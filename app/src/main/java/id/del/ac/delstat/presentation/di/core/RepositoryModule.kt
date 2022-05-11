@@ -2,6 +2,8 @@ package id.del.ac.delstat.presentation.di.core
 
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import id.del.ac.delstat.data.repository.literatur.LiteraturRepositoryImpl
 import id.del.ac.delstat.data.repository.literatur.datasource.LiteraturRemoteDataSource
 import id.del.ac.delstat.data.repository.materi.MateriRepositoryImpl
@@ -14,6 +16,7 @@ import id.del.ac.delstat.domain.repository.UserRepository
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class RepositoryModule {
 
     @Singleton

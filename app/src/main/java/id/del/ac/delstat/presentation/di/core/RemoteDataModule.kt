@@ -2,6 +2,8 @@ package id.del.ac.delstat.presentation.di.core
 
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import id.del.ac.delstat.data.api.DelStatApiService
 import id.del.ac.delstat.data.repository.literatur.datasource.LiteraturRemoteDataSource
 import id.del.ac.delstat.data.repository.literatur.datasourceimpl.LiteraturRemoteDataSourceImpl
@@ -12,6 +14,7 @@ import id.del.ac.delstat.data.repository.user.datasourceimpl.UserRemoteDataSourc
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class RemoteDataModule {
 
     @Singleton

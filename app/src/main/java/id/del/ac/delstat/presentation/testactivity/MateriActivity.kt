@@ -5,18 +5,17 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.data.api.DelStatApiService
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityMateriBinding
-import id.del.ac.delstat.presentation.di.Injector
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModel
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModelFactory
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MateriActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMateriBinding
@@ -36,8 +35,6 @@ class MateriActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMateriBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        (application as Injector).createMateriSubComponent().inject(this)
 
         materiViewModel = ViewModelProvider(this, materiViewModelFactory)
             .get(MateriViewModel::class.java)

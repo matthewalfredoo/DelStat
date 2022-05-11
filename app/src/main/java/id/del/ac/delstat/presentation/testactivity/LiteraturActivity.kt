@@ -14,9 +14,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.del.d3ti20.util.RealPathUtil
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityLiteraturBinding
-import id.del.ac.delstat.presentation.di.Injector
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModel
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModelFactory
 import id.del.ac.delstat.util.Helper
@@ -25,6 +25,7 @@ import kotlinx.coroutines.runBlocking
 import java.io.File
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class LiteraturActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLiteraturBinding
@@ -81,8 +82,6 @@ class LiteraturActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLiteraturBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        (application as Injector).createLiteraturSubComponent().inject(this)
 
         literaturViewModel = ViewModelProvider(this, literaturViewModelFactory)
             .get(LiteraturViewModel::class.java)
