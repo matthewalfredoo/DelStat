@@ -26,7 +26,7 @@ class ProfileFragment : Fragment() {
     private lateinit var userViewModel: UserViewModel
     private lateinit var binding: FragmentProfileBinding
     private lateinit var userPreferences: UserPreferences
-    private var bearerToken: String? = null
+    var bearerToken: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,12 +42,14 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.bind(view)
         userViewModel = (activity as HomeActivity).userViewModel
         userPreferences = (activity as HomeActivity).userPreferences
+        bearerToken = (activity as HomeActivity).bearerToken
 
         userPreferences.getUserToken.asLiveData().observe(viewLifecycleOwner) {
             // Log.d("MyTag", "ProfileFragment Token: $it")
             if (it.isNullOrEmpty()) {
                 binding.containerNotLogin.visibility = View.VISIBLE
                 binding.containerLogin.visibility = View.GONE
+                bearerToken = ""
             } else {
                 binding.containerLogin.visibility = View.VISIBLE
                 binding.containerNotLogin.visibility = View.GONE
@@ -61,6 +63,8 @@ class ProfileFragment : Fragment() {
     private fun logout() {
         bearerToken = "Bearer $bearerToken"
         userViewModel.logout(bearerToken!!)
+        bearerToken = ""
+        (activity as HomeActivity).bearerToken = bearerToken
     }
 
     private fun prepareUI() {

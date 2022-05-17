@@ -6,9 +6,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.del.ac.delstat.data.preferences.UserPreferences
+import id.del.ac.delstat.domain.repository.AnalisisDataRepository
 import id.del.ac.delstat.domain.repository.LiteraturRepository
 import id.del.ac.delstat.domain.repository.MateriRepository
 import id.del.ac.delstat.domain.repository.UserRepository
+import id.del.ac.delstat.presentation.analisisdata.viewmodel.AnalisisDataViewModelFactory
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModelFactory
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModelFactory
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModelFactory
@@ -44,6 +46,15 @@ class FactoryModule {
         literaturRepository: LiteraturRepository
     ): LiteraturViewModelFactory {
         return LiteraturViewModelFactory(app, literaturRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAnalisisDataViewModelFactory(
+        app: Application,
+        analisisDataRepository: AnalisisDataRepository
+    ): AnalisisDataViewModelFactory {
+        return AnalisisDataViewModelFactory(app, analisisDataRepository)
     }
 
 }

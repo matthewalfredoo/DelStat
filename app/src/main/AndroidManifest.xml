@@ -19,6 +19,27 @@
         android:theme="@style/Theme.DelStat"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.analisisdata.activity.DetailAnalisisDataActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.analisisdata.activity.ListAnalisisDataActivity" />
+        </activity>
+        <activity
+            android:name=".presentation.analisisdata.activity.CreateAnalisisDataActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.analisisdata.activity.ListAnalisisDataActivity" />
+        </activity>
+        <activity
+            android:name=".presentation.analisisdata.activity.ListAnalisisDataActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.activity.HomeActivity" />
+        </activity>
+        <activity
             android:name=".presentation.testactivity.LiteraturActivity"
             android:exported="false" />
         <activity

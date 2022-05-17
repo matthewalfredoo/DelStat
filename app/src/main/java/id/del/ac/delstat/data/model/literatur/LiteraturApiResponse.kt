@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class LiteraturApiResponse(
     @SerializedName("code")
-    val code: Int,
+    val code: Int = 500,
 
     @SerializedName("errors")
     val errors: Errors? = null,

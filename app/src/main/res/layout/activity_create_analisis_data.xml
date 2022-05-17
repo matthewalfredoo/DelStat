@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.analisisdata.activity.CreateAnalisisDataActivity">
+
+    <ProgressBar
+        android:id="@+id/analisis_data_progressbar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/blue_primary"
+        android:visibility="gone" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_1"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
+        android:hint="@string/judul_analisis_data"
+        app:boxBackgroundColor="@color/white"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_baseline_error_red_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_judul"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_2"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_input_layout_1"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
+        android:hint="@string/deskripsi_analisis_data"
+        app:boxBackgroundColor="@color/white"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_baseline_error_red_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_deskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:lines="20"
+            android:minLines="5"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_3"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_input_layout_2"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
+        android:hint="@string/pilih_file_analisis_data"
+        app:boxBackgroundColor="@color/white"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_baseline_error_red_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/button_create_analisis_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/input_layout_3"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/blue_primary"
+        android:contentDescription="@string/submit_analisis_data"
+        android:text="@string/submit_analisis_data"
+        android:textColor="@color/white"
+        android:theme="@style/Theme.Material3.DynamicColors.Light" />
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package id.del.ac.delstat.data.api
 
+import id.del.ac.delstat.data.model.analisisdata.AnalisisDataApiResponse
 import id.del.ac.delstat.data.model.literatur.LiteraturApiResponse
 import id.del.ac.delstat.data.model.materi.MateriApiResponse
 import id.del.ac.delstat.data.model.user.UserApiResponse
@@ -174,4 +175,67 @@ interface DelStatApiService {
     ): Response<LiteraturApiResponse>
 
     /* End of Literature related Services */
+
+    /* Analisis Data related Services */
+
+    @GET("api/analisisdata")
+    suspend fun getAnalisisData(
+        @Header("Authorization")
+        bearerToken: String
+    ): Response<AnalisisDataApiResponse>
+
+    @GET("api/analisisdata/{id}")
+    suspend fun getDetailAnalisisData(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Path("id")
+        id: Int
+    ): Response<AnalisisDataApiResponse>
+
+    @Multipart
+    @POST("api/analisisdata/store")
+    suspend fun storeAnalisisData(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Part("judul")
+        judul: RequestBody,
+
+        @Part("deskripsi")
+        deskripsi: RequestBody,
+
+        @Part
+        file: MultipartBody.Part? = null
+    ): Response<AnalisisDataApiResponse>
+
+    @Multipart
+    @POST("api/analisisdata/update/{id}")
+    suspend fun updateAnalisisData(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Path("id")
+        id: Int,
+
+        @Part("judul")
+        judul: RequestBody,
+
+        @Part("deskripsi")
+        deskripsi: RequestBody,
+
+        @Part
+        file: MultipartBody.Part? = null
+    ): Response<AnalisisDataApiResponse>
+
+    @POST("api/analisisdata/cancel/{id}")
+    suspend fun cancelAnalisisData(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Path("id")
+        id: Int
+    ): Response<AnalisisDataApiResponse>
+
+    /* End of Analisis Data related Services */
 }

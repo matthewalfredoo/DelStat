@@ -24,4 +24,9 @@
     <string name="nomor_telepon">Nomor Telepon</string>
     <string name="password_saat_ini">Password saat ini</string>
     <string name="password_baru">Password baru</string>
+    <string name="request_analisis_data">Request</string>
+    <string name="deskripsi_analisis_data">Deskripsi</string>
+    <string name="submit_analisis_data">Submit</string>
+    <string name="desc_button_file_analisis_data">File Analisis Data</string>
+    <string name="button_edit_analisisdata">Edit</string>
 </resources>

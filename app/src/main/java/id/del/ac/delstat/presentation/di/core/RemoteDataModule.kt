@@ -5,6 +5,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.del.ac.delstat.data.api.DelStatApiService
+import id.del.ac.delstat.data.repository.analisisdata.datasource.AnalisisDataRemoteDataSource
+import id.del.ac.delstat.data.repository.analisisdata.datasourceimpl.AnalisisDataRemoteDataSourceImpl
 import id.del.ac.delstat.data.repository.literatur.datasource.LiteraturRemoteDataSource
 import id.del.ac.delstat.data.repository.literatur.datasourceimpl.LiteraturRemoteDataSourceImpl
 import id.del.ac.delstat.data.repository.materi.datasource.MateriRemoteDataSource
@@ -33,6 +35,12 @@ class RemoteDataModule {
     @Provides
     fun provideLiteraturRemoteDataSource(delStatApiService: DelStatApiService): LiteraturRemoteDataSource {
         return LiteraturRemoteDataSourceImpl(delStatApiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAnalisisDataRemoteDataSource(delStatApiService: DelStatApiService): AnalisisDataRemoteDataSource {
+        return AnalisisDataRemoteDataSourceImpl(delStatApiService)
     }
 
 }

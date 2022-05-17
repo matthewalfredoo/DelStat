@@ -8,6 +8,12 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
 
 class Helper {
 
@@ -61,6 +67,18 @@ class Helper {
             imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)*/
             val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+
+        fun requestBody(file: File?): MultipartBody.Part? {
+            if (file == null) {
+                return null
+            }
+            val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+            return MultipartBody.Part.createFormData("file", file.name, requestFile)
+        }
+
+        fun requestBody(field: String): RequestBody {
+            return field.toRequestBody("text/plain".toMediaTypeOrNull())
         }
     }
 

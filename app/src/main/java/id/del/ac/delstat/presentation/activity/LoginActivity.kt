@@ -24,6 +24,10 @@ class LoginActivity : AppCompatActivity() {
     lateinit var userViewModelFactory: UserViewModelFactory
     lateinit var userViewModel: UserViewModel
 
+    companion object{
+        const val LOGIN_MESSAGE = "login_message"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -36,6 +40,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun prepareUI() {
+        val intentLogin = intent
+        val loginMessage = intentLogin.getStringExtra(LOGIN_MESSAGE)
+        if(loginMessage != null){
+            Snackbar.make(binding.root, loginMessage, Snackbar.LENGTH_LONG).show()
+        }
+
         supportActionBar?.hide()
         /*supportActionBar?.setBackgroundDrawable(AppCompatResources.getDrawable(applicationContext, R.drawable.gradient_list))*/
 
