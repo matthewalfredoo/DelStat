@@ -16,6 +16,8 @@ interface UserRemoteDataSource {
 
     suspend fun login(email: String, password: String): Response<UserApiResponse>
 
+    suspend fun getUser(bearerToken: String): Response<UserApiResponse>
+
     suspend fun updateProfile(
         bearerToken: String,
         nama: String,

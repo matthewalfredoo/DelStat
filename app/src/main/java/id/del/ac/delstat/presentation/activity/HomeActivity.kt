@@ -3,6 +3,7 @@ package id.del.ac.delstat.presentation.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.Observer
@@ -81,6 +82,10 @@ class HomeActivity : AppCompatActivity() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             bearerToken = userPreferences.getUserToken.first()
+
+            if(!bearerToken.isNullOrEmpty()) {
+                userViewModel.getUser("Bearer $bearerToken")
+            }
         }
     }
 

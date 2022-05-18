@@ -27,6 +27,10 @@ class UserRemoteDataSourceImpl(private val delStatApiService: DelStatApiService)
         return delStatApiService.login(email, password)
     }
 
+    override suspend fun getUser(bearerToken: String): Response<UserApiResponse> {
+        return delStatApiService.getUser(bearerToken)
+    }
+
     override suspend fun updateProfile(
         bearerToken: String,
         nama: String,

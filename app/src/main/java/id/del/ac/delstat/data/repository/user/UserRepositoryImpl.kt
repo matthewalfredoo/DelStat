@@ -31,6 +31,16 @@ class UserRepositoryImpl(
         return null
     }
 
+    override suspend fun getUser(bearerToken: String): UserApiResponse? {
+        try {
+            val response = userRemoteDataSource.getUser(bearerToken)
+            return response.body()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
     override suspend fun logout(bearToken: String): UserApiResponse? {
         try {
             val response = userRemoteDataSource.logout(bearToken)

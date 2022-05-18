@@ -15,7 +15,7 @@ interface UserRepository {
 
     suspend fun login(email: String, password: String): UserApiResponse?
 
-    suspend fun logout(bearToken: String): UserApiResponse?
+    suspend fun getUser(bearerToken: String): UserApiResponse?
 
     suspend fun updateProfile(
         bearerToken: String,
@@ -32,5 +32,7 @@ interface UserRepository {
         newPassword: String,
         newPasswordConfirmation: String
     ): UserApiResponse?
+
+    suspend fun logout(bearToken: String): UserApiResponse?
 
 }

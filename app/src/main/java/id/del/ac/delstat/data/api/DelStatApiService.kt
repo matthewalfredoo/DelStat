@@ -38,6 +38,15 @@ interface DelStatApiService {
         password: String
     ): Response<UserApiResponse>
 
+    @GET("api/user")
+    suspend fun getUser(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Header("Accept")
+        accept: String = "application/json"
+    ): Response<UserApiResponse>
+
     @Multipart
     @POST("api/user/update")
     suspend fun updateProfile(

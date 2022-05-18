@@ -40,5 +40,7 @@ class User(
         const val ROLE_ADMIN = "Admin"
         const val ROLE_DOSEN = "Dosen"
         const val ROLE_SISWA = "Siswa"
+
+        const val UNAUTHENTICATED = "Unauthenticated."
     }
 }

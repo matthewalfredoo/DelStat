@@ -73,6 +73,25 @@ class UserViewModel(
         }
     }
 
+    fun getUser(bearerToken: String) {
+        viewModelScope.launch {
+            try {
+                if(checkNetwork()) {
+                    val response = userRepository.getUser(bearerToken)
+                    // if response is null, it means the user is unauthorized anymore and will be logged out automatically
+                    if (response == null) {
+                        error("Session Anda sudah habis, silahkan login kembali")
+                        userPreferences.clear()
+                        return@launch
+                    }
+                }
+            } catch (e: Exception) {
+                error("Terjadi exception")
+                Log.e("MyTag", "exception", e)
+            }
+        }
+    }
+
     fun updateProfile(
         bearerToken: String,
         nama: String,
