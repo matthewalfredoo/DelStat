@@ -299,7 +299,7 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
 
         binding.buttonEditAnalisisData.visibility = android.view.View.GONE
         binding.statusAnalisisData.visibility = android.view.View.VISIBLE
-        displayAnalisisData()
+        getAnalisisData()
     }
 
     private fun toggleCancelMode() {

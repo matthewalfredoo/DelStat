@@ -3,6 +3,7 @@ package id.del.ac.delstat.presentation.analisisdata.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,7 @@ import id.del.ac.delstat.data.model.analisisdata.AnalisisData
 import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityListAnalisisDataBinding
+import id.del.ac.delstat.presentation.activity.LoginActivity
 import id.del.ac.delstat.presentation.analisisdata.adapter.AnalisisDataAdapter
 import id.del.ac.delstat.presentation.analisisdata.viewmodel.AnalisisDataViewModel
 import id.del.ac.delstat.presentation.analisisdata.viewmodel.AnalisisDataViewModelFactory
@@ -103,7 +105,17 @@ class ListAnalisisDataActivity : AppCompatActivity() {
 
     private fun prepareUI() {
         runBlocking {
-            bearerToken = "Bearer ${userPreferences.getUserToken.first()!!}"
+            bearerToken = userPreferences.getUserToken.first()!!
+            if(bearerToken.isEmpty()) {
+                startActivity(
+                    Intent(this@ListAnalisisDataActivity, LoginActivity::class.java)
+                        .putExtra(LoginActivity.LOGIN_MESSAGE, "Login untuk mengakses menu analisis data")
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                )
+                finish()
+            }
+            bearerToken = "Bearer $bearerToken"
+            Log.d("MyTag", bearerToken)
             role = userPreferences.getUserRole.first()!!
         }
 

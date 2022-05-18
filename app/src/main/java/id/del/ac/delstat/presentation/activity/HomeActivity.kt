@@ -85,6 +85,7 @@ class HomeActivity : AppCompatActivity() {
 
             if(!bearerToken.isNullOrEmpty()) {
                 userViewModel.getUser("Bearer $bearerToken")
+                bearerToken = ""
             }
         }
     }
