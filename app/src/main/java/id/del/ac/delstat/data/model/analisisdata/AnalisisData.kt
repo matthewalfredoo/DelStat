@@ -1,8 +1,9 @@
 package id.del.ac.delstat.data.model.analisisdata
 
 import com.google.gson.annotations.SerializedName
+import id.del.ac.delstat.data.model.user.User
 
-data class AnalisisData(
+class AnalisisData(
     @SerializedName("id")
     val id: Int,
 
@@ -25,5 +26,16 @@ data class AnalisisData(
     val createdAt: String? = null,
 
     @SerializedName("updated_at")
-    val updatedAt: String? = null
-)
+    val updatedAt: String? = null,
+
+    @SerializedName("user")
+    val user: User? = null
+) {
+    companion object {
+        const val STATUS_DIPESAN = "Dipesan"
+        const val STATUS_DIBATALKAN = "Dibatalkan"
+        const val STATUS_DIPROSES = "Diproses"
+        const val STATUS_DITOLAK = "Ditolak"
+        const val STATUS_SELESAI = "Selesai"
+    }
+}

@@ -67,12 +67,7 @@ class AnalisisDataViewModel(
         viewModelScope.launch {
             try {
                 if (checkNetwork()) {
-                    val response = analisisDataRepository.storeAnalisisData(
-                        bearerToken,
-                        judul,
-                        deskripsi,
-                        file
-                    )
+                    val response = analisisDataRepository.storeAnalisisData(bearerToken, judul, deskripsi, file)
                     if (response == null) {
                         error()
                         return@launch
@@ -89,20 +84,34 @@ class AnalisisDataViewModel(
     fun updateAnalisisData(
         bearerToken: String,
         id: Int,
-        judul: String,
         deskripsi: String,
-        file: File?
     ) {
         viewModelScope.launch {
             try {
                 if (checkNetwork()) {
-                    val response = analisisDataRepository.updateAnalisisData(
-                        bearerToken,
-                        id,
-                        judul,
-                        deskripsi,
-                        file
-                    )
+                    val response = analisisDataRepository.updateAnalisisData( bearerToken, id, deskripsi)
+                    if (response == null) {
+                        error()
+                        return@launch
+                    }
+                    analisisDataApiResponse.value = response!!
+                }
+            } catch (e: Exception) {
+                error("Terjadi exception")
+                Log.e("LiteraturViewModel", e.message, e)
+            }
+        }
+    }
+
+    fun updateStatusAnalisisData(
+        bearerToken: String,
+        id: Int,
+        status: String,
+    ) {
+        viewModelScope.launch {
+            try {
+                if (checkNetwork()) {
+                    val response = analisisDataRepository.updateStatusAnalisisData(bearerToken, id, status)
                     if (response == null) {
                         error()
                         return@launch

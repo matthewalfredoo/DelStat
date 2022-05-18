@@ -26,9 +26,13 @@ interface AnalisisDataRemoteDataSource {
     suspend fun updateAnalisisData(
         bearerToken: String,
         id: Int,
-        judul: String,
-        deskripsi: String,
-        file: File? = null
+        deskripsi: String
+    ): Response<AnalisisDataApiResponse>
+
+    suspend fun updateStatusAnalisisData(
+        bearerToken: String,
+        id: Int,
+        status: String
     ): Response<AnalisisDataApiResponse>
 
     suspend fun cancelAnalisisData(

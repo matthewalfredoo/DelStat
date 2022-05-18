@@ -218,17 +218,24 @@ interface DelStatApiService {
         @Path("id")
         id: Int,
 
-        @Part("judul")
-        judul: RequestBody,
-
         @Part("deskripsi")
-        deskripsi: RequestBody,
-
-        @Part
-        file: MultipartBody.Part? = null
+        deskripsi: RequestBody
     ): Response<AnalisisDataApiResponse>
 
-    @POST("api/analisisdata/cancel/{id}")
+    @FormUrlEncoded
+    @PUT("api/analisisdata/status/{id}")
+    suspend fun updateStatusAnalisisData(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Path("id")
+        id: Int,
+
+        @Field("status")
+        status: String
+    ): Response<AnalisisDataApiResponse>
+
+    @DELETE("api/analisisdata/cancel/{id}")
     suspend fun cancelAnalisisData(
         @Header("Authorization")
         bearerToken: String,

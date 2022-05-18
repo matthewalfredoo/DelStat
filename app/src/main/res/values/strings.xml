@@ -31,4 +31,5 @@
     <string name="desc_button_file_analisis_data">File Analisis Data</string>
     <string name="button_edit_analisisdata">Edit</string>
     <string name="button_cancel_analisisdata">Batalkan</string>
+    <string name="request_dikirimkan_oleh_analisis_data">Request dikirimkan oleh</string>
 </resources>

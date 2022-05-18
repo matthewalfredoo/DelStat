@@ -63,6 +63,7 @@ class UserViewModel(
                         userPreferences.setUserFotoProfil(response.user.fotoProfil ?: "")
                         userPreferences.setUserJenjang(response.user.jenjang!!)
                         userPreferences.setUserToken(response.token!!)
+                        userPreferences.setUserRole(response.user.role!!)
                     }
                 }
             } catch (e: Exception) {

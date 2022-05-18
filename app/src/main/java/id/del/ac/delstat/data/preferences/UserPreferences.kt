@@ -26,6 +26,7 @@ class UserPreferences(private val context: Context) {
         private val USER_FOTO_PROFIL = stringPreferencesKey("user_foto_profil")
         private val USER_JENJANG = stringPreferencesKey("user_jenjang")
         private val USER_TOKEN = stringPreferencesKey("user_token")
+        private val USER_ROLE = stringPreferencesKey("user_role")
     }
 
     /* USER_ID Preferences */
@@ -118,6 +119,19 @@ class UserPreferences(private val context: Context) {
         }
     }
     /* END USER_TOKEN Preferences */
+
+    /* USER_ROLE Preferences */
+    val getUserRole: Flow<String?>
+        get() = context.dataStore.data.map {
+            it[USER_ROLE] ?: ""
+        }
+
+    suspend fun setUserRole(role: String?) {
+        context.dataStore.edit {
+            it[USER_ROLE] = role ?: ""
+        }
+    }
+    /* END USER_ROLE Preferences */
 
     suspend fun clear() {
         context.dataStore.edit {

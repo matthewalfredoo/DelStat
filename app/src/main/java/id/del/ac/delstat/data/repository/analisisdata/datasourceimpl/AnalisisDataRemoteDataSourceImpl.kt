@@ -43,16 +43,24 @@ class AnalisisDataRemoteDataSourceImpl(
     override suspend fun updateAnalisisData(
         bearerToken: String,
         id: Int,
-        judul: String,
-        deskripsi: String,
-        file: File?
+        deskripsi: String
     ): Response<AnalisisDataApiResponse> {
         return delStatApiService.updateAnalisisData(
             bearerToken,
             id,
-            requestBody(judul),
-            requestBody(deskripsi),
-            requestBody(file)
+            requestBody(deskripsi)
+        )
+    }
+
+    override suspend fun updateStatusAnalisisData(
+        bearerToken: String,
+        id: Int,
+        status: String
+    ): Response<AnalisisDataApiResponse> {
+        return delStatApiService.updateStatusAnalisisData(
+            bearerToken,
+            id,
+            status
         )
     }
 

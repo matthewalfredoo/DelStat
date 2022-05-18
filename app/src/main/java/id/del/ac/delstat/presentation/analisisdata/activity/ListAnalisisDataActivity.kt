@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.data.api.DelStatApiService
 import id.del.ac.delstat.data.model.analisisdata.AnalisisData
+import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityListAnalisisDataBinding
 import id.del.ac.delstat.presentation.analisisdata.adapter.AnalisisDataAdapter
@@ -31,6 +32,7 @@ class ListAnalisisDataActivity : AppCompatActivity() {
     @Inject
     lateinit var userPreferences: UserPreferences
     private lateinit var bearerToken: String
+    private lateinit var role: String
 
     lateinit var analisisDataAdapter: AnalisisDataAdapter
 
@@ -102,6 +104,11 @@ class ListAnalisisDataActivity : AppCompatActivity() {
     private fun prepareUI() {
         runBlocking {
             bearerToken = "Bearer ${userPreferences.getUserToken.first()!!}"
+            role = userPreferences.getUserRole.first()!!
+        }
+
+        if(role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {
+            binding.buttonAnalisisData.visibility = android.view.View.GONE
         }
 
         supportActionBar?.setHomeButtonEnabled(true)

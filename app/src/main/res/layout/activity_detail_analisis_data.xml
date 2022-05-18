@@ -47,18 +47,19 @@
             android:id="@+id/edit_text_deskripsi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:inputType="textMultiLine"
             android:lines="20"
             android:minLines="5"
             android:scrollbars="vertical"
             android:scrollHorizontally="false"
-            android:enabled="false"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button_access_file"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/text_input_layout_2"
@@ -68,24 +69,80 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:theme="@style/Widget.Material3.Button"
-        style="?attr/materialButtonOutlinedStyle"/>
+        android:theme="@style/Widget.Material3.Button" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/button_edit_analisis_data"
-        android:layout_width="wrap_content"
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider_analisis_data"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/button_access_file"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        app:dividerInsetEnd="16dp"
+        app:dividerInsetStart="16dp" />
+
+    <RelativeLayout
+        android:id="@+id/linear_layout_requester_analisis_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider_analisis_data"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_requester_analisis_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_dikirimkan_oleh_analisis_data" />
+
+        <TextView
+            android:id="@+id/text_view_nama_requester_analisis_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_requester_analisis_data"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/text_view_no_hp_requester_analisis_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_nama_requester_analisis_data"
+            android:textSize="12sp"
+            android:textColor="@color/black" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/button_edit_analisis_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/blue_primary"
+            android:contentDescription="@string/submit_analisis_data"
+            android:text="@string/button_edit_analisisdata"
+            android:textColor="@color/white"
+            android:theme="@style/Theme.Material3.DynamicColors.Light"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@id/status_analisis_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:visibility="gone"
-        android:backgroundTint="@color/blue_primary"
+        android:backgroundTint="@color/white"
         android:contentDescription="@string/submit_analisis_data"
-        android:text="@string/button_edit_analisisdata"
-        android:textColor="@color/white"
-        android:theme="@style/Theme.Material3.DynamicColors.Light" />
+        android:enabled="false"
+        android:fontFamily="sans-serif"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

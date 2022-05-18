@@ -49,12 +49,24 @@ class AnalisisDataRepositoryImpl(
     override suspend fun updateAnalisisData(
         bearerToken: String,
         id: Int,
-        judul: String,
-        deskripsi: String,
-        file: File?
+        deskripsi: String
     ): AnalisisDataApiResponse? {
         try {
-            val response = analisisDataRemoteDataSource.updateAnalisisData(bearerToken, id, judul, deskripsi, file)
+            val response = analisisDataRemoteDataSource.updateAnalisisData(bearerToken, id, deskripsi)
+            return response.body()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+    override suspend fun updateStatusAnalisisData(
+        bearerToken: String,
+        id: Int,
+        status: String
+    ): AnalisisDataApiResponse? {
+        try {
+            val response = analisisDataRemoteDataSource.updateStatusAnalisisData(bearerToken, id, status)
             return response.body()
         } catch (e: Exception) {
             e.printStackTrace()

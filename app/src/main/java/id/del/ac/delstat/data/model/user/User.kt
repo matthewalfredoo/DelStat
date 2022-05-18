@@ -2,7 +2,7 @@ package id.del.ac.delstat.data.model.user
 
 import com.google.gson.annotations.SerializedName
 
-data class User(
+class User(
     @SerializedName("id")
     val id: Int? = null,
 
@@ -35,4 +35,10 @@ data class User(
 
     @SerializedName("api_token")
     val apiToken: String? = null
-)
+) {
+    companion object {
+        const val ROLE_ADMIN = "Admin"
+        const val ROLE_DOSEN = "Dosen"
+        const val ROLE_SISWA = "Siswa"
+    }
+}
