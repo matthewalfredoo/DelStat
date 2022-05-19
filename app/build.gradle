@@ -113,6 +113,12 @@ dependencies {
     def cropper_version = "4.2.1"
     implementation "com.github.CanHub:Android-Image-Cropper:$cropper_version"
 
+    // Mathview
+    implementation 'com.github.derysudrajat:math-view:1.0.1'
+
+    // Zoom image
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

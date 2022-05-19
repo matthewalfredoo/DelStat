@@ -1,29 +1,395 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.materi.fragment.DistribusiPeluangDiskritFragment">
 
-    <TextView
-        android:id="@+id/text_view_judul"
-        android:text="Distribusi Peluang Diskrit"
-        android:textSize="16sp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@color/blue_primary"
-        android:gravity="center"
-        android:textColor="@color/white" />
+        android:layout_height="wrap_content">
 
-    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-        android:id="@+id/youtube_player_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_view_judul"
-        android:layout_margin="16dp"
-        app:videoId="_penOQYAtxg"
-        app:autoPlay="false" />
+        <TextView
+            android:id="@+id/text_view_judul"
+            android:text="Distribusi Peluang Diskrit"
+            android:layout_margin="16dp"
+            style="@style/JudulMateri"/>
+        
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_below="@id/text_view_judul"/>
 
-</RelativeLayout>
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/youtube_player_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_judul"
+            android:layout_margin="16dp"
+            app:autoPlay="false"
+            app:videoId="_penOQYAtxg" />
+
+        <!-- Bagian 1 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/youtube_player_view"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="Jenis Peluang Diskrit" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="1. Uniform / Seragam Diskrit" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="2. Bernouli, Binomial dan Multinomial" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="3. Hipergeometrik" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="4. Binomial Negatif dan Geometrik" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="5. Poisson" />
+
+        </LinearLayout>
+
+        <!-- Bagian 2 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_1"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="1. Distribusi Seragam (Unifrom Diskrit)" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Semua nilai peubah acaknya memiliki peluang yang sama." />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_distribusi_peluang_diskrit_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 3 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_2"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="2. Distribusi Bernouli, Binomial dan Multinomial" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:scrollHorizontally="false"
+                android:text="Percobaan terdiri ats satu usaha yang memberikan hasil yang dapat dikelompokkan menjadi sukses dan gagal. Peluang sukses dinyatakan dengan p, tidak berubah dari usaha satu ke usaha yang lain. Sedangkan q = 1-p" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_distribusi_peluang_diskrit_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 4 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_3"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="3. Distribusi Binomial" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Percobaannya berdasarkan proses Bernouli yang memiliki syarat:" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="a. Percobaan terdiri atas n usaha yang berulang" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="b. Tiap usaha memberikan hasil yang dapat dikelompokkan menjadi sukses dan gagal" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="c. Peluang sukses dinyatakan dengan p, tidak berubah dari usaha satu ke usaha yang lain" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="d. Tiap usaha bebas dengan usaha yang lain" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="180dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_distribusi_peluang_diskrit_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 5 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_4"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="4. Distribusi Multinomial" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Percobaan binomial yang apabila tiap usahanya memberikan lebih dari 2 hasil yang mungkin" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_distribusi_peluang_diskrit_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 6 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_5"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="5. Distribusi Hipergeometrik" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Sampel acak ukuran n diambil tanpa pengembalian dari N benda. Sebanyak k benda dapat diberi nama sukses sedangkan sisanya, N-k diberi nama gagal." />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_distribusi_peluang_diskrit_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 7 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_6"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="6. Distribusi Binomial Negatif" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Banyaknya usaha X untuk menghasilkan k sukses dalam suatu percobaan." />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_distribusi_peluang_diskrit_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 8 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_7"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="7. Distribusi Geometrik" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Binomial negative yang memiliki k=1, yaitu distribusi peluang banyaknya usaha yang diperlukan untuk mendapatkan suskses yang pertama." />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_distribusi_peluang_diskrit_7a"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_distribusi_peluang_diskrit_7b"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 9 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_8"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="8. Distribusi Poisson" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Banyak hasil yang terjadi dalam suatu selang waktu atau daerah tertentu tidak terpengaruh oleh apa yang terjadi pada selang waktu atau daerah lain yang terpisah." />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_distribusi_peluang_diskrit_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

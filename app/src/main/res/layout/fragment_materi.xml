@@ -18,7 +18,8 @@
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -73,7 +74,8 @@
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -128,7 +130,8 @@
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -183,7 +186,8 @@
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -238,7 +242,8 @@
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -293,7 +298,8 @@
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -348,7 +354,8 @@
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -403,7 +410,8 @@
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -458,7 +466,8 @@
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -513,7 +522,8 @@
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
