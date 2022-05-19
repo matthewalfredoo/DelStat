@@ -64,7 +64,7 @@ class MateriActivity : AppCompatActivity() {
     private fun updateMateri() {
         val idMateri = binding.etIdMateriEdit.text.toString().toInt()
         val linkYoutube = binding.etLinkVideoMateriEdit.text.toString()
-        materiViewModel.updateMateri(bearerToken, idMateri, linkYoutube)
+//        materiViewModel.updateMateri(bearerToken, idMateri, linkYoutube)
     }
 
     private fun getMateri() {

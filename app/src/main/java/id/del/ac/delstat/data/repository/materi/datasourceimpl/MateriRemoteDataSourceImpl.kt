@@ -13,7 +13,14 @@ class MateriRemoteDataSourceImpl(
         return delStatApiService.getMateri(id)
     }
 
-    override suspend fun updateMateri(bearerToken: String, id: Int, linkVideo: String): Response<MateriApiResponse> {
-        return delStatApiService.updateMateri(bearerToken, id, linkVideo)
+    override suspend fun updateMateri(
+        bearerToken: String,
+        id: Int,
+        linkVideo1: String,
+        linkVideo2: String?,
+        linkVideo3: String?,
+        linkVideo4: String?,
+    ): Response<MateriApiResponse> {
+        return delStatApiService.updateMateri(bearerToken, id, linkVideo1, linkVideo2, linkVideo3, linkVideo4)
     }
 }

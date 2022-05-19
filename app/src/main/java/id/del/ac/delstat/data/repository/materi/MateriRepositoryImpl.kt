@@ -21,10 +21,13 @@ class MateriRepositoryImpl(private val materiRemoteDataSource: MateriRemoteDataS
     override suspend fun updateMateri(
         bearerToken: String,
         id: Int,
-        linkVideo: String
+        linkVideo1: String,
+        linkVideo2: String?,
+        linkVideo3: String?,
+        linkVideo4: String?,
     ): MateriApiResponse? {
         try {
-            val response = materiRemoteDataSource.updateMateri(bearerToken, id, linkVideo)
+            val response = materiRemoteDataSource.updateMateri(bearerToken, id, linkVideo1, linkVideo2, linkVideo3, linkVideo4)
             return response.body()
         } catch (e: Exception) {
             Log.e("MateriRepositoryImpl", e.message.toString(), e)

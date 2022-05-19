@@ -110,8 +110,17 @@ interface DelStatApiService {
         @Path("id")
         id: Int,
 
-        @Field("link_video")
-        linkVideo: String
+        @Field("link_video_1")
+        linkVideo1: String,
+
+        @Field("link_video_2")
+        linkVideo2: String? = null,
+
+        @Field("link_video_3")
+        linkVideo3: String? = null,
+
+        @Field("link_video_4")
+        linkVideo4: String? = null
     ): Response<MateriApiResponse>
 
     /* End of Materi related Services */

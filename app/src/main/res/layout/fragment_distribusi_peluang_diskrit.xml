@@ -12,31 +12,118 @@
 
         <TextView
             android:id="@+id/text_view_judul"
-            android:text="Distribusi Peluang Diskrit"
+            style="@style/JudulMateri"
             android:layout_margin="16dp"
-            style="@style/JudulMateri"/>
-        
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_below="@id/text_view_judul"/>
+            android:text="Distribusi Peluang Diskrit" />
 
-        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-            android:id="@+id/youtube_player_view"
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_view_judul"
+            android:layout_marginHorizontal="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/layout_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:autoPlay="false"
-            app:videoId="_penOQYAtxg" />
+            android:layout_below="@id/divider_top">
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_button_video_choices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_video"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:theme="@style/Theme.Material3.DynamicColors.Light"
+                app:singleSelection="true"
+                app:checkedButton="@id/button1"
+                app:selectionRequired="true"
+                android:visibility="invisible">
+
+                <Button
+                    android:id="@+id/button1"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+
+                <Button
+                    android:id="@+id/button2"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/button3"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/button4"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:visibility="gone"/>
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        </RelativeLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_button_video_choices"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp" />
 
         <!-- Bagian 1 -->
         <LinearLayout
             android:id="@+id/layout_bagian_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/youtube_player_view"
+            android:layout_below="@id/divider_bottom"
             android:layout_margin="16dp"
             android:orientation="vertical">
 
@@ -132,7 +219,7 @@
                     <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
                         android:id="@+id/image_view_distribusi_peluang_diskrit_2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                 </RelativeLayout>
 
@@ -184,7 +271,7 @@
                     <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
                         android:id="@+id/image_view_distribusi_peluang_diskrit_3"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                 </RelativeLayout>
 
@@ -220,7 +307,7 @@
                     <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
                         android:id="@+id/image_view_distribusi_peluang_diskrit_4"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                 </RelativeLayout>
 
@@ -256,7 +343,7 @@
                     <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
                         android:id="@+id/image_view_distribusi_peluang_diskrit_5"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                 </RelativeLayout>
 
@@ -292,7 +379,7 @@
                     <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
                         android:id="@+id/image_view_distribusi_peluang_diskrit_6"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                 </RelativeLayout>
 
@@ -328,7 +415,7 @@
                     <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
                         android:id="@+id/image_view_distribusi_peluang_diskrit_7a"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                 </RelativeLayout>
 
@@ -346,7 +433,7 @@
                         android:id="@+id/image_view_distribusi_peluang_diskrit_7b"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_centerInParent="true"/>
+                        android:layout_centerInParent="true" />
 
                 </RelativeLayout>
 

@@ -21,9 +21,9 @@ class MateriViewModel(
     fun getMateri(id: Int) {
         viewModelScope.launch {
             try {
-                if(checkNetwork()) {
+                if (checkNetwork()) {
                     val response = materiRepository.getMateri(id)
-                    if(response == null) {
+                    if (response == null) {
                         error()
                         return@launch
                     }
@@ -36,12 +36,19 @@ class MateriViewModel(
         }
     }
 
-    fun updateMateri(bearerToken: String, id: Int, linkVideo: String) {
+    fun updateMateri(
+        bearerToken: String,
+        id: Int,
+        linkVideo1: String,
+        linkVideo2: String?,
+        linkVideo3: String?,
+        linkVideo4: String?,
+    ) {
         viewModelScope.launch {
             try {
-                if(checkNetwork()) {
-                    val response = materiRepository.updateMateri(bearerToken, id, linkVideo)
-                    if(response == null) {
+                if (checkNetwork()) {
+                    val response = materiRepository.updateMateri(bearerToken, id, linkVideo1, linkVideo2, linkVideo3, linkVideo4)
+                    if (response == null) {
                         error()
                         return@launch
                     }
