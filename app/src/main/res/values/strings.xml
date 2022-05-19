@@ -32,4 +32,14 @@
     <string name="button_edit_analisisdata">Edit</string>
     <string name="button_cancel_analisisdata">Batalkan</string>
     <string name="request_dikirimkan_oleh_analisis_data">Request dikirimkan oleh</string>
+    <string name="konsep_peluang">Konsep Peluang</string>
+    <string name="variabel_acak">Variabel Acak</string>
+    <string name="distribusi_probabilitas_diskrit">Beberapa Distribusi Probabilitas Diskrit</string>
+    <string name="distribusi_probabilitas_kontinu">Beberapa Distribusi Probabilitas Kontinu</string>
+    <string name="pengantar_statistik_dan_analisis_data">Pengantar Statistik dan Analisis Data</string>
+    <string name="teknik_sampling">Teknik Sampling</string>
+    <string name="anova">Rancangan Percobaan (ANOVA)</string>
+    <string name="masalah_estimasi_satu_dan_dua_sampel">Masalah Estimasi Satu dan Dua Sampel</string>
+    <string name="pengujian_hipotesis">Pengujian Hipotesis</string>
+    <string name="regresi_linear_sederhana_dan_korelasi">Regresi Linear Sederhana dan Korelasi</string>
 </resources>

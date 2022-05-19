@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.materi.fragment.DistribusiPeluangDiskritFragment">
+
+    <TextView
+        android:id="@+id/text_view_judul"
+        android:text="Distribusi Peluang Diskrit"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/blue_primary"
+        android:gravity="center"
+        android:textColor="@color/white" />
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtube_player_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_judul"
+        android:layout_margin="16dp"
+        app:videoId="_penOQYAtxg"
+        app:autoPlay="false" />
+
+</RelativeLayout>

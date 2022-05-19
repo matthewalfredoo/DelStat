@@ -106,6 +106,9 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:4.13.0"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
+    // YouTube Video Player
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
+
     // CanHub/Android-Image-Cropper
     def cropper_version = "4.2.1"
     implementation "com.github.CanHub:Android-Image-Cropper:$cropper_version"

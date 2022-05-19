@@ -7,9 +7,40 @@
 
     <fragment
         android:id="@+id/materiFragment"
-        android:name="id.del.ac.delstat.presentation.fragment.MateriFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.MateriFragment"
         android:label="fragment_materi"
-        tools:layout="@layout/fragment_materi" />
+        tools:layout="@layout/fragment_materi" >
+        <action
+            android:id="@+id/action_materiFragment_to_distribusiPeluangDiskritFragment"
+            app:destination="@id/distribusiPeluangDiskritFragment" />
+        <action
+            android:id="@+id/action_materiFragment_to_variabelAcakFragment"
+            app:destination="@id/variabelAcakFragment" />
+        <action
+            android:id="@+id/action_materiFragment_to_konsepPeluangFragment"
+            app:destination="@id/konsepPeluangFragment" />
+        <action
+            android:id="@+id/action_materiFragment_to_distribusiKontinuFragment"
+            app:destination="@id/distribusiKontinuFragment" />
+        <action
+            android:id="@+id/action_materiFragment_to_pengantarStatistikAnalisisDataFragment"
+            app:destination="@id/pengantarStatistikAnalisisDataFragment" />
+        <action
+            android:id="@+id/action_materiFragment_to_teknikSamplingFragment"
+            app:destination="@id/teknikSamplingFragment" />
+        <action
+            android:id="@+id/action_materiFragment_to_anovaFragment"
+            app:destination="@id/anovaFragment" />
+        <action
+            android:id="@+id/action_materiFragment_to_estimasiSatuDanDuaSampelFragment"
+            app:destination="@id/estimasiSatuDanDuaSampelFragment" />
+        <action
+            android:id="@+id/action_materiFragment_to_pengujianHipotesisFragment"
+            app:destination="@id/pengujianHipotesisFragment" />
+        <action
+            android:id="@+id/action_materiFragment_to_regresiKorelasiFragment"
+            app:destination="@id/regresiKorelasiFragment" />
+    </fragment>
     <fragment
         android:id="@+id/literaturFragment"
         android:name="id.del.ac.delstat.presentation.fragment.LiteraturFragment"
@@ -51,4 +82,54 @@
         android:name="id.del.ac.delstat.presentation.fragment.EditPasswordFragment"
         android:label="fragment_edit_password"
         tools:layout="@layout/fragment_edit_password" />
+    <fragment
+        android:id="@+id/distribusiPeluangDiskritFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.DistribusiPeluangDiskritFragment"
+        android:label="fragment_distribusi_peluang_diskrit"
+        tools:layout="@layout/fragment_distribusi_peluang_diskrit" />
+    <fragment
+        android:id="@+id/variabelAcakFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.VariabelAcakFragment"
+        android:label="fragment_variabel_acak"
+        tools:layout="@layout/fragment_variabel_acak" />
+    <fragment
+        android:id="@+id/konsepPeluangFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.KonsepPeluangFragment"
+        android:label="fragment_konsep_peluang"
+        tools:layout="@layout/fragment_konsep_peluang" />
+    <fragment
+        android:id="@+id/distribusiKontinuFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.DistribusiKontinuFragment"
+        android:label="fragment_distribusi_kontinu"
+        tools:layout="@layout/fragment_distribusi_kontinu" />
+    <fragment
+        android:id="@+id/pengantarStatistikAnalisisDataFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.PengantarStatistikAnalisisDataFragment"
+        android:label="fragment_pengantar_statistik_analisis_data"
+        tools:layout="@layout/fragment_pengantar_statistik_analisis_data" />
+    <fragment
+        android:id="@+id/teknikSamplingFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.TeknikSamplingFragment"
+        android:label="fragment_teknik_sampling"
+        tools:layout="@layout/fragment_teknik_sampling" />
+    <fragment
+        android:id="@+id/anovaFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.AnovaFragment"
+        android:label="fragment_anova"
+        tools:layout="@layout/fragment_anova" />
+    <fragment
+        android:id="@+id/estimasiSatuDanDuaSampelFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.EstimasiSatuDanDuaSampelFragment"
+        android:label="fragment_estimasi_satu_dan_dua_sampel"
+        tools:layout="@layout/fragment_estimasi_satu_dan_dua_sampel" />
+    <fragment
+        android:id="@+id/pengujianHipotesisFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.PengujianHipotesisFragment"
+        android:label="fragment_pengujian_hipotesis"
+        tools:layout="@layout/fragment_pengujian_hipotesis" />
+    <fragment
+        android:id="@+id/regresiKorelasiFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.RegresiKorelasiFragment"
+        android:label="fragment_regresi_korelasi"
+        tools:layout="@layout/fragment_regresi_korelasi" />
 </navigation>
