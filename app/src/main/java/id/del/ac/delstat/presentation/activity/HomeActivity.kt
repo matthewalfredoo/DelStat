@@ -80,6 +80,12 @@ class HomeActivity : AppCompatActivity() {
             Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
         })
 
+        materiViewModel.materiApiResponse.observe(this, Observer {
+            if(it.code == 204) {
+                Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
+            }
+        })
+
         lifecycleScope.launch(Dispatchers.IO) {
             bearerToken = userPreferences.getUserToken.first()
 
