@@ -42,4 +42,15 @@
     <string name="masalah_estimasi_satu_dan_dua_sampel">Masalah Estimasi Satu dan Dua Sampel</string>
     <string name="pengujian_hipotesis">Pengujian Hipotesis</string>
     <string name="regresi_linear_sederhana_dan_korelasi">Regresi Linear Sederhana dan Korelasi</string>
+    <string name="tambah">Tambah</string>
+    <string name="tambah_literatur">Tambah Literatur</string>
+    <string name="judul_literatur">Judul</string>
+    <string name="penulis_literatur">Penulis</string>
+    <string name="tahun_terbit_literatur">Tahun Terbit</string>
+    <string name="tags_literatur">Tags</string>
+    <string name="desc_file_literatur">File Literatur</string>
+    <string name="desc_change_file_literatur">Klik di sini, jika inign mengganti file</string>
+    <string name="button_edit_literatur">Edit</string>
+    <string name="updated_at_literatur">Literatur diperbaharui oleh</string>
+    <string name="created_at_literatur">Literatur dibuat oleh</string>
 </resources>

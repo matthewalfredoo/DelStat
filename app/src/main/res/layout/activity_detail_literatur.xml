@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.literatur.activity.DetailLiteraturActivity">
+
+    <ProgressBar
+        android:id="@+id/literatur_progressbar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/blue_primary"
+        android:visibility="gone" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_1"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
+        android:hint="@string/judul_literatur"
+        app:boxBackgroundColor="@color/white"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_baseline_error_red_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_judul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:inputType="text"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_2"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
+        android:layout_below="@id/text_input_layout_1"
+        android:hint="@string/penulis_literatur"
+        app:boxBackgroundColor="@color/white"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_baseline_error_red_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_penulis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:inputType="text"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_3"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
+        android:layout_below="@id/text_input_layout_2"
+        android:hint="@string/tahun_terbit_literatur"
+        app:boxBackgroundColor="@color/white"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_baseline_error_red_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_tahun_terbit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:inputType="number"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_4"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
+        android:layout_below="@id/text_input_layout_3"
+        android:hint="@string/tags_literatur"
+        app:boxBackgroundColor="@color/white"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_baseline_error_red_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:inputType="number"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_5"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_input_layout_4"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
+        android:hint="@string/pilih_file_analisis_data"
+        app:boxBackgroundColor="@color/white"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_baseline_error_red_24"
+        android:visibility="gone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button_access_file"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_input_layout_5"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
+        android:text="@string/desc_file_literatur"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:theme="@style/Widget.Material3.Button" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider_literatur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_access_file"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        app:dividerInsetEnd="16dp"
+        app:dividerInsetStart="16dp" />
+
+    <RelativeLayout
+        android:id="@+id/linear_layout_requester_analisis_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider_literatur"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_creator_editor_literatur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/created_at_literatur" />
+
+        <TextView
+            android:id="@+id/text_view_nama_user_literatur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_creator_editor_literatur"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/text_view_tanggal_literatur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_nama_user_literatur"
+            android:textSize="12sp"
+            android:textColor="@color/black" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/button_edit_literatur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/blue_primary"
+            android:contentDescription="@string/submit_analisis_data"
+            android:text="@string/button_edit_literatur"
+            android:textColor="@color/white"
+            android:theme="@style/Theme.Material3.DynamicColors.Light"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

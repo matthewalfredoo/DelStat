@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/literaturFragment"
-        android:name="id.del.ac.delstat.presentation.fragment.LiteraturFragment"
+        android:name="id.del.ac.delstat.presentation.literatur.fragment.LiteraturFragment"
         android:label="fragment_literatur"
         tools:layout="@layout/fragment_literatur" />
     <fragment

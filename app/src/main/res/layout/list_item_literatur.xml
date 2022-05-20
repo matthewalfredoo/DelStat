@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:minHeight="64dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/mtrl_list_item_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_insert_drive_file_24_blue"
+        android:padding="16dp"/>
+
+    <TextView
+        android:id="@+id/judul_literatur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/mtrl_list_item_icon"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:maxLines="1"
+        android:text="Literatur"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/deskripsi_literatur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/judul_literatur"
+        android:layout_gravity="center_vertical"
+        android:layout_toEndOf="@id/mtrl_list_item_icon"
+        android:paddingEnd="16dp"
+        android:maxLines="2"
+        android:text="Subtitle"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="@color/grey_input"/>
+
+</RelativeLayout>

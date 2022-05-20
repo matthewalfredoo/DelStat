@@ -2,6 +2,7 @@ package id.del.ac.delstat.data.model.literatur
 
 
 import com.google.gson.annotations.SerializedName
+import id.del.ac.delstat.data.model.user.User
 
 data class Literatur(
     @SerializedName("id")
@@ -29,5 +30,8 @@ data class Literatur(
     val createdAt: String? = null,
 
     @SerializedName("updated_at")
-    val updatedAt: String? = null
+    val updatedAt: String? = null,
+
+    @SerializedName("user")
+    val user: User? = null
 )
