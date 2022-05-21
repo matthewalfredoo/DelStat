@@ -178,7 +178,6 @@ class DetailLiteraturActivity : AppCompatActivity() {
                             "Apakah Anda yakin?"
                 )
                 .setNegativeButton("Tidak") { dialog, which ->
-                    toggleDeleteMode()
                     dialog.dismiss()
                 }
                 .setPositiveButton("Ya") { dialog, which ->
@@ -187,7 +186,7 @@ class DetailLiteraturActivity : AppCompatActivity() {
                 }
                 // this is to handle when dialog is dismissed either using negative button or clicked on area outside of the dialog
                 .setOnDismissListener {
-                    toggleDeleteMode()
+                     toggleDeleteMode()
                 }
                 .show()
             return
@@ -226,7 +225,9 @@ class DetailLiteraturActivity : AppCompatActivity() {
         literaturViewModel.literaturApiResponse.observe(this, Observer {
             if (it.code == 204 && it.message != null) {
                 Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()
-                toggleEditMode()
+                if(isEditMode) {
+                    toggleEditMode()
+                }
             }
         })
     }
