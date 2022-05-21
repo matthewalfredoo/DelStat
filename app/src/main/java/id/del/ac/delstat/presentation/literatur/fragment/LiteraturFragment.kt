@@ -52,6 +52,11 @@ class LiteraturFragment : Fragment() {
         getLiteratur()
     }
 
+    override fun onResume() {
+        super.onResume()
+        getLiteratur()
+    }
+
     private fun prepareUI() {
         runBlocking {
             role = userPreferences.getUserRole.first()!!

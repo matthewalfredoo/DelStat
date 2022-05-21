@@ -15,14 +15,17 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.del.d3ti20.util.RealPathUtil
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.BuildConfig
 import id.del.ac.delstat.R
+import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityDetailLiteraturBinding
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModel
@@ -97,15 +100,20 @@ class DetailLiteraturActivity : AppCompatActivity() {
             .get(LiteraturViewModel::class.java)
 
         prepareUI()
-
-        val currentDate = DateUtil.getCurrentDateTime()
-        Log.d("MyTag", "currentDate: $currentDate")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_action_bar_detailliteraturactivity, menu)
         editItem = menu?.findItem(R.id.editLiteratur)!!
         deleteItem = menu.findItem(R.id.deleteLiteratur)!!
+
+        editItem.isVisible = false
+        deleteItem.isVisible = false
+
+        if(role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {
+            editItem.isVisible = true
+            deleteItem.isVisible = true
+        }
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -160,7 +168,34 @@ class DetailLiteraturActivity : AppCompatActivity() {
     }
 
     private fun toggleDeleteMode() {
-
+        if (!isDeleteMode) {
+            isDeleteMode = true
+            editItem.isVisible = false
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Hapus literatur?")
+                .setMessage(
+                    "Literatur dengan judul \"${binding.editTextJudul.text}\" akan dihapus dan Anda tidak akan bisa mengembalikannya.\n" +
+                            "Apakah Anda yakin?"
+                )
+                .setNegativeButton("Tidak") { dialog, which ->
+                    toggleDeleteMode()
+                    dialog.dismiss()
+                }
+                .setPositiveButton("Ya") { dialog, which ->
+                    deleteLiteratur()
+                    dialog.dismiss()
+                }
+                // this is to handle when dialog is dismissed either using negative button or clicked on area outside of the dialog
+                .setOnDismissListener {
+                    toggleDeleteMode()
+                }
+                .show()
+            return
+        }
+        // else
+        isDeleteMode = false
+        editItem.isVisible = true
+        getLiteratur()
     }
 
     private fun prepareUI() {
@@ -188,14 +223,15 @@ class DetailLiteraturActivity : AppCompatActivity() {
         binding.buttonEditLiteratur.setOnClickListener {
             updateLiteratur()
         }
-        literaturViewModel.literaturApiResponse.observe(this, Observer{
-            if(it.code == 204 && it.message != null) {
+        literaturViewModel.literaturApiResponse.observe(this, Observer {
+            if (it.code == 204 && it.message != null) {
                 Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()
                 toggleEditMode()
             }
         })
     }
 
+    /* Functions related to update literatur */
     private fun inputValidations() {
         binding.editTextJudul.doOnTextChanged { text, start, before, count ->
             if (text.isNullOrEmpty()) {
@@ -311,7 +347,17 @@ class DetailLiteraturActivity : AppCompatActivity() {
 
         }
     }
+    /* End of functions related to update literatur */
 
+    private fun deleteLiteratur() {
+        bearerToken = "Bearer $bearerToken"
+        literaturViewModel.deleteLiteratur(bearerToken, idLiteratur)
+        Handler(Looper.getMainLooper()).postDelayed({
+            finish()
+        }, 1000)
+    }
+
+    /* Functions related to get detail literatur and display it on the activity */
     private fun getLiteratur() {
         if (idLiteratur == -1) {
             Snackbar.make(
@@ -366,4 +412,5 @@ class DetailLiteraturActivity : AppCompatActivity() {
 
         binding.literaturProgressbar.visibility = View.GONE
     }
+    /* End of functions related to get detail literatur and display it on the activity */
 }
