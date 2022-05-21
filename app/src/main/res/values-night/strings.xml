@@ -43,4 +43,5 @@
     <string name="button_edit_literatur">Edit</string>
     <string name="updated_at_literatur">Literatur diperbaharui oleh</string>
     <string name="created_at_literatur">Literatur dibuat oleh</string>
+    <string name="pilih_file_literatur">Pilih File</string>
 </resources>

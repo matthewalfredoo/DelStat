@@ -17,6 +17,7 @@ import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.FragmentLiteraturBinding
 import id.del.ac.delstat.presentation.activity.HomeActivity
+import id.del.ac.delstat.presentation.literatur.activity.CreateLiteraturActivity
 import id.del.ac.delstat.presentation.literatur.activity.DetailLiteraturActivity
 import id.del.ac.delstat.presentation.literatur.adapter.LiteraturAdapter
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModel
@@ -62,10 +63,16 @@ class LiteraturFragment : Fragment() {
             role = userPreferences.getUserRole.first()!!
         }
 
-        if(role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {
+        if (role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {
             binding.buttonAddLiteratur.visibility = View.VISIBLE
         } else {
             binding.buttonAddLiteratur.visibility = View.GONE
+        }
+
+        binding.buttonAddLiteratur.setOnClickListener {
+            startActivity(
+                Intent(requireActivity(), CreateLiteraturActivity::class.java)
+            )
         }
 
         binding.swipeRefreshData.setOnRefreshListener {
@@ -98,7 +105,7 @@ class LiteraturFragment : Fragment() {
         binding.literaturProgressbar.visibility = View.VISIBLE
 
         literaturViewModel.literaturApiResponse.observe(viewLifecycleOwner, Observer {
-            if(it.code == 200) {
+            if (it.code == 200) {
                 literaturAdapter.setList(it.literaturList!!)
                 literaturAdapter.notifyDataSetChanged()
                 binding.literaturProgressbar.visibility = View.GONE
