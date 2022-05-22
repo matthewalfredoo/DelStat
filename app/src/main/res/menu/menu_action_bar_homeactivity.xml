@@ -16,5 +16,7 @@
         android:id="@+id/notifikasiActivity"
         android:icon="@drawable/ic_notification_24dp"
         android:title="Notifikasi"
+        app:actionLayout="@layout/custom_action_item_notification_layout"
         app:showAsAction="ifRoom" />
+
 </menu>

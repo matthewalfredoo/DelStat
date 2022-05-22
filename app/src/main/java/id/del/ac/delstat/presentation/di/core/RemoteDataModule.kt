@@ -11,6 +11,8 @@ import id.del.ac.delstat.data.repository.literatur.datasource.LiteraturRemoteDat
 import id.del.ac.delstat.data.repository.literatur.datasourceimpl.LiteraturRemoteDataSourceImpl
 import id.del.ac.delstat.data.repository.materi.datasource.MateriRemoteDataSource
 import id.del.ac.delstat.data.repository.materi.datasourceimpl.MateriRemoteDataSourceImpl
+import id.del.ac.delstat.data.repository.notifikasi.datasource.NotifikasiRemoteDataSource
+import id.del.ac.delstat.data.repository.notifikasi.datasourceimpl.NotifikasiRemoteDataSourceImpl
 import id.del.ac.delstat.data.repository.user.datasource.UserRemoteDataSource
 import id.del.ac.delstat.data.repository.user.datasourceimpl.UserRemoteDataSourceImpl
 import javax.inject.Singleton
@@ -41,6 +43,12 @@ class RemoteDataModule {
     @Provides
     fun provideAnalisisDataRemoteDataSource(delStatApiService: DelStatApiService): AnalisisDataRemoteDataSource {
         return AnalisisDataRemoteDataSourceImpl(delStatApiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNotifikasiRemoteDataSource(delStatApiService: DelStatApiService): NotifikasiRemoteDataSource {
+        return NotifikasiRemoteDataSourceImpl(delStatApiService)
     }
 
 }

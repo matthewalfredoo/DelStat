@@ -3,6 +3,7 @@ package id.del.ac.delstat.data.api
 import id.del.ac.delstat.data.model.analisisdata.AnalisisDataApiResponse
 import id.del.ac.delstat.data.model.literatur.LiteraturApiResponse
 import id.del.ac.delstat.data.model.materi.MateriApiResponse
+import id.del.ac.delstat.data.model.notifikasi.NotifikasiApiResponse
 import id.del.ac.delstat.data.model.user.UserApiResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -263,4 +264,20 @@ interface DelStatApiService {
     ): Response<AnalisisDataApiResponse>
 
     /* End of Analisis Data related Services */
+
+    /* Notifikasi related Services */
+
+    @GET("api/notifikasi")
+    suspend fun getNotifikasi(
+        @Header("Authorization")
+        bearerToken: String
+    ): Response<NotifikasiApiResponse>
+
+    @GET("api/notifikasi/count")
+    suspend fun getCountNotifikasi(
+        @Header("Authorization")
+        bearerToken: String
+    ): Response<NotifikasiApiResponse>
+
+    /* End of Notifikasi related Services */
 }

@@ -6,13 +6,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.del.ac.delstat.data.preferences.UserPreferences
-import id.del.ac.delstat.domain.repository.AnalisisDataRepository
-import id.del.ac.delstat.domain.repository.LiteraturRepository
-import id.del.ac.delstat.domain.repository.MateriRepository
-import id.del.ac.delstat.domain.repository.UserRepository
+import id.del.ac.delstat.domain.repository.*
 import id.del.ac.delstat.presentation.analisisdata.viewmodel.AnalisisDataViewModelFactory
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModelFactory
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModelFactory
+import id.del.ac.delstat.presentation.notifikasi.viewmodel.NotifikasiViewModelFactory
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModelFactory
 import javax.inject.Singleton
 
@@ -55,6 +53,15 @@ class FactoryModule {
         analisisDataRepository: AnalisisDataRepository
     ): AnalisisDataViewModelFactory {
         return AnalisisDataViewModelFactory(app, analisisDataRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNotifikasiViewModelFactory(
+        app: Application,
+        notifikasiRepository: NotifikasiRepository
+    ): NotifikasiViewModelFactory {
+        return NotifikasiViewModelFactory(app, notifikasiRepository)
     }
 
 }

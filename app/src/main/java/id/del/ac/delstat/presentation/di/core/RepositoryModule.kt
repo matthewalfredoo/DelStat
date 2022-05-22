@@ -10,12 +10,11 @@ import id.del.ac.delstat.data.repository.literatur.LiteraturRepositoryImpl
 import id.del.ac.delstat.data.repository.literatur.datasource.LiteraturRemoteDataSource
 import id.del.ac.delstat.data.repository.materi.MateriRepositoryImpl
 import id.del.ac.delstat.data.repository.materi.datasource.MateriRemoteDataSource
+import id.del.ac.delstat.data.repository.notifikasi.NotifikasiRepositoryImpl
+import id.del.ac.delstat.data.repository.notifikasi.datasource.NotifikasiRemoteDataSource
 import id.del.ac.delstat.data.repository.user.UserRepositoryImpl
 import id.del.ac.delstat.data.repository.user.datasource.UserRemoteDataSource
-import id.del.ac.delstat.domain.repository.AnalisisDataRepository
-import id.del.ac.delstat.domain.repository.LiteraturRepository
-import id.del.ac.delstat.domain.repository.MateriRepository
-import id.del.ac.delstat.domain.repository.UserRepository
+import id.del.ac.delstat.domain.repository.*
 import javax.inject.Singleton
 
 @Module
@@ -44,6 +43,12 @@ class RepositoryModule {
     @Provides
     fun provideAnalisisDataRepository(analisisDataRemoteDataSource: AnalisisDataRemoteDataSource): AnalisisDataRepository {
         return AnalisisDataRepositoryImpl(analisisDataRemoteDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNotifikasiRepository(notifikasiRemoteDataSource: NotifikasiRemoteDataSource): NotifikasiRepository {
+        return NotifikasiRepositoryImpl(notifikasiRemoteDataSource)
     }
 
 }

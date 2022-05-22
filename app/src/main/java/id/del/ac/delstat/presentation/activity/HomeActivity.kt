@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -18,11 +20,15 @@ import id.del.ac.delstat.R
 import id.del.ac.delstat.data.api.DelStatApiService
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityHomeBinding
+import id.del.ac.delstat.databinding.CustomActionItemNotificationLayoutBinding
 import id.del.ac.delstat.presentation.analisisdata.activity.ListAnalisisDataActivity
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModel
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModelFactory
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModel
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModelFactory
+import id.del.ac.delstat.presentation.notifikasi.activity.NotifikasiActivity
+import id.del.ac.delstat.presentation.notifikasi.viewmodel.NotifikasiViewModel
+import id.del.ac.delstat.presentation.notifikasi.viewmodel.NotifikasiViewModelFactory
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModelFactory
 import kotlinx.coroutines.Dispatchers
@@ -33,6 +39,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
+    lateinit var notifikasi: View
+    lateinit var notifikasiBadge: TextView
 
     @Inject
     lateinit var userViewModelFactory: UserViewModelFactory
@@ -45,6 +53,10 @@ class HomeActivity : AppCompatActivity() {
     @Inject
     lateinit var literaturViewModelFactory: LiteraturViewModelFactory
     lateinit var literaturViewModel: LiteraturViewModel
+
+    @Inject
+    lateinit var notifikasiViewModelFactory: NotifikasiViewModelFactory
+    lateinit var notifikasiViewModel: NotifikasiViewModel
 
     @Inject
     lateinit var userPreferences: UserPreferences
@@ -66,6 +78,9 @@ class HomeActivity : AppCompatActivity() {
 
         literaturViewModel = ViewModelProvider(this, literaturViewModelFactory)
             .get(LiteraturViewModel::class.java)
+
+        notifikasiViewModel = ViewModelProvider(this, notifikasiViewModelFactory)
+            .get(NotifikasiViewModel::class.java)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
@@ -89,10 +104,14 @@ class HomeActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             bearerToken = userPreferences.getUserToken.first()
 
+            // This is to find whether user's token is expired or not
             if(!bearerToken.isNullOrEmpty()) {
                 userViewModel.getUser("Bearer $bearerToken")
                 // bearerToken = ""
             }
+
+            // When user's token is not expired, then it will get all notifications for user
+            getCountNotifikasi()
         }
     }
 
@@ -106,6 +125,24 @@ class HomeActivity : AppCompatActivity() {
     /* This method is going to make the menu that appears on the top of the screen or the ActionBar */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_action_bar_homeactivity, menu)
+
+        /* Handling notifikasi */
+        // Finding the menu item of notifikasi in the menu and setting the click listener
+        notifikasi = menu?.findItem(R.id.notifikasiActivity)!!.actionView
+        notifikasiBadge = notifikasi.findViewById(R.id.notification_badge)
+        notifikasi.setOnClickListener {
+            proceedNotifikasiActivity()
+        }
+
+        // Getting notifiksai count
+        notifikasiViewModel.notifikasiApiResponse.observe(this, Observer {
+            if(it.code == 200 && it.countNotifikasi != null && it.countNotifikasi > 0) {
+                notifikasiBadge.visibility = View.VISIBLE
+                notifikasiBadge.text = it.countNotifikasi.toString()
+            }
+        })
+        /* End of handling notifikasi */
+
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -127,5 +164,25 @@ class HomeActivity : AppCompatActivity() {
             Intent(this@HomeActivity, LoginActivity::class.java)
                 .putExtra(LoginActivity.LOGIN_MESSAGE, "Login untuk mengakses menu analisis data")
         )
+    }
+
+    private fun proceedNotifikasiActivity() {
+        // TODO: consider using MaterialDialog instead of creating a new activity
+        Log.d("MyTag", "Proceed notifikasi")
+        if(!bearerToken.isNullOrEmpty()) {
+            startActivity(Intent(this@HomeActivity, NotifikasiActivity::class.java))
+            return
+        }
+        startActivity(
+            Intent(this@HomeActivity, LoginActivity::class.java)
+                .putExtra(LoginActivity.LOGIN_MESSAGE, "Login untuk mengakses menu notifikasi")
+        )
+    }
+
+    private fun getCountNotifikasi() {
+        if(!bearerToken.isNullOrEmpty()) {
+            notifikasiViewModel.getCountNotifikasi("Bearer $bearerToken")
+            Log.d("MyTag", "Get count notifikasi")
+        }
     }
 }
