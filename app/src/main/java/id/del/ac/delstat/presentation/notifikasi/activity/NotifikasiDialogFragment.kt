@@ -61,6 +61,7 @@ class NotifikasiDialogFragment : DialogFragment() {
         prepareUI()
         initRecyclerView()
         getNotifikasi()
+        displayNotifikasi()
     }
 
     /*override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -95,13 +96,24 @@ class NotifikasiDialogFragment : DialogFragment() {
 
         notifikasiViewModel.notifikasiApiResponse.observe(viewLifecycleOwner, Observer {
             if(it.code == 200 && it.notifikasi != null && it.notifikasi.isNotEmpty()) {
+                binding.recyclerViewNotifikasiDialog.visibility = View.VISIBLE
+                binding.messageEmptyNotifikasiDialog.visibility = View.GONE
+
                 notifikasiAdapter.setList(it.notifikasi)
                 notifikasiAdapter.notifyDataSetChanged()
+
                 binding.notifikasiProgressbar.visibility = View.GONE
-            } else {
+
+                Log.d("MyTag", "Berisi")
+            }
+
+            if(it.code == 200 && it.notifikasi != null && it.notifikasi.isEmpty()) {
+                binding.notifikasiProgressbar.visibility = View.GONE
+
                 binding.recyclerViewNotifikasiDialog.visibility = View.GONE
                 binding.messageEmptyNotifikasiDialog.visibility = View.VISIBLE
-                binding.notifikasiProgressbar.visibility = View.GONE
+
+                Log.d("MyTag", "Kosong")
             }
         })
     }
