@@ -1,13 +1,17 @@
 package id.del.ac.delstat.presentation.activity
 
+import android.R.attr.delay
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -20,13 +24,11 @@ import id.del.ac.delstat.R
 import id.del.ac.delstat.data.api.DelStatApiService
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityHomeBinding
-import id.del.ac.delstat.databinding.CustomActionItemNotificationLayoutBinding
 import id.del.ac.delstat.presentation.analisisdata.activity.ListAnalisisDataActivity
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModel
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModelFactory
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModel
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModelFactory
-import id.del.ac.delstat.presentation.notifikasi.activity.NotifikasiActivity
 import id.del.ac.delstat.presentation.notifikasi.activity.NotifikasiDialogFragment
 import id.del.ac.delstat.presentation.notifikasi.viewmodel.NotifikasiViewModel
 import id.del.ac.delstat.presentation.notifikasi.viewmodel.NotifikasiViewModelFactory
@@ -36,6 +38,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
@@ -58,6 +61,9 @@ class HomeActivity : AppCompatActivity() {
     @Inject
     lateinit var notifikasiViewModelFactory: NotifikasiViewModelFactory
     lateinit var notifikasiViewModel: NotifikasiViewModel
+    lateinit var runCheckCountNotifikasi: Runnable
+    var handlerCheckCountNotifikasi: Handler = Handler(Looper.getMainLooper())
+    val delayInterval: Long = 2000
 
     @Inject
     lateinit var userPreferences: UserPreferences
@@ -111,8 +117,21 @@ class HomeActivity : AppCompatActivity() {
                 // bearerToken = ""
             }
 
-            // When user's token is not expired, then it will get all notifications for user
-            getCountNotifikasi()
+
+            /*handlerCheckCountNotifikasi.postDelayed(Runnable {
+                handlerCheckCountNotifikasi.postDelayed(runCheckCountNotifikasi, 1000)
+                Toast.makeText(
+                    applicationContext, "This method is run every 10 seconds",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }.also { runCheckCountNotifikasi = it }, 1000)*/
+
+            // When user's token is not expired, then it will get notifications count for user
+            // This will check the notification count every 2 seconds
+            handlerCheckCountNotifikasi.postDelayed(Runnable {
+                handlerCheckCountNotifikasi.postDelayed(runCheckCountNotifikasi, delayInterval)
+                notifikasiViewModel.getCountNotifikasi("Bearer $bearerToken")
+            }.also { runCheckCountNotifikasi = it }, delayInterval)
         }
     }
 
@@ -140,6 +159,9 @@ class HomeActivity : AppCompatActivity() {
             if(it.code == 200 && it.countNotifikasi != null && it.countNotifikasi > 0) {
                 notifikasiBadge.visibility = View.VISIBLE
                 notifikasiBadge.text = it.countNotifikasi.toString()
+            }
+            if(it.code == 200 && it.countNotifikasi != null && it.countNotifikasi <= 0) {
+                notifikasiBadge.visibility = View.GONE
             }
         })
         /* End of handling notifikasi */
