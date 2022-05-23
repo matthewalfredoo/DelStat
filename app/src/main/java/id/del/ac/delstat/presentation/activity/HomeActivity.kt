@@ -27,6 +27,7 @@ import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModelFact
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModel
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModelFactory
 import id.del.ac.delstat.presentation.notifikasi.activity.NotifikasiActivity
+import id.del.ac.delstat.presentation.notifikasi.activity.NotifikasiDialogFragment
 import id.del.ac.delstat.presentation.notifikasi.viewmodel.NotifikasiViewModel
 import id.del.ac.delstat.presentation.notifikasi.viewmodel.NotifikasiViewModelFactory
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
@@ -170,7 +171,7 @@ class HomeActivity : AppCompatActivity() {
         // TODO: consider using MaterialDialog instead of creating a new activity
         Log.d("MyTag", "Proceed notifikasi")
         if(!bearerToken.isNullOrEmpty()) {
-            startActivity(Intent(this@HomeActivity, NotifikasiActivity::class.java))
+            NotifikasiDialogFragment().show(supportFragmentManager, NotifikasiDialogFragment.TAG)
             return
         }
         startActivity(

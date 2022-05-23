@@ -11,7 +11,7 @@ data class NotifikasiApiResponse(
     val message: String? = null,
 
     @SerializedName("notifikasi")
-    val notifikasi: List<Notifikasi?>? = null,
+    val notifikasi: List<Notifikasi>? = null,
 
     @SerializedName("count_notifikasi")
     val countNotifikasi: Int? = null

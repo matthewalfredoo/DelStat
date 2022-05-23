@@ -3,7 +3,7 @@ package id.del.ac.delstat.data.model.notifikasi
 
 import com.google.gson.annotations.SerializedName
 
-data class Notifikasi(
+class Notifikasi(
     @SerializedName("id")
     val id: Int,
 
@@ -19,6 +19,9 @@ data class Notifikasi(
     @SerializedName("jenis_notifikasi")
     val jenisNotifikasi: String? = null,
 
+    @SerializedName("deskripsi")
+    val deskripsi: String? = null,
+
     @SerializedName("read_at")
     val readAt: String? = null,
 
@@ -30,4 +33,11 @@ data class Notifikasi(
 
     @SerializedName("updated_at")
     val updatedAt: String
-)
+) {
+
+    companion object {
+        const val NOTIFIKASI_LITERATUR_BARU = "Literatur Baru"
+        const val NOTIFIKASI_ANALISIS_DATA_BARU = "Request Analisis Data Baru"
+    }
+
+}

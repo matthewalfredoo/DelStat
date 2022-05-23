@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.notifikasi.activity.NotifikasiDialogFragment">
+
+    <ProgressBar
+        android:id="@+id/notifikasi_progressbar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/blue_primary"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/title_notifikasi_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:text="Notifikasi"
+        android:textSize="20sp"
+        android:textColor="@color/blue_primary"
+        android:textStyle="bold"/>
+    
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider_notifikasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_below="@id/title_notifikasi_dialog" />
+
+    <TextView
+        android:id="@+id/message_empty_notifikasi_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:paddingBottom="8dp"
+        android:layout_below="@id/divider_notifikasi"
+        android:text="Belum ada notifikasi"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_notifikasi_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:layout_below="@id/divider_notifikasi"/>
+
+</RelativeLayout>

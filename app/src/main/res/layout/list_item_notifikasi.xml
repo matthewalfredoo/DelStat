@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:minHeight="88dp">
+
+    <LinearLayout
+        android:id="@+id/linear_layout_upper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:orientation="horizontal"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/judul_notifikasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="3"
+            android:maxLines="1"
+            android:text="Notifikasi"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/notification_badge"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="end|top"
+            android:background="@drawable/badge_background"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textColor="@color/white"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/deskripsi_notifikasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_layout_upper"
+        android:layout_marginHorizontal="16dp"
+        android:layout_gravity="center_vertical"
+        android:maxLines="2"
+        android:paddingEnd="16dp"
+        android:text="Notifikasi"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/tanggal_notifikasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/deskripsi_notifikasi"
+        android:layout_marginHorizontal="16dp"
+        android:layout_gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingEnd="16dp"
+        android:text="Notifikasi"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="@color/cardview_shadow_start_color"
+        android:textSize="10sp" />
+
+</RelativeLayout>
