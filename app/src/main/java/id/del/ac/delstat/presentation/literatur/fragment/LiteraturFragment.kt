@@ -105,12 +105,14 @@ class LiteraturFragment : Fragment() {
         binding.literaturProgressbar.visibility = View.VISIBLE
 
         literaturViewModel.literaturApiResponse.observe(viewLifecycleOwner, Observer {
-            if (it.code == 200) {
-                literaturAdapter.setList(it.literaturList!!)
+            if (it.code == 200 && it.literaturList != null) {
+                literaturAdapter.setList(it.literaturList)
                 literaturAdapter.notifyDataSetChanged()
                 binding.literaturProgressbar.visibility = View.GONE
-            } else {
-                binding.literaturProgressbar.visibility = View.GONE
+                binding.imageEmptyLiteratur.visibility = View.GONE
+                if (it.literaturList.isEmpty()) {
+                    binding.imageEmptyLiteratur.visibility = View.VISIBLE
+                }
             }
         })
     }

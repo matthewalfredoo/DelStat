@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -92,10 +93,15 @@ class ListAnalisisDataActivity : AppCompatActivity() {
         binding.analisisDataProgressbar.visibility = android.view.View.VISIBLE
 
         analisisDataViewModel.analisisDataApiResponse.observe(this, Observer {
-            if (it.code == 200) {
-                analisisDataAdapter.setList(it.listAnalisisData!!)
+            if (it.code == 200 && it.listAnalisisData != null) {
+                analisisDataAdapter.setList(it.listAnalisisData)
                 analisisDataAdapter.notifyDataSetChanged()
-                binding.analisisDataProgressbar.visibility = android.view.View.GONE
+                binding.analisisDataProgressbar.visibility = View.GONE
+                binding.imageEmptyAnalisis.visibility = View.GONE
+
+                if(it.listAnalisisData.isEmpty()) {
+                    binding.imageEmptyAnalisis.visibility = View.VISIBLE
+                }
             } else {
                 binding.analisisDataProgressbar.visibility = android.view.View.GONE
                 Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
