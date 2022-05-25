@@ -8,6 +8,7 @@ import dagger.hilt.components.SingletonComponent
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.domain.repository.*
 import id.del.ac.delstat.presentation.analisisdata.viewmodel.AnalisisDataViewModelFactory
+import id.del.ac.delstat.presentation.chat.viewmodel.ChatViewModelFactory
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModelFactory
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModelFactory
 import id.del.ac.delstat.presentation.notifikasi.viewmodel.NotifikasiViewModelFactory
@@ -62,6 +63,15 @@ class FactoryModule {
         notifikasiRepository: NotifikasiRepository
     ): NotifikasiViewModelFactory {
         return NotifikasiViewModelFactory(app, notifikasiRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideChatViewModelFactory(
+        app: Application,
+        chatRepository: ChatRepository
+    ): ChatViewModelFactory {
+        return ChatViewModelFactory(app, chatRepository)
     }
 
 }

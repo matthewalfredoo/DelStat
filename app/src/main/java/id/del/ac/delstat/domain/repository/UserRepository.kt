@@ -33,6 +33,10 @@ interface UserRepository {
         newPasswordConfirmation: String
     ): UserApiResponse?
 
+    suspend fun findUsersByRole(
+        bearerToken: String
+    ): UserApiResponse?
+
     suspend fun logout(bearToken: String): UserApiResponse?
 
 }

@@ -19,6 +19,27 @@
         android:theme="@style/Theme.DelStat"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.chat.activity.DetailChatRoomActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.chat.activity.ListChatRoomActivity" />
+        </activity>
+        <activity
+            android:name=".presentation.chat.activity.CreateChatRoomActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.chat.activity.ListChatRoomActivity" />
+        </activity>
+        <activity
+            android:name=".presentation.chat.activity.ListChatRoomActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.activity.HomeActivity" />
+        </activity>
+        <activity
             android:name=".presentation.notifikasi.activity.NotifikasiActivity"
             android:exported="false">
             <meta-data

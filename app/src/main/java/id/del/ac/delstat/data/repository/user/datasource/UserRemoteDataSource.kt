@@ -34,6 +34,10 @@ interface UserRemoteDataSource {
         newPasswordConfirmation: String
     ): Response<UserApiResponse>
 
+    suspend fun findUsersByRole(
+        bearerToken: String
+    ): Response<UserApiResponse>
+
     suspend fun logout(bearerToken: String): Response<UserApiResponse>
 
 }

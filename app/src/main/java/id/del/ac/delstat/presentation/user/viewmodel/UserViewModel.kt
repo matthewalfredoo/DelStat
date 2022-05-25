@@ -150,6 +150,24 @@ class UserViewModel(
         }
     }
 
+    fun findUsersByRole(bearerToken: String) {
+        viewModelScope.launch {
+            try {
+                if (checkNetwork()) {
+                    val response = userRepository.findUsersByRole( bearerToken)
+                    if (response == null) {
+                        error("Terjadi kesalahan")
+                        return@launch
+                    }
+                    userApiResponse.value = response!!
+                }
+            } catch (e: Exception) {
+                error("Terjadi exception saat mengambil data user")
+                Log.e("MyTag", "exception", e)
+            }
+        }
+    }
+
     fun logout(bearerToken: String) {
         viewModelScope.launch {
             try {

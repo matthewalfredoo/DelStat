@@ -25,6 +25,7 @@ import id.del.ac.delstat.data.api.DelStatApiService
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityHomeBinding
 import id.del.ac.delstat.presentation.analisisdata.activity.ListAnalisisDataActivity
+import id.del.ac.delstat.presentation.chat.activity.ListChatRoomActivity
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModel
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModelFactory
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModel
@@ -174,6 +175,9 @@ class HomeActivity : AppCompatActivity() {
             R.id.analisisDataActivity -> {
                 proceedAnalisisDataAcitivity()
             }
+            R.id.chatActivity -> {
+                proceedChatActivity()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -186,6 +190,17 @@ class HomeActivity : AppCompatActivity() {
         startActivity(
             Intent(this@HomeActivity, LoginActivity::class.java)
                 .putExtra(LoginActivity.LOGIN_MESSAGE, "Login untuk mengakses menu analisis data")
+        )
+    }
+
+    private fun proceedChatActivity() {
+        if (!bearerToken.isNullOrEmpty()) {
+            startActivity(Intent(this@HomeActivity, ListChatRoomActivity::class.java))
+            return
+        }
+        startActivity(
+            Intent(this@HomeActivity, LoginActivity::class.java)
+                .putExtra(LoginActivity.LOGIN_MESSAGE, "Login untuk mengakses menu chat")
         )
     }
 

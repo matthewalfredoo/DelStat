@@ -58,6 +58,10 @@ class UserRemoteDataSourceImpl(private val delStatApiService: DelStatApiService)
         return delStatApiService.updatePassword(bearerToken, password, newPassword, newPasswordConfirmation)
     }
 
+    override suspend fun findUsersByRole(bearerToken: String): Response<UserApiResponse> {
+        return delStatApiService.findUsersByRole(bearerToken)
+    }
+
     override suspend fun logout(bearerToken: String): Response<UserApiResponse> {
         return delStatApiService.logout(bearerToken)
     }

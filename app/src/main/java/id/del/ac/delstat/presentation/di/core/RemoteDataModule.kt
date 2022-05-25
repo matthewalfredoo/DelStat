@@ -7,6 +7,8 @@ import dagger.hilt.components.SingletonComponent
 import id.del.ac.delstat.data.api.DelStatApiService
 import id.del.ac.delstat.data.repository.analisisdata.datasource.AnalisisDataRemoteDataSource
 import id.del.ac.delstat.data.repository.analisisdata.datasourceimpl.AnalisisDataRemoteDataSourceImpl
+import id.del.ac.delstat.data.repository.chat.datasource.ChatRemoteDataSource
+import id.del.ac.delstat.data.repository.chat.datasourceimpl.ChatRemoteDataSourceImpl
 import id.del.ac.delstat.data.repository.literatur.datasource.LiteraturRemoteDataSource
 import id.del.ac.delstat.data.repository.literatur.datasourceimpl.LiteraturRemoteDataSourceImpl
 import id.del.ac.delstat.data.repository.materi.datasource.MateriRemoteDataSource
@@ -49,6 +51,12 @@ class RemoteDataModule {
     @Provides
     fun provideNotifikasiRemoteDataSource(delStatApiService: DelStatApiService): NotifikasiRemoteDataSource {
         return NotifikasiRemoteDataSourceImpl(delStatApiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideChatRemoteDatSource(delStatApiService: DelStatApiService): ChatRemoteDataSource {
+        return ChatRemoteDataSourceImpl(delStatApiService)
     }
 
 }

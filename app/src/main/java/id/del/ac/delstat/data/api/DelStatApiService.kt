@@ -1,6 +1,7 @@
 package id.del.ac.delstat.data.api
 
 import id.del.ac.delstat.data.model.analisisdata.AnalisisDataApiResponse
+import id.del.ac.delstat.data.model.chat.ChatApiResponse
 import id.del.ac.delstat.data.model.literatur.LiteraturApiResponse
 import id.del.ac.delstat.data.model.materi.MateriApiResponse
 import id.del.ac.delstat.data.model.notifikasi.NotifikasiApiResponse
@@ -84,6 +85,12 @@ interface DelStatApiService {
 
         @Field("new_password_confirmation")
         newPasswordConfirmation: String
+    ): Response<UserApiResponse>
+
+    @GET("api/user/findbyrole")
+    suspend fun findUsersByRole(
+        @Header("Authorization")
+        bearerToken: String
     ): Response<UserApiResponse>
 
     @POST("api/logout")
@@ -280,4 +287,59 @@ interface DelStatApiService {
     ): Response<NotifikasiApiResponse>
 
     /* End of Notifikasi related Services */
+
+    /* Chat related Services */
+
+    @GET("api/chatroom")
+    suspend fun getChatRooms(
+        @Header("Authorization")
+        bearerToken: String
+    ): Response<ChatApiResponse>
+
+    @GET("api/chatroom/{id}")
+    suspend fun getChatRoom(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Path("id")
+        id: Int
+    ): Response<ChatApiResponse>
+
+    @FormUrlEncoded
+    @POST("api/chatroom/store")
+    suspend fun storeChatRoom(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Field("id_user")
+        idUser: Int,
+    ): Response<ChatApiResponse>
+
+    @FormUrlEncoded
+    @POST("api/chatroom/store/{id}")
+    suspend fun storeChat(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Path("id")
+        id: Int,
+
+        @Field("pesan")
+        pesan: String
+    ): Response<ChatApiResponse>
+
+    @FormUrlEncoded
+    @PUT("api/chatroom/update/{id}")
+    suspend fun updateChatRoom(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Path("id")
+        id: Int,
+
+        @Field("is_automatic_deleted")
+        isAutomaticDeleted: Int
+    ): Response<ChatApiResponse>
+
+    /* End of Chat related Services */
 }
