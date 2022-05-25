@@ -2,4 +2,5 @@
 <resources>
     <color name="grey_input">#666666</color>
     <color name="red_dark">#9F0000</color>
+    <color name="grey_note">#b3b3b3</color>
 </resources>

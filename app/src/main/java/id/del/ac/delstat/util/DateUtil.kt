@@ -6,16 +6,26 @@ import java.util.*
 class DateUtil {
 
     companion object {
-        val simpleDateFormat = SimpleDateFormat("dd MMMM yyyy, HH:mm:ss", Locale("in", "ID"))
+        val simpleDateFormatWithSecond = SimpleDateFormat("dd MMMM yyyy, HH:mm:ss", Locale("in", "ID"))
+        val simpleDateFormatWithoutSecond = SimpleDateFormat("dd MMMM yyyy, HH:mm", Locale("in", "ID"))
 
         fun getCurrentDateTime(): String {
-            return simpleDateFormat.format(Date())
+            return simpleDateFormatWithSecond.format(Date())
         }
 
         fun getDateTime(s: String): String? {
             return try {
                 val netDate = Date(s.toLong() * 1000)
-                simpleDateFormat.format(netDate)
+                simpleDateFormatWithSecond.format(netDate)
+            } catch (e: Exception) {
+                null
+            }
+        }
+
+        fun getDateTimeWithoutSecond(s: String): String? {
+            return try {
+                val netDate = Date(s.toLong() * 1000)
+                simpleDateFormatWithoutSecond.format(netDate)
             } catch (e: Exception) {
                 null
             }

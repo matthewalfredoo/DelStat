@@ -55,4 +55,6 @@
     <string name="created_at_literatur">Literatur dibuat oleh</string>
     <string name="pilih_file_literatur">Pilih File</string>
     <string name="chat_baru">Chat Baru</string>
+    <string name="message_delivered">D</string>
+    <string name="message_read">R</string>
 </resources>
