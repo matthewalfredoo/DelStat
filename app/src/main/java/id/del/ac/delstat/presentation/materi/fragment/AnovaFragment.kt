@@ -47,8 +47,6 @@ class AnovaFragment : Fragment() {
 
     private lateinit var currentYoutubePlayerView: YouTubePlayerView
 
-    private lateinit var delStatApiService: DelStatApiService
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

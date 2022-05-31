@@ -62,4 +62,13 @@
     <string name="definisi_anova_3">Homogenitas/ kesamaan ragam dan normalitas data adalah asumsi dalam ANOVA dan regresi.</string>
     <string name="penjelasan_one_way_anova"><![CDATA[Satu variabel dependen dari satu faktor dengan > 2 taraf Merupakan analisis untuk percobaan dengan Rancangan Acak Lengkap (RAL).]]></string>
     <string name="penjelasan_two_way_anova"><![CDATA[Satu variabel dependen dengan 2 faktor Pengembangan uji t-paired & merupakan analisis untuk percobaan dengan Rancangan Acak Kelompok (RAK).]]></string>
+    <string name="penjelasan_konsep_peluang_ruang_sampel">Himpunan semua hasil (outcomes) yang mungkin dari suatu percobaan statistika. Hasil dalam ruang sampel disebut titik sampel.</string>
+    <string name="penjelasan_konsep_peluang_kejadian">Himpunan bagian dari ruang sample.</string>
+    <string name="penjelasan_konsep_peluang_komplemen">Semua unsur yang tidak termasuk dalam kejadian.</string>
+    <string name="penjelasan_konsep_peluang_irisan">Semua unsur yang termasuk dalam A dan B.</string>
+    <string name="penjelasan_konsep_peluang_gabungan">Semua unsur yang termasuk dalam A atau B.</string>
+    <string name="penjelasan_konsep_peluang_permutasi">Suatu sususan yang dapat dibentuk dari satu kumpulan benda yang diambil sebagian atau seleuruhnya dengan memerhatikan urutannya.</string>
+    <string name="penjelasan_konsep_peluang_kombinasi">Suatu sususan yang dapat dibentuk dari satu kumpulan benda yang diambil sebagian atau seleuruhnya dengan tidak memerhatikan urutannya.</string>
+    <string name="penjelasan_konsep_peluang_peluang">Peluang suatu kejadian A adalah jumlah bobot semua titik sampel yang termasuk A.</string>
+    <string name="penjelasan_konsep_peluang_peluang_bersyarat">Peluang bersyarat merupakan peluang terjadinya suatu kejadian setelah kejaian lain terjadi.</string>
 </resources>

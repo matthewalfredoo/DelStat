@@ -156,9 +156,7 @@
 
             <TextView
                 style="@style/ContentMateri"
-                android:text="@string/definisi_anova_1"
-                android:justificationMode="inter_word"
-                tools:targetApi="o" />
+                android:text="@string/definisi_anova_1" />
 
             <TextView
                 style="@style/ContentMateri"
