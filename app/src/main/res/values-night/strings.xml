@@ -47,4 +47,6 @@
     <string name="chat_baru">Chat Baru</string>
     <string name="message_delivered">D</string>
     <string name="message_read">R</string>
+    <string name="definisi_anova_1">Analisis of Varians adalah suatu metode analisis statistika yang termasuk ke dalam cabang statistika inferensi. ANOVA (Analisis of Varians) dapat digunakan untuk menganalisis pengaruh perlakuan dalam suatu percobaan.</string>
+    <string name="definisi_anova_3">Homogenitas/ kesamaan ragam dan normalitas data adalah asumsi dalam ANOVA dan regresi.</string>
 </resources>

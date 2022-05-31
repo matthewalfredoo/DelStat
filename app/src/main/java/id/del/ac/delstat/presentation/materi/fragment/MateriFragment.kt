@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.transition.MaterialSharedAxis
 import id.del.ac.delstat.R
 import id.del.ac.delstat.databinding.FragmentMateriBinding
 import id.del.ac.delstat.presentation.testactivity.MateriActivity
@@ -14,6 +15,19 @@ import id.del.ac.delstat.presentation.testactivity.MateriActivity
 class MateriFragment : Fragment() {
 
     private lateinit var binding: FragmentMateriBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val myExitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        myExitTransition.duration = 400
+
+        val myReenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+        myReenterTransition.duration = 400
+
+        exitTransition = myExitTransition
+        reenterTransition = myReenterTransition
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

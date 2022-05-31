@@ -1,14 +1,492 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.materi.fragment.AnovaFragment">
+    tools:context=".presentation.materi.fragment.DistribusiPeluangDiskritFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <!-- Bagian wajib -->
+        <LinearLayout
+            android:id="@+id/layout_awal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_view_judul"
+                style="@style/JudulMateri"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:text="Analysis of Variance (ANOVA)" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_edit_materi"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:text="Edit"
+                android:textSize="15sp"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_awal"
+            android:layout_marginHorizontal="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/layout_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_below="@id/divider_top">
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_button_video_choices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_video"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:theme="@style/Theme.Material3.DynamicColors.Light"
+                app:singleSelection="true"
+                app:checkedButton="@id/button1"
+                app:selectionRequired="true"
+                android:visibility="invisible">
+
+                <Button
+                    android:id="@+id/button1"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+
+                <Button
+                    android:id="@+id/button2"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/button3"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/button4"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:visibility="gone"/>
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        </RelativeLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_button_video_choices"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp" />
+
+        <!-- Akhir Bagian Wajib -->
+
+        <!-- Bagian 1 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider_bottom"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="Definisi" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="@string/definisi_anova_1"
+                android:justificationMode="inter_word"
+                tools:targetApi="o" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="@string/definisi_anova_2"
+                android:justificationMode="inter_word"
+                tools:targetApi="o" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="@string/definisi_anova_3"
+                android:justificationMode="inter_word"/>
+
+        </LinearLayout>
+
+        <!-- Bagian 2 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_1"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="Jenis-jenis uji ANOVA" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Berikut adalah beberapa jenis uji ANOVA" />
+
+        </LinearLayout>
+
+        <!-- Bagian 3 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_2"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="1. One Way ANOVA" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:scrollHorizontally="false"
+                android:text="@string/penjelasan_one_way_anova" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:scrollHorizontally="false"
+                android:text="Contoh:" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:scrollHorizontally="false"
+                android:text="a. Apakah rata-rata ulangan berbeda berdasarkan klasifikasi sekolah?" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:scrollHorizontally="false"
+                android:text="b. Apakah kekuatan tensil mempengaruhi persentase berat cotton dalam kain?" />
+
+        </LinearLayout>
+
+        <!-- Bagian 4 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_3"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="2. Two Way ANOVA" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="@string/penjelasan_two_way_anova" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Contoh:" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Apakah rata-rata ulangan berbeda berdasarkan klasifikasi sekolah dan kelompok penelitian ?" />
+
+        </LinearLayout>
+
+        <!-- Bagian 5 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_4"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="3. Multivariant ANOVA" />
+
+            <!-- Bagian a -->
+            <TextView
+                style="@style/ContentMateri"
+                android:text="a. Variabel dependen lebih dari satu tetapi kelompok sama" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Contoh: " />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Apakah rata-rata ulangan dan pandangan siswa terhadap IPS berbeda untuk tiap daerah?" />
+
+            <!-- Bagian b -->
+            <TextView
+                style="@style/ContentMateri"
+                android:text="b. Variabel independen lebih dari satu dan kelompok berbeda" />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Contoh: " />
+
+            <TextView
+                style="@style/ContentMateri"
+                android:text="Apakah rata-rata ulangan dan pandangan siswa terhadap IPS berbeda berdasarkan klasifikasi Sekolah dan kelompok penelitian?" />
+
+        </LinearLayout>
+
+        <!-- Bagian 6 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_5"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="Model Data Populasi" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 7 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_6"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="Hipotesis" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 8 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_7"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="Jumlah Kuadrat Total (JKT)" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 9 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_8"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="Jumlah Kuadrat Perlakuan (JKA)" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 10 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_9"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="Jumlah Kuadrat Galat (JKG)" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Bagian 11 -->
+        <LinearLayout
+            android:id="@+id/layout_bagian_11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bagian_10"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SubJudulMateri"
+                android:text="Tabel ANOVA" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                        android:id="@+id/image_view_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

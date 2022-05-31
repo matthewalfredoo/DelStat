@@ -1,7 +1,6 @@
 package id.del.ac.delstat.presentation.materi.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialSharedAxis
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import id.del.ac.delstat.R
 import id.del.ac.delstat.data.api.DelStatApiService
+import id.del.ac.delstat.data.model.materi.Materi
 import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.CustomLayoutEditMateriDialogBinding
@@ -28,7 +28,7 @@ import kotlinx.coroutines.runBlocking
 
 
 class DistribusiPeluangDiskritFragment : Fragment() {
-    private val IDMATERI = 3
+    private val IDMATERI = Materi.ID_MATERI_3_DISTRIBUSI_PROBABILITAS_DISKRIT
 
     private lateinit var binding: FragmentDistribusiPeluangDiskritBinding
     private lateinit var materiViewModel: MateriViewModel
@@ -48,7 +48,18 @@ class DistribusiPeluangDiskritFragment : Fragment() {
 
     private lateinit var currentYoutubePlayerView: YouTubePlayerView
 
-    private lateinit var delStatApiService: DelStatApiService
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val myEnterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        myEnterTransition.duration = 400
+
+        val myReturnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+        myReturnTransition.duration = 400
+
+        enterTransition = myEnterTransition
+        returnTransition = myReturnTransition
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +75,6 @@ class DistribusiPeluangDiskritFragment : Fragment() {
         binding = FragmentDistribusiPeluangDiskritBinding.bind(view)
         materiViewModel = (activity as HomeActivity).materiViewModel
         userPreferences = (activity as HomeActivity).userPreferences
-        delStatApiService = (activity as HomeActivity).delStatApiService
 
         prepareUI()
     }
@@ -179,7 +189,7 @@ class DistribusiPeluangDiskritFragment : Fragment() {
         bindingCustomLayout.editTextLinkVideo2.doOnTextChanged { text, start, before, count ->
             if (text.isNullOrEmpty()) {
                 bindingCustomLayout.textInputLayout2.error = null
-            } else if (!text.equals(Patterns.WEB_URL.matcher(text).matches())) {
+            } else if (!Patterns.WEB_URL.matcher(text).matches()) {
                 bindingCustomLayout.textInputLayout2.error = "Link video 2 tidak valid"
             } else {
                 bindingCustomLayout.textInputLayout2.error = null
@@ -280,15 +290,15 @@ class DistribusiPeluangDiskritFragment : Fragment() {
     }
 
     private fun renderImages() {
-        binding.imageViewDistribusiPeluangDiskrit1.setImage(ImageSource.resource(R.drawable.distribusi_peluang_diskrit_1))
-        binding.imageViewDistribusiPeluangDiskrit2.setImage(ImageSource.resource(R.drawable.distribusi_peluang_diskrit_2))
-        binding.imageViewDistribusiPeluangDiskrit3.setImage(ImageSource.resource(R.drawable.distribusi_peluang_diskrit_3))
-        binding.imageViewDistribusiPeluangDiskrit4.setImage(ImageSource.resource(R.drawable.distribusi_peluang_diskrit_4))
-        binding.imageViewDistribusiPeluangDiskrit5.setImage(ImageSource.resource(R.drawable.distribusi_peluang_diskrit_5))
-        binding.imageViewDistribusiPeluangDiskrit6.setImage(ImageSource.resource(R.drawable.distribusi_peluang_diskrit_6))
-        binding.imageViewDistribusiPeluangDiskrit7a.setImage(ImageSource.resource(R.drawable.distribusi_peluang_diskrit_7a))
-        binding.imageViewDistribusiPeluangDiskrit7b.setImage(ImageSource.resource(R.drawable.distribusi_peluang_diskrit_7b))
-        binding.imageViewDistribusiPeluangDiskrit8.setImage(ImageSource.resource(R.drawable.distribusi_peluang_diskrit_8))
+        binding.imageViewDistribusiPeluangDiskrit1.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_diskrit_1))
+        binding.imageViewDistribusiPeluangDiskrit2.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_diskrit_2))
+        binding.imageViewDistribusiPeluangDiskrit3.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_diskrit_3))
+        binding.imageViewDistribusiPeluangDiskrit4.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_diskrit_4))
+        binding.imageViewDistribusiPeluangDiskrit5.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_diskrit_5))
+        binding.imageViewDistribusiPeluangDiskrit6.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_diskrit_6))
+        binding.imageViewDistribusiPeluangDiskrit7a.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_diskrit_7a))
+        binding.imageViewDistribusiPeluangDiskrit7b.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_diskrit_7b))
+        binding.imageViewDistribusiPeluangDiskrit8.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_diskrit_8))
     }
 
     /*private fun renderMathViews() {

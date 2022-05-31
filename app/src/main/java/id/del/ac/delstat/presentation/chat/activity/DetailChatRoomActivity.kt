@@ -52,6 +52,7 @@ class DetailChatRoomActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_CHAT_ROOM_ID = "EXTRA_CHAT_ROOM_ID"
         const val EXTRA_MESSAGE = "EXTRA_MESSAGE"
+        //TODO: Make automatic delete choice available, so user can choose whether they want chat room automatically deleted or not
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

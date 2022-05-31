@@ -57,4 +57,9 @@
     <string name="chat_baru">Chat Baru</string>
     <string name="message_delivered">D</string>
     <string name="message_read">R</string>
+    <string name="definisi_anova_1">Analisis of Varians adalah suatu metode analisis statistika yang termasuk ke dalam cabang statistika inferensi. ANOVA (Analisis of Varians) dapat digunakan untuk menganalisis pengaruh perlakuan dalam suatu percobaan.</string>
+    <string name="definisi_anova_2">Misalnya: pengaruh dosis pupuk terhadap hasil panen, pengaruh algoritma terhadap kecepatan running program, pengaruh metode penjualan terhadap pendapatan, dll. Jika tabel ANOVA menghasilkan keputusan tolak H0 maka seharusnya dilakukan uji perbandingan sebagai uji lanjutan untuk mencari level perlakuan yang paling optimum</string>
+    <string name="definisi_anova_3">Homogenitas/ kesamaan ragam dan normalitas data adalah asumsi dalam ANOVA dan regresi.</string>
+    <string name="penjelasan_one_way_anova"><![CDATA[Satu variabel dependen dari satu faktor dengan > 2 taraf Merupakan analisis untuk percobaan dengan Rancangan Acak Lengkap (RAL).]]></string>
+    <string name="penjelasan_two_way_anova"><![CDATA[Satu variabel dependen dengan 2 faktor Pengembangan uji t-paired & merupakan analisis untuk percobaan dengan Rancangan Acak Kelompok (RAK).]]></string>
 </resources>

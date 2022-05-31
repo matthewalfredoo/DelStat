@@ -58,6 +58,11 @@ class ListChatRoomActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        getChatRooms()
+    }
+
     private fun initRecyclerView() {
         listChatRoomAdapter = ListChatRoomAdapter(){ chatRoom ->
             onChatRoomClickListener(chatRoom)
