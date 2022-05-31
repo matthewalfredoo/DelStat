@@ -64,7 +64,10 @@ class MyChatOutViewHolder(val binding: ItemChatOutBinding): RecyclerView.ViewHol
     fun bind(chat: Chat) {
         binding.chatText.text = chat.pesan
         binding.dateText.text = DateUtil.getDateTimeWithoutSecond(chat.createdAt!!)
-        if(chat.sudahDibaca) {
+        if(!chat.sudahDibaca) {
+            binding.statusReadText.setText(R.string.message_delivered)
+        }
+        else {
             binding.statusReadText.setText(R.string.message_read)
         }
     }
