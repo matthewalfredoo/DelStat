@@ -49,4 +49,9 @@
     <string name="message_read">R</string>
     <string name="definisi_anova_1">Analisis of Varians adalah suatu metode analisis statistika yang termasuk ke dalam cabang statistika inferensi. ANOVA (Analisis of Varians) dapat digunakan untuk menganalisis pengaruh perlakuan dalam suatu percobaan.</string>
     <string name="definisi_anova_3">Homogenitas/ kesamaan ragam dan normalitas data adalah asumsi dalam ANOVA dan regresi.</string>
+    <string name="penjelasan_peubah_acak_definisi">Peubah acak merupakan suatu fungsi yang mengaitkan suatu bilangan real pada setiap unsur dalam ruang sampel.</string>
+    <string name="penjelasan_peubah_acak_ruang_sampel_kontinu">-\tRuang sampel kontinu, merupakan ruang sampel yang mengandung titik yang tak berhingga banyaknya dan banyaknya sebanyak titik pada sepotong garis</string>
+    <string name="penjelasan_peubah_acak_distribusi_kumulatif_peubah_acak_kontinu">F(x) suatu peubah acak kontinu X dengan fungsi padat f(x) dinyatakan oleh</string>
+    <string name="penjelasan_peubah_acak_distribusi_empiris">Distribusi empiris merupakan distribusi sebaran data actual dari observasi atau eksperimen dengan pengelompokan dalam distribusi frekuensi.</string>
+    <string name="penjelasan_peubah_acak_distribusi_peluang_diskrit">Himpunan pasangan terurut (x, f(x)) merupakan suatu fungsi peluang, fungsi massa peluang, atau distribusi peluang dari peubah acak dikrit X, untuk semua kemungkinan berikut:</string>
 </resources>

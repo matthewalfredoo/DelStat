@@ -71,4 +71,12 @@
     <string name="penjelasan_konsep_peluang_kombinasi">Suatu sususan yang dapat dibentuk dari satu kumpulan benda yang diambil sebagian atau seleuruhnya dengan tidak memerhatikan urutannya.</string>
     <string name="penjelasan_konsep_peluang_peluang">Peluang suatu kejadian A adalah jumlah bobot semua titik sampel yang termasuk A.</string>
     <string name="penjelasan_konsep_peluang_peluang_bersyarat">Peluang bersyarat merupakan peluang terjadinya suatu kejadian setelah kejaian lain terjadi.</string>
+    <string name="penjelasan_peubah_acak_definisi">Peubah acak merupakan suatu fungsi yang mengaitkan suatu bilangan real pada setiap unsur dalam ruang sampel.</string>
+    <string name="penjelasan_peubah_acak_ruang_sampel_diskrit">Ruang sampel diskrit, merupakan ruang sampel yang mengandung titik yang berhingga banyanya atau sederetan anggota yang banyaknya sebanyak bilangan bulat.</string>
+    <string name="penjelasan_peubah_acak_ruang_sampel_kontinu">-\tRuang sampel kontinu, merupakan ruang sampel yang mengandung titik yang tak berhingga banyaknya dan banyaknya sebanyak titik pada sepotong garis</string>
+    <string name="penjelasan_peubah_acak_distribusi_diskrit">Distribusi kumulatif F(X) suatu peubah acak diskrit X dengan distribusi peluang f(x) dinyatakan oleh</string>
+    <string name="penjelasan_peubah_acak_fungsi_peluang_kontinu">Fungsi f(x) adalah Fungsi padat peluang peubah acak kontiniu x yang didefenisikan di atas himpunan semua bilangan Real R, jika</string>
+    <string name="penjelasan_peubah_acak_distribusi_kumulatif_peubah_acak_kontinu">F(x) suatu peubah acak kontinu X dengan fungsi padat f(x) dinyatakan oleh</string>
+    <string name="penjelasan_peubah_acak_distribusi_empiris">Distribusi empiris merupakan distribusi sebaran data actual dari observasi atau eksperimen dengan pengelompokan dalam distribusi frekuensi.</string>
+    <string name="penjelasan_peubah_acak_distribusi_peluang_diskrit">Himpunan pasangan terurut (x, f(x)) merupakan suatu fungsi peluang, fungsi massa peluang, atau distribusi peluang dari peubah acak dikrit X, untuk semua kemungkinan berikut:</string>
 </resources>
