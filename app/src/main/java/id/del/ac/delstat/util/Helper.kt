@@ -91,7 +91,11 @@ object Helper {
             .load(url)
             .placeholder(R.drawable.ic_default_foto_profil)
             .error(R.drawable.ic_default_foto_profil)
-            /*.apply(RequestOptions().signature(ObjectKey(System.currentTimeMillis().toString())))*/ // TURN THIS ON, IF IMAGE IS HAVING TROUBLE WHEN LOADING
+            .apply(
+                RequestOptions()
+                    .signature(ObjectKey(System.currentTimeMillis().toString()))
+                    .override(200, 200)
+            )
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imageView)
     }
