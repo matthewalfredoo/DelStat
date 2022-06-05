@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
+import com.google.android.material.transition.MaterialFadeThrough
 import id.del.ac.delstat.R
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.FragmentEditPasswordBinding
@@ -27,6 +28,16 @@ class EditPasswordFragment : Fragment() {
     private lateinit var newPassword: String
     private lateinit var newPasswordConfirmation: String
     private lateinit var bearerToken: String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val myTransition = MaterialFadeThrough()
+        myTransition.duration = 500
+
+        enterTransition = MaterialFadeThrough()
+        exitTransition = myTransition
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

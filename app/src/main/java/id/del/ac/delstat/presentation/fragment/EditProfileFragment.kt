@@ -18,22 +18,17 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
-import com.del.d3ti20.util.RealPathUtil
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialFadeThrough
 import id.del.ac.delstat.BuildConfig
 import id.del.ac.delstat.R
-import id.del.ac.delstat.data.api.DelStatApiService
-import id.del.ac.delstat.data.model.user.UserApiResponse
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.FragmentEditProfileBinding
 import id.del.ac.delstat.presentation.activity.HomeActivity
@@ -41,14 +36,7 @@ import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.util.Helper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.Response
 import java.io.File
 
 class EditProfileFragment : Fragment() {
@@ -111,6 +99,16 @@ class EditProfileFragment : Fragment() {
         var PERMISSIONS = arrayOf(
             Manifest.permission.READ_EXTERNAL_STORAGE
         )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val myTransition = MaterialFadeThrough()
+        myTransition.duration = 500
+
+        enterTransition = MaterialFadeThrough()
+        exitTransition = myTransition
     }
 
     override fun onCreateView(
@@ -194,10 +192,11 @@ class EditProfileFragment : Fragment() {
             editTextEmailEditProfile.setText(email)
             editTextNoHpEditProfile.setText(noHp)
             editTextJenjangEditProfile.setText(jenjang)
-            Glide.with(requireActivity().applicationContext)
+            /*Glide.with(requireActivity().applicationContext)
                 .load(fotoProfil)
                 .apply(RequestOptions().signature(ObjectKey(System.currentTimeMillis().toString())))
-                .into(imageViewProfile)
+                .into(imageViewProfile)*/
+            Helper.showImageGlide(requireContext(), fotoProfil, binding.imageViewProfile)
         }
 
         binding.buttonEditProfile.setOnClickListener {

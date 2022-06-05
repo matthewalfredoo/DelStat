@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
+import com.google.android.material.transition.MaterialFadeThrough
 import com.google.android.material.transition.MaterialSharedAxis
 import id.del.ac.delstat.BuildConfig
 import id.del.ac.delstat.R
@@ -21,6 +22,7 @@ import id.del.ac.delstat.databinding.FragmentProfileBinding
 import id.del.ac.delstat.presentation.activity.HomeActivity
 import id.del.ac.delstat.presentation.activity.LoginActivity
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
+import id.del.ac.delstat.util.Helper
 
 
 class ProfileFragment : Fragment() {
@@ -32,16 +34,19 @@ class ProfileFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val myExitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
-        myExitTransition.duration = 200
+        val myReturnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        myReturnTransition.duration = 200
 
         val myReenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
         myReenterTransition.duration = 500
 
+        val myExitTransition = MaterialFadeThrough()
+        myExitTransition.duration = 500
+
         enterTransition = myReenterTransition
         exitTransition = myExitTransition
         reenterTransition = myReenterTransition
-        returnTransition = myExitTransition
+        returnTransition = myReturnTransition
     }
 
     override fun onCreateView(
@@ -99,12 +104,15 @@ class ProfileFragment : Fragment() {
         userPreferences.getUserFotoProfil.asLiveData().observe(viewLifecycleOwner) {
             val fotoProfilUrl = BuildConfig.BASE_URL + it
             Log.d("MyTag", "FotoProfilUrl: $fotoProfilUrl")
-            if(!it.isNullOrEmpty()) {
-                Glide.with(this)
+            if (!it.isNullOrEmpty()) {
+                /*Glide.with(this)
                     .load(fotoProfilUrl)
+                    .placeholder(R.drawable.ic_default_foto_profil)
+                    .error(R.drawable.ic_default_foto_profil)
                     .apply(RequestOptions().signature(ObjectKey(System.currentTimeMillis().toString())))
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .into(binding.imageViewProfile)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(binding.imageViewProfile)*/
+                Helper.showImageGlide(requireContext(), fotoProfilUrl, binding.imageViewProfile)
             }
         }
 

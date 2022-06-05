@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="id.del.ac.delstat.presentation.fragment.EditProfileFragment">
+    tools:context="id.del.ac.delstat.presentation.fragment.EditProfileFragment"
+    android:transitionName="shared_element_container">
 
     <LinearLayout
         android:id="@+id/container_login"
@@ -34,7 +35,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginVertical="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -68,7 +70,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginVertical="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -82,15 +85,17 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_layout_1"
+                style="?attr/textInputOutlinedDenseStyle"
                 android:layout_width="0dp"
-                android:layout_weight="2"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
                 app:endIconMode="clear_text"
-                app:errorEnabled="true"
-                app:errorIconDrawable="@drawable/ic_baseline_error_red_24"
                 app:hintEnabled="false"
-                app:hintAnimationEnabled="false"
-                app:expandedHintEnabled="false">
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_baseline_error_red_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_nama_edit_profile"
@@ -108,7 +113,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginVertical="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -122,10 +128,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_layout_2"
+                style="?attr/textInputOutlinedDenseStyle"
                 android:layout_width="0dp"
-                android:layout_weight="2"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
                 app:endIconMode="clear_text"
+                app:hintEnabled="false"
                 app:errorEnabled="true"
                 app:errorIconDrawable="@drawable/ic_baseline_error_red_24">
 
@@ -145,7 +156,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginVertical="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -159,10 +171,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_layout_3"
+                style="?attr/textInputOutlinedDenseStyle"
                 android:layout_width="0dp"
-                android:layout_weight="2"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
                 app:endIconMode="clear_text"
+                app:hintEnabled="false"
                 app:errorEnabled="true"
                 app:errorIconDrawable="@drawable/ic_baseline_error_red_24">
 
@@ -182,7 +199,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginVertical="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -196,10 +214,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_layout_4"
+                style="?attr/textInputOutlinedDenseStyle"
                 android:layout_width="0dp"
-                android:layout_weight="2"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
                 app:endIconMode="clear_text"
+                app:hintEnabled="false"
                 app:errorEnabled="true"
                 app:errorIconDrawable="@drawable/ic_baseline_error_red_24">
 
