@@ -64,7 +64,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var notifikasiViewModel: NotifikasiViewModel
     lateinit var runCheckCountNotifikasi: Runnable
     var handlerCheckCountNotifikasi: Handler = Handler(Looper.getMainLooper())
-    val delayInterval: Long = 2000
+    val delayInterval: Long = 8000
 
     @Inject
     lateinit var userPreferences: UserPreferences

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialSharedAxis
 import id.del.ac.delstat.R
 import id.del.ac.delstat.data.model.literatur.Literatur
 import id.del.ac.delstat.data.model.user.User
@@ -32,6 +33,21 @@ class LiteraturFragment : Fragment() {
 
     private lateinit var userPreferences: UserPreferences
     private var role: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val myExitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        myExitTransition.duration = 200
+
+        val myReenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+        myReenterTransition.duration = 500
+
+        enterTransition = myReenterTransition
+        exitTransition = myExitTransition
+        reenterTransition = myReenterTransition
+        returnTransition = myExitTransition
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

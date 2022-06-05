@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
+import com.google.android.material.transition.MaterialSharedAxis
 import id.del.ac.delstat.BuildConfig
 import id.del.ac.delstat.R
 import id.del.ac.delstat.data.preferences.UserPreferences
@@ -27,6 +28,21 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var userPreferences: UserPreferences
     var bearerToken: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val myExitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        myExitTransition.duration = 200
+
+        val myReenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+        myReenterTransition.duration = 500
+
+        enterTransition = myReenterTransition
+        exitTransition = myExitTransition
+        reenterTransition = myReenterTransition
+        returnTransition = myExitTransition
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,6 +103,7 @@ class ProfileFragment : Fragment() {
                 Glide.with(this)
                     .load(fotoProfilUrl)
                     .apply(RequestOptions().signature(ObjectKey(System.currentTimeMillis().toString())))
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(binding.imageViewProfile)
             }
         }

@@ -20,13 +20,15 @@ class MateriFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val myExitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
-        myExitTransition.duration = 400
+        myExitTransition.duration = 200
 
         val myReenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
-        myReenterTransition.duration = 400
+        myReenterTransition.duration = 500
 
+        enterTransition = myReenterTransition
         exitTransition = myExitTransition
         reenterTransition = myReenterTransition
+        returnTransition = myExitTransition
     }
 
     override fun onCreateView(
