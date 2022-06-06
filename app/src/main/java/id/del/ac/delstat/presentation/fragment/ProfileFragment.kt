@@ -20,8 +20,10 @@ import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
+import com.davemorrissey.labs.subscaleview.ImageSource
 import com.google.android.material.transition.MaterialFadeThrough
 import com.google.android.material.transition.MaterialSharedAxis
 import id.del.ac.delstat.BuildConfig
@@ -32,6 +34,7 @@ import id.del.ac.delstat.presentation.activity.HomeActivity
 import id.del.ac.delstat.presentation.activity.LoginActivity
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.util.Helper
+import id.del.ac.delstat.util.SubsamplingScaleImageViewTarget
 
 
 class ProfileFragment : Fragment() {
@@ -154,7 +157,17 @@ class ProfileFragment : Fragment() {
         currentAnimator?.cancel()
 
         // Load the high-resolution "zoomed-in" image.
-        Helper.showImageGlide(requireContext(), fotoProfilUrl, binding.expandedImageViewProfile)
+        // It will be loaded to the SubsamplingScaleImageView using SubsamplingScaleImageViewTarget class //
+        // And image will be loaded with Glide //
+        Glide
+            .with(this)
+            .download(GlideUrl(fotoProfilUrl))
+            .apply(
+                RequestOptions()
+                    .signature(ObjectKey(System.currentTimeMillis().toString()))
+            )
+            .into(SubsamplingScaleImageViewTarget(binding.expandedImageViewProfile))
+
 
         // Calculate the starting and ending bounds for the zoomed-in image.
         // This step involves lots of math. Yay, math.
@@ -236,6 +249,9 @@ class ProfileFragment : Fragment() {
                 }
             })
             start()
+
+            // Setting other views to invisible
+            binding.containerLogin.alpha = 0f
         }
 
         // Upon clicking the zoomed-in image, it should zoom back down
@@ -243,6 +259,9 @@ class ProfileFragment : Fragment() {
         // the expanded image.
         binding.expandedImageViewProfile.setOnClickListener {
             currentAnimator?.cancel()
+
+            // Setting other views to visible
+            binding.containerLogin.alpha = 1f
 
             // Animate the four positioning/sizing properties in parallel,
             // back to their original values.

@@ -234,7 +234,14 @@
 
     </LinearLayout>
 
-    <ImageView
+    <!--<ImageView
+        android:id="@+id/expanded_image_view_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>-->
+
+    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
         android:id="@+id/expanded_image_view_profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
