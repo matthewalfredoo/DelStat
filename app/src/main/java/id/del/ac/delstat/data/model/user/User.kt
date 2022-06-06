@@ -42,5 +42,10 @@ class User(
         const val ROLE_SISWA = "Siswa"
 
         const val UNAUTHENTICATED = "Unauthenticated."
+
+        const val JENJANG_DOSEN = "Dosen"
+        const val JENJANG_MAHASISWA = "Mahasiswa"
+        const val JENJANG_SMA = "SMA"
+        const val JENJANG_SMP = "SMP"
     }
 }

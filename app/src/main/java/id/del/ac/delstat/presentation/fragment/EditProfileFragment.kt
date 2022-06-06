@@ -25,10 +25,12 @@ import com.bumptech.glide.signature.ObjectKey
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialFadeThrough
 import id.del.ac.delstat.BuildConfig
 import id.del.ac.delstat.R
+import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.FragmentEditProfileBinding
 import id.del.ac.delstat.presentation.activity.HomeActivity
@@ -50,6 +52,9 @@ class EditProfileFragment : Fragment() {
     private lateinit var jenjang: String
     private lateinit var fotoProfil: String
     private lateinit var bearerToken: String
+
+    private lateinit var jenjangList: Array<String>
+    private var selectedJenjangIndex: Int = -1
 
     private var intentData: Intent? = null
     private var selectedImageUri: Uri? = null
@@ -125,6 +130,12 @@ class EditProfileFragment : Fragment() {
         binding = FragmentEditProfileBinding.bind(view)
         userViewModel = (activity as HomeActivity).userViewModel
         userPreferences = (activity as HomeActivity).userPreferences
+        jenjangList =  arrayOf(
+            User.JENJANG_DOSEN,
+            User.JENJANG_MAHASISWA,
+            User.JENJANG_SMA,
+            User.JENJANG_SMP
+        )
 
         prepareUI()
     }
@@ -219,7 +230,31 @@ class EditProfileFragment : Fragment() {
             selectPhoto()
         }
 
+        selectedJenjangIndex = jenjangList.indexOf(jenjang)
         inputValidation()
+        binding.editTextJenjangEditProfile.setOnClickListener {
+            showJenjangDialog()
+        }
+    }
+
+    private fun showJenjangDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Jenjang")
+            .setSingleChoiceItems(jenjangList, selectedJenjangIndex) { dialog, which ->
+                selectedJenjangIndex = which
+                Log.d("status", jenjangList[which])
+            }
+            .setPositiveButton("OK") { dialog, which ->
+                binding.editTextJenjangEditProfile.setText(jenjangList[selectedJenjangIndex])
+                dialog.dismiss()
+            }
+            .setNegativeButton("Batal") { dialog, which ->
+                dialog.dismiss()
+            }
+            .setOnDismissListener {
+                selectedJenjangIndex = jenjangList.indexOf(jenjang)
+            }
+            .show()
     }
 
     private fun inputValidation() {
