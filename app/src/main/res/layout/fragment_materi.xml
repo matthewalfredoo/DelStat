@@ -430,7 +430,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="@string/masalah_estimasi_satu_dan_dua_sampel"
+                        android:text="@string/konsep_estimasi"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />

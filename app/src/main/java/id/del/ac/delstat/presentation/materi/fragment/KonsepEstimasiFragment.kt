@@ -19,16 +19,16 @@ import id.del.ac.delstat.data.model.materi.Materi
 import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.CustomLayoutEditMateriDialogBinding
-import id.del.ac.delstat.databinding.FragmentDistribusiKontinuBinding
+import id.del.ac.delstat.databinding.FragmentKonsepEstimasiBinding
 import id.del.ac.delstat.presentation.activity.HomeActivity
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
-class DistribusiKontinuFragment : Fragment() {
-    private val IDMATERI = Materi.ID_MATERI_4_DISTRIBUSI_PROBABILITAS_KONTINU
+class KonsepEstimasiFragment : Fragment() {
+    private val IDMATERI = Materi.ID_MATERI_8_KONSEP_ESTIMASI
 
-    private lateinit var binding: FragmentDistribusiKontinuBinding
+    private lateinit var binding: FragmentKonsepEstimasiBinding
     private lateinit var materiViewModel: MateriViewModel
     private lateinit var userPreferences: UserPreferences
 
@@ -64,13 +64,13 @@ class DistribusiKontinuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_distribusi_kontinu, container, false)
+        return inflater.inflate(R.layout.fragment_konsep_estimasi, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentDistribusiKontinuBinding.bind(view)
+        binding = FragmentKonsepEstimasiBinding.bind(view)
         materiViewModel = (activity as HomeActivity).materiViewModel
         userPreferences = (activity as HomeActivity).userPreferences
 
@@ -185,12 +185,8 @@ class DistribusiKontinuFragment : Fragment() {
     }
 
     private fun renderImages() {
-        binding.imageView1.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_kontinu_1))
-        binding.imageView2.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_kontinu_2))
-        binding.imageView3.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_kontinu_3))
-        binding.imageView4.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_kontinu_4))
-        binding.imageView5.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_kontinu_5))
-        binding.imageView6.setImage(ImageSource.resource(R.drawable.materi_distribusi_peluang_kontinu_6))
+        binding.imageView1.setImage(ImageSource.resource(R.drawable.materi_konsep_estimasi_1))
+        binding.imageView2.setImage(ImageSource.resource(R.drawable.materi_konsep_estimasi_2))
     }
 
     private fun activateEditButton() {
@@ -249,7 +245,7 @@ class DistribusiKontinuFragment : Fragment() {
             if (text.isNullOrEmpty()) {
                 bindingCustomLayout.textInputLayout1.error =
                     "Field link video 1 wajib diisi, karena materi minimal memiliki 1 video"
-            } else if (!text.equals(Patterns.WEB_URL.matcher(text).matches())) {
+            } else if (!Patterns.WEB_URL.matcher(text).matches()) {
                 bindingCustomLayout.textInputLayout1.error = "Link video 1 tidak valid"
             } else {
                 bindingCustomLayout.textInputLayout1.error = null

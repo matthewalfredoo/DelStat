@@ -39,7 +39,7 @@
     <string name="pengantar_statistik_dan_analisis_data">Pengantar Statistik dan Analisis Data</string>
     <string name="teknik_sampling">Teknik Sampling</string>
     <string name="anova">Rancangan Percobaan (ANOVA)</string>
-    <string name="masalah_estimasi_satu_dan_dua_sampel">Masalah Estimasi Satu dan Dua Sampel</string>
+    <string name="konsep_estimasi">Konsep Estimasi</string>
     <string name="pengujian_hipotesis">Pengujian Hipotesis</string>
     <string name="regresi_linear_sederhana_dan_korelasi">Regresi Linear Sederhana dan Korelasi</string>
     <string name="tambah">Tambah</string>
@@ -59,7 +59,7 @@
     <string name="message_read">R</string>
     <string name="definisi_anova_1">Analisis of Varians adalah suatu metode analisis statistika yang termasuk ke dalam cabang statistika inferensi. ANOVA (Analisis of Varians) dapat digunakan untuk menganalisis pengaruh perlakuan dalam suatu percobaan.</string>
     <string name="definisi_anova_2">Misalnya: pengaruh dosis pupuk terhadap hasil panen, pengaruh algoritma terhadap kecepatan running program, pengaruh metode penjualan terhadap pendapatan, dll. Jika tabel ANOVA menghasilkan keputusan tolak H0 maka seharusnya dilakukan uji perbandingan sebagai uji lanjutan untuk mencari level perlakuan yang paling optimum</string>
-    <string name="definisi_anova_3">Homogenitas/ kesamaan ragam dan normalitas data adalah asumsi dalam ANOVA dan regresi.</string>
+    <string name="definisi_anova_3">Homogenitas/kesamaan ragam dan normalitas data adalah asumsi dalam ANOVA dan regresi.</string>
     <string name="penjelasan_one_way_anova"><![CDATA[Satu variabel dependen dari satu faktor dengan > 2 taraf Merupakan analisis untuk percobaan dengan Rancangan Acak Lengkap (RAL).]]></string>
     <string name="penjelasan_two_way_anova"><![CDATA[Satu variabel dependen dengan 2 faktor Pengembangan uji t-paired & merupakan analisis untuk percobaan dengan Rancangan Acak Kelompok (RAK).]]></string>
     <string name="penjelasan_konsep_peluang_ruang_sampel">Himpunan semua hasil (outcomes) yang mungkin dari suatu percobaan statistika. Hasil dalam ruang sampel disebut titik sampel.</string>
@@ -86,4 +86,11 @@
     <string name="penjelasan_distribusi_kontinu_distribusi_normal_3">Menghitung luas daerah pada kurva sama dengan menghitung peluangnya yang dapat dilihat pada rumus berikut.</string>
     <string name="penjelasan_distribusi_kontinu_distribusi_gamma_eksponensial"><![CDATA[Distribusi Gamma adalah distriibusi fungsi padat yang disebut luas dalam bidang matematika. Perubah acak kontinu x berdistribusi gamma dengan parameter α dan β dengan α>0 dan β>0]]></string>
     <string name="penjelasan_distribusi_kontinu_distribusi_gamma_eksponensial_2">Distribusi eksponensial merupakan distrbusi gamma yang khusus dengan α = 1</string>
+    <string name="penjelasan_konsep_estimasi_definisi">Estimasi merupakan suatu metode dimana kita dapat memperkirakan nilai Populasi dengan memakai nilai sampel. Misalnya rata-rata sampel digunakan untuk menaksir rata-rata pupolasi proporsi sampel untuk menaksir proporsi populasi (p), dan jumlah ciri tertentu sampel untuk menaksir jumlah ciri tertentu populasi.</string>
+    <string name="penjelasan_konsep_estimasi_definisi_2">Teori inferensi statistika terdiri atas metode untuk menarik inferensi/kesimpulan mengenai populasi. Metode yang digunakan dalam menaksir parameter populasi adalah metode klasik dan metode bayes.</string>
+    <string name="penjelasan_konsep_estimasi_estimasi_bayes_1">Dalam pendekatan klasik, penaksir atau fungsi keputusan hanya berdasarkan informasi dari n sampel yang diambil. Peluang yang dikaitkan dengan prior disebut peluang pribadi.</string>
+    <string name="penjelasan_konsep_estimasi_estimasi_bayes_2">Distribusi awal (prior) merupakan distribusi yang menyatakan informasi dari parameter yang akan diduga. Distribusi akhir (posterior) merupakan distribusi gabungan sampel.</string>
+    <string name="penjelasan_konsep_estimasi_estimasi_bayes_3">Metode penaksiran bayes menggunakan distribusi awal f(θ) bersama distribusi gabungan sampel f(x1,x2,…,xn ; θ)</string>
+    <string name="penjelasan_konsep_estimasi_estimasi_bayes_4">Rataan distribusi panca f(θ| x1,x2,…,xn) dinyatakan dengan θ*, disebut taksiran bayes untuk θ.</string>
+    <string name="penjelasan_konsep_estimasi_estimasi_bayes_5"><![CDATA[Selang a < θ < b akan disebut selang bayes (1 – α) 100% untuk θ, bila]]></string>
 </resources>

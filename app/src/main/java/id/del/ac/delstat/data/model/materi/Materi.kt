@@ -36,7 +36,7 @@ class Materi(
         const val ID_MATERI_5_PENGANTAR_STATISTIK_ANALISIS_DATA = 5
         const val ID_MATERI_6_TEKNIK_SAMPLING = 6
         const val ID_MATERI_7_ANOVA = 7
-        const val ID_MATERI_8_ESTIMASI_SATU_DUA_SAMPEL = 8
+        const val ID_MATERI_8_KONSEP_ESTIMASI = 8
         const val ID_MATERI_9_PENGUJIAN_HIPOTESIS = 9
         const val ID_MATERI_10_REGRESI_KORELASI = 10
     }

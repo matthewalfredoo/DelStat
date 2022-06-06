@@ -111,9 +111,9 @@
         tools:layout="@layout/fragment_anova" />
     <fragment
         android:id="@+id/estimasiSatuDanDuaSampelFragment"
-        android:name="id.del.ac.delstat.presentation.materi.fragment.EstimasiSatuDanDuaSampelFragment"
+        android:name="id.del.ac.delstat.presentation.materi.fragment.KonsepEstimasiFragment"
         android:label="fragment_estimasi_satu_dan_dua_sampel"
-        tools:layout="@layout/fragment_estimasi_satu_dan_dua_sampel" />
+        tools:layout="@layout/fragment_konsep_estimasi" />
     <fragment
         android:id="@+id/pengujianHipotesisFragment"
         android:name="id.del.ac.delstat.presentation.materi.fragment.PengujianHipotesisFragment"
