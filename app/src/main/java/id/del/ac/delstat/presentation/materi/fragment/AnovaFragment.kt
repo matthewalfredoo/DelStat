@@ -250,7 +250,7 @@ class AnovaFragment : Fragment() {
             if (text.isNullOrEmpty()) {
                 bindingCustomLayout.textInputLayout1.error =
                     "Field link video 1 wajib diisi, karena materi minimal memiliki 1 video"
-            } else if (!text.equals(Patterns.WEB_URL.matcher(text).matches())) {
+            } else if (!Patterns.WEB_URL.matcher(text).matches()) {
                 bindingCustomLayout.textInputLayout1.error = "Link video 1 tidak valid"
             } else {
                 bindingCustomLayout.textInputLayout1.error = null
