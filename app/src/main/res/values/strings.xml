@@ -79,4 +79,11 @@
     <string name="penjelasan_peubah_acak_distribusi_kumulatif_peubah_acak_kontinu">F(x) suatu peubah acak kontinu X dengan fungsi padat f(x) dinyatakan oleh</string>
     <string name="penjelasan_peubah_acak_distribusi_empiris">Distribusi empiris merupakan distribusi sebaran data actual dari observasi atau eksperimen dengan pengelompokan dalam distribusi frekuensi.</string>
     <string name="penjelasan_peubah_acak_distribusi_peluang_diskrit">Himpunan pasangan terurut (x, f(x)) merupakan suatu fungsi peluang, fungsi massa peluang, atau distribusi peluang dari peubah acak dikrit X, untuk semua kemungkinan berikut:</string>
+    <string name="penjelasan_distribusi_kontinu_definisi">Distribusi kontinu biasanya digunakan untuk menggambarkan variable yang diasumsikan tidak terbatas berkorespondensi pada titik-titik sebuah garis interval.</string>
+    <string name="penjelasan_distribusi_kontinu_distribusi_uniform_kontinu">Suatu peubah acak x pada interval (a,b) dikatakan berdistribusi uniform kontinu jika nilai f(x) adalah tetap untuk tiap x dalam interval (a,b) dengan fungsi pdf (probability density function)</string>
+    <string name="penjelasan_distribusi_kontinu_distribusi_normal">Distribusi normal dengan fungsi probabilitas ini kemudian akan menunjukkan variable atau penyebaran distribusi. Fungsi ini akan dibuktikan dengan grafik berbentuk lonceng yang memuncak dibagian tengah hingga melandai di kedua sisinya dengan nilai yang sifatnya setara.</string>
+    <string name="penjelasan_distribusi_kontinu_distribusi_normal_2">Titik puncak adalah pada mean yang juga merupakan median dan modus. Luas total di bawah kurva adalah 1 (0,5 di sebelah kiri mean dan 0,5 ke kanan).</string>
+    <string name="penjelasan_distribusi_kontinu_distribusi_normal_3">Menghitung luas daerah pada kurva sama dengan menghitung peluangnya yang dapat dilihat pada rumus berikut.</string>
+    <string name="penjelasan_distribusi_kontinu_distribusi_gamma_eksponensial"><![CDATA[Distribusi Gamma adalah distriibusi fungsi padat yang disebut luas dalam bidang matematika. Perubah acak kontinu x berdistribusi gamma dengan parameter α dan β dengan α>0 dan β>0]]></string>
+    <string name="penjelasan_distribusi_kontinu_distribusi_gamma_eksponensial_2">Distribusi eksponensial merupakan distrbusi gamma yang khusus dengan α = 1</string>
 </resources>
