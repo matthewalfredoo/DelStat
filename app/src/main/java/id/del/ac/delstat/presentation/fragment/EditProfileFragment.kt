@@ -52,6 +52,7 @@ class EditProfileFragment : Fragment() {
     private lateinit var jenjang: String
     private lateinit var fotoProfil: String
     private lateinit var bearerToken: String
+    private lateinit var role: String
 
     private lateinit var jenjangList: Array<String>
     private var selectedJenjangIndex: Int = -1
@@ -131,7 +132,6 @@ class EditProfileFragment : Fragment() {
         userViewModel = (activity as HomeActivity).userViewModel
         userPreferences = (activity as HomeActivity).userPreferences
         jenjangList =  arrayOf(
-            User.JENJANG_DOSEN,
             User.JENJANG_MAHASISWA,
             User.JENJANG_SMA,
             User.JENJANG_SMP
@@ -196,6 +196,7 @@ class EditProfileFragment : Fragment() {
             jenjang = userPreferences.getUserJenjang.first()!!
             fotoProfil = BuildConfig.BASE_URL + userPreferences.getUserFotoProfil.first()!!
             bearerToken = userPreferences.getUserToken.first()!!
+            role = userPreferences.getUserRole.first()!!
         }
 
         binding.apply {
@@ -230,11 +231,17 @@ class EditProfileFragment : Fragment() {
             selectPhoto()
         }
 
+        // Taking the current jenjang value and index of it in the jejangList
         selectedJenjangIndex = jenjangList.indexOf(jenjang)
-        inputValidation()
+        // Admin and Dosen users should not be able to change the jenjang
+        if(role == User.ROLE_ADMIN || role == User.ROLE_DOSEN){
+            binding.editTextJenjangEditProfile.isEnabled = false
+        }
         binding.editTextJenjangEditProfile.setOnClickListener {
             showJenjangDialog()
         }
+
+        inputValidation()
     }
 
     private fun showJenjangDialog() {
@@ -252,7 +259,7 @@ class EditProfileFragment : Fragment() {
                 dialog.dismiss()
             }
             .setOnDismissListener {
-                selectedJenjangIndex = jenjangList.indexOf(jenjang)
+                selectedJenjangIndex = jenjangList.indexOf(binding.editTextJenjangEditProfile.text.toString())
             }
             .show()
     }
