@@ -162,10 +162,6 @@ class ProfileFragment : Fragment() {
         Glide
             .with(this)
             .download(GlideUrl(fotoProfilUrl))
-            .apply(
-                RequestOptions()
-                    .signature(ObjectKey(System.currentTimeMillis().toString()))
-            )
             .into(SubsamplingScaleImageViewTarget(binding.expandedImageViewProfile))
 
 
