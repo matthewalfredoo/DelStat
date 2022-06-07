@@ -18,6 +18,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -265,6 +266,17 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun inputValidation() {
+        userViewModel.userApiResponse.observe(viewLifecycleOwner, Observer {
+            if(it.code == 400 && it.errors != null) {
+                if(it.errors.email != null) {
+                    binding.textInputLayout2.error = it.errors.email[0]
+                }
+                if(it.errors.noHp != null) {
+                    binding.textInputLayout3.error = it.errors.noHp[0]
+                }
+            }
+        })
+
         binding.editTextNamaEditProfile.doOnTextChanged { text, start, before, count ->
             if (text == null || text.isEmpty()) {
                 binding.textInputLayout1.error = "Nama harus diisi"
