@@ -57,12 +57,35 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_3"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_input_layout_2"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
+        android:hint="@string/pilih_file_analisis_data"
+        app:boxBackgroundColor="@color/white"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_baseline_error_red_24"
+        android:visibility="gone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/button_access_file"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_input_layout_2"
+        android:layout_below="@id/input_layout_3"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="5dp"
         android:text="@string/desc_button_file_analisis_data"

@@ -1,8 +1,11 @@
 package id.del.ac.delstat.presentation.analisisdata.activity
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -12,11 +15,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import com.del.d3ti20.util.RealPathUtil
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +40,7 @@ import id.del.ac.delstat.presentation.chat.viewmodel.ChatViewModelFactory
 import id.del.ac.delstat.util.Helper
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import java.io.File
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -65,6 +72,38 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
     private lateinit var editItem: MenuItem
     private var isCancelMode: Boolean = false
     private lateinit var cancelItem: MenuItem
+
+    private var intentData: Intent? = null
+    private var selectedFileUri: Uri? = null
+    private var selectedFilePath: String? = null
+    private var selectedFile: File? = null
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            val granted = permissions.entries.all {
+                it.value == true
+            }
+            if (granted) {
+                Log.d("MyTag", "Access to external storage granted")
+                selectFile()
+            }
+        }
+
+    private val selectFileResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if(result.resultCode == RESULT_OK) {
+                Log.d("MyTag", "File selected")
+                intentData = result.data
+                if(intentData != null) {
+                    selectedFileUri = intentData!!.data
+                    Log.d("MyTag", "File uri: $selectedFileUri")
+                    selectedFileResult()
+                }
+            }
+            else {
+                Snackbar.make(binding.root, "File not selected", Snackbar.LENGTH_SHORT).show()
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -132,7 +171,12 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
             }
         })
 
+        binding.inputFile.setOnClickListener {
+            selectFile()
+        }
+
         inputValidations()
+
         binding.buttonEditAnalisisData.setOnClickListener {
             updateAnalisisData()
         }
@@ -300,8 +344,11 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
     private fun toggleEditMode() {
         if (!isEditMode) {
             isEditMode = true
+            binding.editTextJudul.isEnabled = true
             binding.editTextDeskripsi.isEnabled = true
-            binding.editTextDeskripsi.requestFocus()
+            binding.inputLayout3.visibility = View.VISIBLE
+
+            binding.editTextJudul.requestFocus()
             val imm: InputMethodManager =
                 getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(binding.editTextDeskripsi, InputMethodManager.SHOW_IMPLICIT)
@@ -314,12 +361,42 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
         }
         // else
         isEditMode = false
+        binding.editTextJudul.isEnabled = false
         binding.editTextDeskripsi.isEnabled = false
+        binding.inputLayout3.visibility = View.GONE
+
         cancelItem.isVisible = true
 
         binding.buttonEditAnalisisData.visibility = android.view.View.GONE
         binding.statusAnalisisData.visibility = android.view.View.VISIBLE
         getAnalisisData()
+    }
+
+    private fun hasPermissions(context: Context, permissions: Array<String>): Boolean =
+        permissions.all {
+            ActivityCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
+        }
+
+    private fun selectFile() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            Log.d("MyTag", "No permission needed, and do something")
+        }
+        if (hasPermissions(this, Helper.PERMISSIONS)) {
+            Log.d("MyTag", "Permission already granted")
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                .setType("*/*")
+                .addCategory(Intent.CATEGORY_OPENABLE)
+            selectFileResultLauncher.launch(intent)
+        } else {
+            requestPermissionLauncher.launch(Helper.PERMISSIONS)
+        }
+    }
+
+    private fun selectedFileResult() {
+        selectedFilePath = RealPathUtil.copyFileToInternal(this, selectedFileUri!!)
+        Log.d("MyTag", "Selected file path: $selectedFilePath")
+        selectedFile = File(selectedFilePath!!)
+        binding.inputFile.setText(selectedFile!!.name)
     }
 
     private fun toggleCancelMode() {
@@ -348,11 +425,41 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
     }
 
     private fun inputValidations() {
+        analisisDataViewModel.analisisDataApiResponse.observe(this, Observer {
+            if (it.code != 200 && it.errors != null){
+                if(it.errors.judul != null){
+                    binding.textInputLayout1.error = it.errors.judul.get(0)
+                }
+                if(it.errors.deskripsi != null){
+                    binding.textInputLayout2.error = it.errors.deskripsi.get(0)
+                }
+                if(it.errors.file != null){
+                    binding.inputLayout3.error = it.errors.file.get(0)
+                }
+            }
+        })
+
+        binding.editTextJudul.doOnTextChanged { text, start, before, count ->
+            if(text.isNullOrEmpty()) {
+                binding.textInputLayout1.error = "Field judul wajib diisi"
+            } else {
+                binding.textInputLayout1.error = null
+            }
+        }
+
         binding.editTextDeskripsi.doOnTextChanged { text, start, before, count ->
-            if (text.isNullOrEmpty()) {
+            if(text.isNullOrEmpty()) {
                 binding.textInputLayout2.error = "Field deskripsi wajib diisi"
             } else {
                 binding.textInputLayout2.error = null
+            }
+        }
+
+        binding.inputFile.doOnTextChanged { text, start, before, count ->
+            if(text.isNullOrEmpty()) {
+                binding.inputLayout3.error = "Field file wajib diisi"
+            } else {
+                binding.inputLayout3.error = null
             }
         }
     }
@@ -372,9 +479,11 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
         /* End of Hiding the keyboard */
 
         if (checkInput()) {
+            val judul = binding.editTextJudul.text.toString()
             val deskripsi = binding.editTextDeskripsi.text.toString()
+            val file = selectedFile
 
-            analisisDataViewModel.updateAnalisisData(bearerToken, idAnalisisData, deskripsi)
+            analisisDataViewModel.updateAnalisisData(bearerToken, idAnalisisData, judul, deskripsi, file)
         }
     }
 

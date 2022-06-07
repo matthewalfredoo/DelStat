@@ -244,8 +244,14 @@ interface DelStatApiService {
         @Path("id")
         id: Int,
 
+        @Part("judul")
+        judul: RequestBody,
+
         @Part("deskripsi")
-        deskripsi: RequestBody
+        deskripsi: RequestBody,
+
+        @Part
+        file: MultipartBody.Part? = null
     ): Response<AnalisisDataApiResponse>
 
     @FormUrlEncoded

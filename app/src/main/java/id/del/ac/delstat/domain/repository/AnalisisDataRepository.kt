@@ -25,7 +25,9 @@ interface AnalisisDataRepository {
     suspend fun updateAnalisisData(
         bearerToken: String,
         id: Int,
-        deskripsi: String
+        judul: String,
+        deskripsi: String,
+        file: File? = null
     ): AnalisisDataApiResponse?
 
     suspend fun updateStatusAnalisisData(

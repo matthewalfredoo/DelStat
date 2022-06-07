@@ -84,12 +84,14 @@ class AnalisisDataViewModel(
     fun updateAnalisisData(
         bearerToken: String,
         id: Int,
+        judul: String,
         deskripsi: String,
+        file: File?
     ) {
         viewModelScope.launch {
             try {
                 if (checkNetwork()) {
-                    val response = analisisDataRepository.updateAnalisisData( bearerToken, id, deskripsi)
+                    val response = analisisDataRepository.updateAnalisisData(bearerToken, id, judul, deskripsi, file)
                     if (response == null) {
                         error()
                         return@launch
