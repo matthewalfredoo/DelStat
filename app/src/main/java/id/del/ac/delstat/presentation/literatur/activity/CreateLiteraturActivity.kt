@@ -17,9 +17,10 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.del.d3ti20.util.RealPathUtil
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import id.del.ac.delstat.R
+import id.del.ac.delstat.data.model.materi.Materi
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityCreateLiteraturBinding
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModel
@@ -46,6 +47,9 @@ class CreateLiteraturActivity : AppCompatActivity() {
     private var selectedFileUri: Uri? = null
     private var selectedFilePath: String? = null
     private var selectedFile: File? = null
+
+    private lateinit var tagsList: Array<String>
+    private var selectedTagIndex = -1
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -114,8 +118,26 @@ class CreateLiteraturActivity : AppCompatActivity() {
             }
         })
 
+        // Related to inputs
         binding.inputFile.setOnClickListener {
             selectFile()
+        }
+
+        tagsList = arrayOf(
+            Materi.TAG_MATERI_1_KONSEP_PELUANG,
+            Materi.TAG_MATERI_2_VARIABEL_ACAK,
+            Materi.TAG_MATERI_3_DISTRIBUSI_PROBABILITAS_DISKRIT,
+            Materi.TAG_MATERI_4_DISTRIBUSI_PROBABILITAS_KONTINU,
+            Materi.TAG_MATERI_5_PENGANTAR_STATISTIK_ANALISIS_DATA,
+            Materi.TAG_MATERI_6_TEKNIK_SAMPLING,
+            Materi.TAG_MATERI_7_ANOVA,
+            Materi.TAG_MATERI_8_KONSEP_ESTIMASI,
+            Materi.TAG_MATERI_9_PENGUJIAN_HIPOTESIS,
+            Materi.TAG_MATERI_10_REGRESI_KORELASI
+        )
+
+        binding.editTextTags.setOnClickListener {
+            tagDialog()
         }
 
         inputValidations()
@@ -123,6 +145,30 @@ class CreateLiteraturActivity : AppCompatActivity() {
         binding.buttonCreateLiteratur.setOnClickListener {
             addLiteratur()
         }
+    }
+
+    private fun tagDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Pilih Tag")
+            .setSingleChoiceItems(tagsList, selectedTagIndex) { dialog, which ->
+                selectedTagIndex = which
+            }
+            .setPositiveButton("Pilih") { dialog, which ->
+                binding.editTextTags.setText(tagsList[selectedTagIndex])
+                dialog.dismiss()
+            }
+            .setNegativeButton("Batal") { dialog, which ->
+                dialog.dismiss()
+            }
+            .setOnDismissListener {
+                if(binding.editTextTags.text != null){
+                    selectedTagIndex = tagsList.indexOf(binding.editTextTags.text.toString())
+                }
+                else {
+                    selectedTagIndex = -1
+                }
+            }
+            .show()
     }
 
     private fun hasPermissions(context: Context, permissions: Array<String>): Boolean =

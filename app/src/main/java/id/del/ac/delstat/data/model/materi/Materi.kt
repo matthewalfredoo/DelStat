@@ -39,5 +39,16 @@ class Materi(
         const val ID_MATERI_8_KONSEP_ESTIMASI = 8
         const val ID_MATERI_9_PENGUJIAN_HIPOTESIS = 9
         const val ID_MATERI_10_REGRESI_KORELASI = 10
+
+        const val TAG_MATERI_1_KONSEP_PELUANG = "Konsep Peluang"
+        const val TAG_MATERI_2_VARIABEL_ACAK = "Variabel Acak"
+        const val TAG_MATERI_3_DISTRIBUSI_PROBABILITAS_DISKRIT = "Distribusi Probabilitas Diskrit"
+        const val TAG_MATERI_4_DISTRIBUSI_PROBABILITAS_KONTINU = "Distribusi Probabilitas Kontinu"
+        const val TAG_MATERI_5_PENGANTAR_STATISTIK_ANALISIS_DATA = "Pengantar Statistik dan Analisis Data"
+        const val TAG_MATERI_6_TEKNIK_SAMPLING = "Teknik Sampling"
+        const val TAG_MATERI_7_ANOVA = "ANOVA"
+        const val TAG_MATERI_8_KONSEP_ESTIMASI = "Konsep Estimasi"
+        const val TAG_MATERI_9_PENGUJIAN_HIPOTESIS = "Pengujian Hipotesis"
+        const val TAG_MATERI_10_REGRESI_KORELASI = "Regresi Korelasi"
     }
 }

@@ -25,6 +25,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.BuildConfig
 import id.del.ac.delstat.R
+import id.del.ac.delstat.data.model.materi.Materi
 import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityDetailLiteraturBinding
@@ -64,6 +65,9 @@ class DetailLiteraturActivity : AppCompatActivity() {
     private var selectedFileUri: Uri? = null
     private var selectedFilePath: String? = null
     private var selectedFile: File? = null
+
+    private lateinit var tagsList: Array<String>
+    private var selectedTagIndex = -1
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -215,13 +219,30 @@ class DetailLiteraturActivity : AppCompatActivity() {
         getLiteratur()
 
         // ALl about inputs for update are here
-        inputValidations()
+        tagsList = arrayOf(
+            Materi.TAG_MATERI_1_KONSEP_PELUANG,
+            Materi.TAG_MATERI_2_VARIABEL_ACAK,
+            Materi.TAG_MATERI_3_DISTRIBUSI_PROBABILITAS_DISKRIT,
+            Materi.TAG_MATERI_4_DISTRIBUSI_PROBABILITAS_KONTINU,
+            Materi.TAG_MATERI_5_PENGANTAR_STATISTIK_ANALISIS_DATA,
+            Materi.TAG_MATERI_6_TEKNIK_SAMPLING,
+            Materi.TAG_MATERI_7_ANOVA,
+            Materi.TAG_MATERI_8_KONSEP_ESTIMASI,
+            Materi.TAG_MATERI_9_PENGUJIAN_HIPOTESIS,
+            Materi.TAG_MATERI_10_REGRESI_KORELASI
+        )
+
+        binding.editTextTags.setOnClickListener {
+            tagDialog()
+        }
         binding.inputFile.setOnClickListener {
             selectFile()
         }
         binding.buttonEditLiteratur.setOnClickListener {
             updateLiteratur()
         }
+        inputValidations()
+
         literaturViewModel.literaturApiResponse.observe(this, Observer {
             if (it.code == 204 && it.message != null) {
                 Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()
@@ -230,6 +251,25 @@ class DetailLiteraturActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun tagDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Pilih Tag")
+            .setSingleChoiceItems(tagsList, selectedTagIndex) { dialog, which ->
+                selectedTagIndex = which
+            }
+            .setPositiveButton("Pilih") { dialog, which ->
+                binding.editTextTags.setText(tagsList[selectedTagIndex])
+                dialog.dismiss()
+            }
+            .setNegativeButton("Batal") { dialog, which ->
+                dialog.dismiss()
+            }
+            .setOnDismissListener {
+                selectedTagIndex = tagsList.indexOf(binding.editTextTags.text.toString())
+            }
+            .show()
     }
 
     /* Functions related to update literatur */
@@ -384,6 +424,9 @@ class DetailLiteraturActivity : AppCompatActivity() {
                 binding.editTextPenulis.setText(it.literatur.penulis)
                 binding.editTextTahunTerbit.setText(it.literatur.tahunTerbit.toString())
                 binding.editTextTags.setText(it.literatur.tag)
+
+                // Getting the tag index that is stored in the database
+                selectedTagIndex = tagsList.indexOf(it.literatur.tag)
 
                 val fileUrl = "${BuildConfig.BASE_URL}${it.literatur.file}"
                 val fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1)
