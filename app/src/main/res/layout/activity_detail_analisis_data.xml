@@ -105,7 +105,7 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/text_view_no_hp_requester_analisis_data"
+            android:id="@+id/text_view_email_requester_analisis_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_view_nama_requester_analisis_data"
@@ -118,8 +118,20 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:backgroundTint="@color/blue_primary"
-            android:contentDescription="@string/submit_analisis_data"
+            android:contentDescription="@string/button_edit_analisisdata"
             android:text="@string/button_edit_analisisdata"
+            android:textColor="@color/white"
+            android:theme="@style/Theme.Material3.DynamicColors.Light"
+            android:visibility="gone" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/button_chat_analisis_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/blue_primary"
+            android:contentDescription="@string/button_chat_analisisdata"
+            android:text="@string/button_chat_analisisdata"
             android:textColor="@color/white"
             android:theme="@style/Theme.Material3.DynamicColors.Light"
             android:visibility="gone" />

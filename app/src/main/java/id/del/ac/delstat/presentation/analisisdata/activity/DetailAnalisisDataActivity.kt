@@ -10,11 +10,13 @@ import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +28,9 @@ import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityDetailAnalisisDataBinding
 import id.del.ac.delstat.presentation.analisisdata.viewmodel.AnalisisDataViewModel
 import id.del.ac.delstat.presentation.analisisdata.viewmodel.AnalisisDataViewModelFactory
+import id.del.ac.delstat.presentation.chat.activity.DetailChatRoomActivity
+import id.del.ac.delstat.presentation.chat.viewmodel.ChatViewModel
+import id.del.ac.delstat.presentation.chat.viewmodel.ChatViewModelFactory
 import id.del.ac.delstat.util.Helper
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -45,10 +50,16 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
     private lateinit var analisisDataViewModel: AnalisisDataViewModel
 
     @Inject
+    lateinit var chatViewModelFactory: ChatViewModelFactory
+    private lateinit var chatViewModel: ChatViewModel
+
+    @Inject
     lateinit var userPreferences: UserPreferences
     private lateinit var bearerToken: String
     private lateinit var role: String
     private var idAnalisisData: Int = -1
+
+    private lateinit var userRequesterAnalisisData: User
 
     private var isEditMode: Boolean = false
     private lateinit var editItem: MenuItem
@@ -62,6 +73,9 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
 
         analisisDataViewModel = ViewModelProvider(this, analisisDataViewModelFactory)
             .get(AnalisisDataViewModel::class.java)
+
+        chatViewModel = ViewModelProvider(this, chatViewModelFactory)
+            .get(ChatViewModel::class.java)
 
         prepareUI()
     }
@@ -149,7 +163,9 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
                 binding.editTextDeskripsi.setText(it.analisisData.deskripsi)
 
                 binding.textViewNamaRequesterAnalisisData.text = it.analisisData.user.nama
-                binding.textViewNoHpRequesterAnalisisData.text = it.analisisData.user.noHp
+                binding.textViewEmailRequesterAnalisisData.text = it.analisisData.user.email
+
+                userRequesterAnalisisData = it.analisisData.user
 
                 displayStatusAnalisisData(it.analisisData.status!!)
 
@@ -231,6 +247,7 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
     }
 
     private fun prepareUIAdminDosen() {
+        // For updating status analisis data
         binding.statusAnalisisData.isEnabled = true
         binding.statusAnalisisData.setOnClickListener {
 
@@ -242,18 +259,6 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
 
             val selectedStatus = binding.statusAnalisisData.text.toString()
             var selectedStatusIndex = statusList.indexOf(selectedStatus)
-
-            /*val builder = AlertDialog.Builder(this)
-            builder.setTitle("Ubah Status Analisis Data")
-                .setItems(statusList) { dialog, which ->
-                    // The 'which' argument contains the index position
-                    // of the selected item
-                    selectedStatusIndex = which
-                    binding.statusAnalisisData.text = statusList[selectedStatusIndex]
-                    Log.d("Selected", statusList[which])
-                }
-                .create()
-                .show()*/
 
             MaterialAlertDialogBuilder(this)
                 .setTitle("Ubah Status Request Analisis Data")
@@ -274,6 +279,22 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
 
             Log.d("MyTag", statusList[0])
         }
+
+        // For button chat
+        binding.buttonChatAnalisisData.visibility = View.VISIBLE
+        binding.buttonChatAnalisisData.setOnClickListener {
+            chatViewModel.storeChatRoom(bearerToken, userRequesterAnalisisData.id!!)
+        }
+
+        // Observing response from server in LiveData
+        chatViewModel.chatApiResponse.observe(this, Observer {
+            if(it.chatRoom != null) {
+                startActivity(
+                    Intent(this, DetailChatRoomActivity::class.java)
+                        .putExtra(DetailChatRoomActivity.EXTRA_CHAT_ROOM_ID, it.chatRoom.id)
+                )
+            }
+        })
     }
 
     private fun toggleEditMode() {

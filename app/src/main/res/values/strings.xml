@@ -94,4 +94,5 @@
     <string name="penjelasan_konsep_estimasi_estimasi_bayes_4">Rataan distribusi panca f(θ| x1,x2,…,xn) dinyatakan dengan θ*, disebut taksiran bayes untuk θ.</string>
     <string name="penjelasan_konsep_estimasi_estimasi_bayes_5"><![CDATA[Selang a < θ < b akan disebut selang bayes (1 – α) 100% untuk θ, bila]]></string>
     <string name="message_chat_empty">Mulai chat baru sekarang</string>
+    <string name="button_chat_analisisdata">Chat</string>
 </resources>
