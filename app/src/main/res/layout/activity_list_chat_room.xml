@@ -6,57 +6,88 @@
     android:layout_height="match_parent"
     tools:context=".presentation.analisisdata.activity.ListAnalisisDataActivity">
 
-    <ImageView
-        android:id="@+id/image_empty_chat"
-        android:layout_width="wrap_content"
-        android:layout_height="240dp"
+    <RelativeLayout
+        android:id="@+id/container_chat_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_empty_analisis"
-        android:visibility="gone"/>
+        android:visibility="gone">
 
-    <ProgressBar
-        android:id="@+id/chat_progressbar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true"
-        android:indeterminateTint="@color/blue_primary"
-        android:visibility="gone" />
+        <ImageView
+            android:id="@+id/image_empty_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="240dp"
+            android:layout_centerInParent="true"
+            android:layout_marginVertical="16dp"
+            android:src="@drawable/ic_chat_empty" />
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_empty_chat"
+            android:text="@string/message_chat_empty"
+            android:textAlignment="center"
+            android:textColor="@color/blue_primary"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_chat_not_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipe_refresh_data"
+        <ProgressBar
+            android:id="@+id/chat_progressbar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/blue_primary"
+            android:visibility="gone" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_chat"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_data"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="1dp" />
+                android:layout_height="wrap_content">
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_chat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:layout_editor_absoluteX="1dp"
+                    tools:layout_editor_absoluteY="1dp" />
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/button_chat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
-            android:backgroundTint="@color/blue_primary"
-            android:contentDescription="@string/chat_baru"
-            android:text="@string/chat_baru"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:theme="@style/Theme.Material3.DynamicColors.Light"
-            app:icon="@drawable/ic_baseline_add_24_white"
-            app:iconTint="@color/white" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/button_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/blue_primary"
+                android:contentDescription="@string/chat_baru"
+                android:text="@string/chat_baru"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:theme="@style/Theme.Material3.DynamicColors.Light"
+                app:icon="@drawable/ic_baseline_add_24_white"
+                app:iconTint="@color/white"
+                app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </RelativeLayout>
+
+    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        android:id="@+id/expanded_image_view_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

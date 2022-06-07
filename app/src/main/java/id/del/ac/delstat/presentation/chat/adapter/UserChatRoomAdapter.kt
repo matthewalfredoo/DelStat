@@ -3,6 +3,7 @@ package id.del.ac.delstat.presentation.chat.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import id.del.ac.delstat.BuildConfig
@@ -12,7 +13,8 @@ import id.del.ac.delstat.databinding.ListItemChatroomBinding
 
 // This adapter is used for recyclerview to show list of user that can be chat with
 class UserChatRoomAdapter(
-    private val clickListener: (User) -> Unit
+    private val clickListener: (User) -> Unit,
+    private val imageProfileClickListener: (ImageView, String) -> Unit
 ): RecyclerView.Adapter<MyUserChatRoomViewHolder>() {
     private val listUser = ArrayList<User>()
 
@@ -29,7 +31,7 @@ class UserChatRoomAdapter(
     }
 
     override fun onBindViewHolder(holder: MyUserChatRoomViewHolder, position: Int) {
-        holder.bind(listUser[position], clickListener)
+        holder.bind(listUser[position], clickListener, imageProfileClickListener)
     }
 
     override fun getItemCount(): Int {
@@ -40,7 +42,7 @@ class UserChatRoomAdapter(
 
 class MyUserChatRoomViewHolder(val binding: ListItemChatroomBinding): RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(user: User, clickListener: (User) -> Unit) {
+    fun bind(user: User, clickListener: (User) -> Unit, imageProfileClickListener: (ImageView, String) -> Unit) {
         binding.namaUserChat.text = user.nama
         binding.tanggalTerakhirChat.text = user.email
 
@@ -52,6 +54,9 @@ class MyUserChatRoomViewHolder(val binding: ListItemChatroomBinding): RecyclerVi
 
         binding.root.setOnClickListener {
             clickListener(user)
+        }
+        binding.fotoProfilUserChat.setOnClickListener {
+            imageProfileClickListener(binding.fotoProfilUserChat, fotoProfilUrl)
         }
     }
 

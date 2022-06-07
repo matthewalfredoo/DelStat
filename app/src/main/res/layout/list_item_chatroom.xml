@@ -15,7 +15,7 @@
         android:layout_height="64dp"
         android:src="@drawable/ic_chat_24dp_blue"
         android:paddingHorizontal="8dp"/>-->
-    
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/foto_profil_user_chat"
         android:layout_width="wrap_content"
