@@ -95,4 +95,20 @@
     <string name="penjelasan_konsep_estimasi_estimasi_bayes_5"><![CDATA[Selang a < θ < b akan disebut selang bayes (1 – α) 100% untuk θ, bila]]></string>
     <string name="message_chat_empty">Mulai chat baru sekarang</string>
     <string name="button_chat_analisisdata">Chat</string>
+    <string name="penjelasan_regresi_korelasi_regresi_linier_sederhana">Regresi adalah model/persamaan yang menggambarkan hubungan antara variabel prediktor (independent) terhadap variabel respon (dependen). Dalam menggambarkan hubungan antara prediktor (X) dan respon (Y), kadang data membentuk pola tertentu. Model-model regresi, yaitu regresi linier sederhana (predictor hanya satu) dan regresi linier berganda/majemuk (predictor lebih dari satu).</string>
+    <string name="penjelasan_regresi_korelasi_uji_anova">ANOVA digunakan untuk menguji hipotesis rata-rata lebih dari 2 populasi dengan konsep membandingkan ragam (uji F).</string>
+    <string name="penjelasan_regresi_korelasi_korelasi">Korelasi adalah sebuah ukuran yang menyatakan tingkat keeratan hubungan dua variabel atau lebih (nilai korelasi antara -1 s.d. 1). Analisis korelasi mengukur seberapa eratnya hubungan antara dua peubah acak dengan menggunakan suatu bilangan (koefisien korelasi).</string>
+    <string name="penjelasan_regresi_korelasi_korelasi_2">Korelasi berdasarkan skala data dibagi menjadi dua, yaitu nominal/ordinal yang menggunakan korelasi Rank Spearman, dan interval/ratio yang menggunakan korelasi Pearson.</string>
+    <string name="penjelasan_regresi_korelasi_korelasi_3">Korelasi berdasarkan arah hubungannya dibagi menjadi tiga, yaitu korelasi positif jika arah hubungannya searah, korelasi negatif jika arah hubungannya berlawanan arah, dan korelasi nihil jika perubahan kadang searah tetapi kadang berlawanan arah.</string>
+    <string name="penjelasan_regresi_korelasi_nilai_koefisien_korelasi">Berikut adalah pedoman untuk memberikan interpretasi serta analisis bagi koefisien korelasi menurut Prof. Dr. Sugiyono dalam buku Metode Penelitian Administrasi.</string>
+    <string name="penjelasan_regresi_korelasi_nilai_koefisien_korelasi_2">0.00 – 0.199 \t= sangat rendah</string>
+    <string name="penjelasan_regresi_korelasi_nilai_koefisien_korelasi_3">0.20 – 0.3999\t= rendah</string>
+    <string name="penjelasan_regresi_korelasi_nilai_koefisien_korelasi_4">0.40 – 0.999\t= sedang</string>
+    <string name="penjelasan_regresi_korelasi_nilai_koefisien_korelasi_5">0.60 – 0.7999\t= kuat</string>
+    <string name="penjelasan_regresi_korelasi_nilai_koefisien_korelasi_6">0.80 – 1.000\t= sangat kuat</string>
+    <string name="penjelasan_regresi_korelasi_uji_korelasi">H0 = nilai korelasi tidak signifikan (r=0)</string>
+    <string name="penjelasan_regresi_korelasi_uji_korelasi_2">H1 = nilai korelasi signifikan</string>
+    <string name="penjelasan_regresi_korelasi_uji_korelasi_3">Alpha = 0.05</string>
+    <string name="penjelasan_regresi_korelasi_uji_korelasi_4">Statistik uji yang digunakan adalah uji t</string>
+    <string name="penjelasan_regresi_korelasi_uji_korelasi_5"><![CDATA[Tolak H0 terjadi jika P-value kurang dari alpha (p-value < 0.05)]]></string>
 </resources>
