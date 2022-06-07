@@ -26,7 +26,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
 class RegresiKorelasiFragment : Fragment() {
-    private val IDMATERI = Materi.ID_MATERI_7_ANOVA
+    private val IDMATERI = Materi.ID_MATERI_10_REGRESI_KORELASI
 
     private lateinit var binding: FragmentRegresiKorelasiBinding
     private lateinit var materiViewModel: MateriViewModel

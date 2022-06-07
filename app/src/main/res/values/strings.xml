@@ -111,4 +111,17 @@
     <string name="penjelasan_regresi_korelasi_uji_korelasi_3">Alpha = 0.05</string>
     <string name="penjelasan_regresi_korelasi_uji_korelasi_4">Statistik uji yang digunakan adalah uji t</string>
     <string name="penjelasan_regresi_korelasi_uji_korelasi_5"><![CDATA[Tolak H0 terjadi jika P-value kurang dari alpha (p-value < 0.05)]]></string>
+    <string name="penjelasan_teknik_sampling_jenis_populasi_1">1. Berdasarkan jumlah, populasi dibagi menjadi populasi terbatas dan populasi tak terbatas.</string>
+    <string name="penjelasan_teknik_sampling_jenis_populasi_2">2. Berdasarkan masalah, populasi dibagi menjadi populasi homogen dan populasi heterogen.</string>
+    <string name="penjelasan_teknik_sampling_alasan_sampling_1">1.Dapat menghemat waktu, biaya, tenaga.</string>
+    <string name="penjelasan_teknik_sampling_alasan_sampling_2">2.Seringkali tidak diketahui objeknya secara keseluruhan.</string>
+    <string name="penjelasan_teknik_sampling_alasan_sampling_3">3.Bisa merugikan jika dilakukan sensus.</string>
+    <string name="penjelasan_teknik_sampling_alasan_sampling_4">4.Untuk sumberdaya yang terbatas, pengambilan sampel dapat memperluas cakupan studi.</string>
+    <string name="penjelasan_teknik_sampling_alasan_sampling_5">5.Apabila akses ke seluruh populasi dapat dilakukan, pengambilan sampel adalah satu-satunya pilihan.</string>
+    <string name="penjelasan_teknik_sampling_parameter_dan_statistik_1">Parameter adalah istilah untuk besaran yang berupa data atau angka ringkasan yang menunjukkan ciri dari suatu populasi (parameter untuk populasi). Statistik adalah istilah untuk besaran yang berupa data atau angka ringkasan yang menunjukkan ciri dari suatu sampel (statistic untuk sampel).</string>
+    <string name="penjelasan_teknik_sampling_simple_random_sampling_1">Pengambilan sampel anggota populasi dilakukan secara acak tanpa memperhatikan strata yang ada dalam populasi. Besarnya populasi harus diketahui oleh peneliti. Populasi homogen. Dapat dilakukan dengan pengundian dan tabel bilangan acak.</string>
+    <string name="penjelasan_teknik_sampling_proportionate_stratified_random_sampling_1">Digunakan pada populasi yang mempunyai susunan bertingkat atau berlapis-lapis. Populasi tidak homogen dan berstrata secara proporsional. Kriteria jelas untuk mestratifikasi. Diketahui jumlah tiap tingkatan.</string>
+    <string name="penjelasan_teknik_sampling_disproportionate_stratified_random_sampling_1">Jumlah sampel bila populasinya berstrata tetapi kurang proporsional.</string>
+    <string name="penjelasan_teknik_sampling_cluster_sampling_1">Populasi tidak terdiri dari individu-individu, melainkan terdiri dari kelompok-kelompok individu. Digunakan bila populasi tidak mendapat kerangka sampling.</string>
+    <string name="penjelasan_teknik_sampling_besar_sampel_menurut_yang_diteliti_1">Secara kuantitatif besarnya sampel dapat ditentukan dengan menggunakan rumus matematika sebagai berikut.</string>
 </resources>
