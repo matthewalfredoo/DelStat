@@ -284,7 +284,6 @@ class CreateChatRoomActivity : AppCompatActivity() {
                 startActivity(
                     Intent(this, DetailChatRoomActivity::class.java)
                         .putExtra(DetailChatRoomActivity.EXTRA_CHAT_ROOM_ID, it.chatRoom.id)
-                        .putExtra(DetailChatRoomActivity.EXTRA_MESSAGE, it.message)
                 )
                 finish()
             }

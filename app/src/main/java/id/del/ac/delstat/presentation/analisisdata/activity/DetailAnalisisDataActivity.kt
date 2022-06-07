@@ -114,7 +114,6 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
                 toggleEditMode()
             }
             if(it.code == 204 && it.message != null && role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {
-                Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_SHORT).show()
                 getAnalisisData()
             }
         })
