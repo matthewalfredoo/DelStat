@@ -158,4 +158,14 @@
     <string name="penjelasan_pengantar_statistik_mean_1">Rata-rata atau rataan merupakan ukuran pemusatan data. Selain itu, rataan merupakan parameter dari distribusi normal.</string>
     <string name="penjelasan_pengantar_statistik_median_1">Selain merupakan ukuran pemusatan, median juga merupakan ukuran letak yang menyatakan data yang berada di tengah setelah diurutkan. Median data tunggal didapatkan dengan 2 rumus yang berbeda antara yang banyaknya data (n) ganjil dan genap.</string>
     <string name="penjelasan_pengantar_statistik_modus_1">Modus adalah data yang paling sering muncul. Data tunggal dapat memiliki satu modus (unimodus), lebih dari satu modus (multimodus) atau tidak punya modus (unmodus). Sedangkan pada data berkelompok, nilai modus dihitung dengan</string>
+    <string name="penjelasan_pengujian_hipotesis_1">Dalam penelitian terkadang dibutuhkan suatu analisis variabel data yang diukur. Analisis yang dimaksud dengan menggunakan suatu analisis tertentu dengan tujuan antara lain:</string>
+    <string name="penjelasan_pengujian_hipotesis_2">Dua pertanyaan tersebut dapat dijawab dengan Menyusun suatu uji hipotesis. Hipotesis statistik ialah suatu anggapan atau pernyataan yang mungkin benar atau tidak, mengenai satu populasi atau lebih.</string>
+    <string name="penjelasan_pengujian_hipotesis_3">Uji hipotesis merupakan suatu prosedur yang dilakukan untuk membuat inferensi tentang populasi dari suatu sampel. Hipotesis terbagi menjadi dua, yaitu sebagai berikut.</string>
+    <string name="penjelasan_pengujian_hipotesis_4">a. Hipotesis nol (H0), adalah hipotesis yang menyatakan tidak ada efek, tidak ada pengaruh atau tidak ada perbedaan.</string>
+    <string name="penjelasan_pengujian_hipotesis_5">b. Hipotesis tandingan (H1), adalah hipotesis yang menyatakan ada efek, ada pengaruh atau adanya perbedaan.</string>
+    <string name="penjelasan_pengujian_hipotesis_bentuk_hipotesis_1">Bentuk hipotesis itu sendiri terdiri dari 3 bentuk. Misalnya akan dilakukan uji hipotesis terhadap rata-rata, maka hipotesis akan mempunyai bentuk antara lain</string>
+    <string name="penjelasan_pengujian_hipotesis_daerah_penolakan_h0_1">1. Uji satu arah (one tail) ke kiri (H1 lebih kecil)</string>
+    <string name="penjelasan_pengujian_hipotesis_daerah_penolakan_h0_2">2. Uji satu arah (one tail) ke kanan (H1 lebih besar)</string>
+    <string name="penjelasan_pengujian_hipotesis_daerah_penolakan_h0_3">3. Uji dua arah (two tail) (H1 tidak sama dengan)</string>
+    <string name="penjelasan_pengujian_hipotesis_p_value_1">P-value adalah taraf keberartian terkecil sehingga nilai uji statistic yang diamati masih berarti.</string>
 </resources>
