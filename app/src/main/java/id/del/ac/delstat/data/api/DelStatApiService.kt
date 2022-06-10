@@ -2,6 +2,7 @@ package id.del.ac.delstat.data.api
 
 import id.del.ac.delstat.data.model.analisisdata.AnalisisDataApiResponse
 import id.del.ac.delstat.data.model.chat.ChatApiResponse
+import id.del.ac.delstat.data.model.kuis.HasilKuisApiResponse
 import id.del.ac.delstat.data.model.literatur.LiteraturApiResponse
 import id.del.ac.delstat.data.model.materi.MateriApiResponse
 import id.del.ac.delstat.data.model.notifikasi.NotifikasiApiResponse
@@ -348,4 +349,36 @@ interface DelStatApiService {
     ): Response<ChatApiResponse>
 
     /* End of Chat related Services */
+
+    /* HasilKuis related Services */
+
+    @GET("api/hasilkuis")
+    suspend fun getHasilKuis(
+        @Header("Authorization")
+        bearerToken: String
+    ): Response<HasilKuisApiResponse>
+
+    @FormUrlEncoded
+    @POST("api/hasilkuis/store")
+    suspend fun storeHasilKuis(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Field("id_kuis")
+        idKuis: Int,
+
+        @Field("nilai_kuis")
+        nilaiKuis: Double
+    ): Response<HasilKuisApiResponse>
+
+    @GET("api/hasilkuis/{id}")
+    suspend fun getDetailHasilKuis(
+        @Header("Authorization")
+        bearerToken: String,
+
+        @Path("id")
+        id: Int
+    ): Response<HasilKuisApiResponse>
+
+    /* End of HasilKuis related Services */
 }
