@@ -9,6 +9,8 @@ import id.del.ac.delstat.data.repository.analisisdata.datasource.AnalisisDataRem
 import id.del.ac.delstat.data.repository.analisisdata.datasourceimpl.AnalisisDataRemoteDataSourceImpl
 import id.del.ac.delstat.data.repository.chat.datasource.ChatRemoteDataSource
 import id.del.ac.delstat.data.repository.chat.datasourceimpl.ChatRemoteDataSourceImpl
+import id.del.ac.delstat.data.repository.hasilkuis.datasource.HasilKuisRemoteDataSource
+import id.del.ac.delstat.data.repository.hasilkuis.datasourceimpl.HasilKuisRemoteDataSourceImpl
 import id.del.ac.delstat.data.repository.literatur.datasource.LiteraturRemoteDataSource
 import id.del.ac.delstat.data.repository.literatur.datasourceimpl.LiteraturRemoteDataSourceImpl
 import id.del.ac.delstat.data.repository.materi.datasource.MateriRemoteDataSource
@@ -57,6 +59,12 @@ class RemoteDataModule {
     @Provides
     fun provideChatRemoteDatSource(delStatApiService: DelStatApiService): ChatRemoteDataSource {
         return ChatRemoteDataSourceImpl(delStatApiService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideHasilKuisRemoteDataSource(delStatApiService: DelStatApiService): HasilKuisRemoteDataSource {
+        return HasilKuisRemoteDataSourceImpl(delStatApiService)
     }
 
 }

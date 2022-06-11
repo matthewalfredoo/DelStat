@@ -48,7 +48,7 @@
         tools:layout="@layout/fragment_literatur" />
     <fragment
         android:id="@+id/quizFragment"
-        android:name="id.del.ac.delstat.presentation.fragment.QuizFragment"
+        android:name="id.del.ac.delstat.presentation.kuis.fragment.QuizFragment"
         android:label="fragment_quiz"
         tools:layout="@layout/fragment_quiz" />
     <fragment

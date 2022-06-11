@@ -26,6 +26,8 @@ import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityHomeBinding
 import id.del.ac.delstat.presentation.analisisdata.activity.ListAnalisisDataActivity
 import id.del.ac.delstat.presentation.chat.activity.ListChatRoomActivity
+import id.del.ac.delstat.presentation.kuis.viewmodel.HasilKuisViewModel
+import id.del.ac.delstat.presentation.kuis.viewmodel.HasilKuisViewModelFactory
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModel
 import id.del.ac.delstat.presentation.literatur.viewmodel.LiteraturViewModelFactory
 import id.del.ac.delstat.presentation.materi.viewmodel.MateriViewModel
@@ -67,6 +69,10 @@ class HomeActivity : AppCompatActivity() {
     val delayInterval: Long = 8000
 
     @Inject
+    lateinit var hasilKuisViewModelFactory: HasilKuisViewModelFactory
+    lateinit var hasilKuisViewModel: HasilKuisViewModel
+
+    @Inject
     lateinit var userPreferences: UserPreferences
     var bearerToken: String? = null
 
@@ -89,6 +95,9 @@ class HomeActivity : AppCompatActivity() {
 
         notifikasiViewModel = ViewModelProvider(this, notifikasiViewModelFactory)
             .get(NotifikasiViewModel::class.java)
+
+        hasilKuisViewModel = ViewModelProvider(this, hasilKuisViewModelFactory)
+            .get(HasilKuisViewModel::class.java)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
@@ -117,15 +126,6 @@ class HomeActivity : AppCompatActivity() {
                 userViewModel.getUser("Bearer $bearerToken")
                 // bearerToken = ""
             }
-
-
-            /*handlerCheckCountNotifikasi.postDelayed(Runnable {
-                handlerCheckCountNotifikasi.postDelayed(runCheckCountNotifikasi, 1000)
-                Toast.makeText(
-                    applicationContext, "This method is run every 10 seconds",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }.also { runCheckCountNotifikasi = it }, 1000)*/
 
             // When user's token is not expired, then it will get notifications count for user
             // This will check the notification count every 2 seconds

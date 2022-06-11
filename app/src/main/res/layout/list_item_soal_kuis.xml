@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="8dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:id="@+id/keterangan_soal_kuis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:justificationMode="inter_word"
+            android:visibility="gone"
+            tools:targetApi="o"
+            tools:text="Keterangan Soal Kuis"/>
+        
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+            android:id="@+id/gambar_soal_kuis"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_below="@id/keterangan_soal_kuis"
+            android:layout_marginVertical="8dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/soal_soal_kuis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gambar_soal_kuis"
+            android:textColor="@color/black"
+            android:justificationMode="inter_word"
+            tools:targetApi="o"
+            tools:text="Soal Kuis"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group_jawaban_soal_kuis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/soal_soal_kuis"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/radio_jawaban_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Jawaban 1"/>
+            <RadioButton android:id="@+id/radio_jawaban_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Jawaban 1"/>
+            <RadioButton android:id="@+id/radio_jawaban_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Jawaban 3"/>
+            <RadioButton android:id="@+id/radio_jawaban_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Jawaban 4"/>
+        </RadioGroup>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

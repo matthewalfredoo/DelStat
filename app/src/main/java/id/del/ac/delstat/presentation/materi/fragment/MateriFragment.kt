@@ -47,34 +47,34 @@ class MateriFragment : Fragment() {
     }
 
     private fun prepareUI() {
-        binding.bodyCardviewMateri1.setOnClickListener {
+        binding.cardviewMateri1.setOnClickListener {
             findNavController().navigate(R.id.action_materiFragment_to_konsepPeluangFragment)
         }
-        binding.bodyCardviewMateri2.setOnClickListener {
+        binding.cardviewMateri2.setOnClickListener {
             findNavController().navigate(R.id.action_materiFragment_to_variabelAcakFragment)
         }
-        binding.bodyCardviewMateri3.setOnClickListener {
+        binding.cardviewMateri3.setOnClickListener {
             findNavController().navigate(R.id.action_materiFragment_to_distribusiPeluangDiskritFragment)
         }
-        binding.bodyCardviewMateri4.setOnClickListener {
+        binding.cardviewMateri4.setOnClickListener {
             findNavController().navigate(R.id.action_materiFragment_to_distribusiKontinuFragment)
         }
-        binding.bodyCardviewMateri5.setOnClickListener {
+        binding.cardviewMateri5.setOnClickListener {
             findNavController().navigate(R.id.action_materiFragment_to_pengantarStatistikAnalisisDataFragment)
         }
-        binding.bodyCardviewMateri6.setOnClickListener {
+        binding.cardviewMateri6.setOnClickListener {
             findNavController().navigate(R.id.action_materiFragment_to_teknikSamplingFragment)
         }
-        binding.bodyCardviewMateri7.setOnClickListener {
+        binding.cardviewMateri7.setOnClickListener {
             findNavController().navigate(R.id.action_materiFragment_to_anovaFragment)
         }
-        binding.bodyCardviewMateri8.setOnClickListener {
+        binding.cardviewMateri8.setOnClickListener {
             findNavController().navigate(R.id.action_materiFragment_to_estimasiSatuDanDuaSampelFragment)
         }
-        binding.bodyCardviewMateri9.setOnClickListener {
+        binding.cardviewMateri9.setOnClickListener {
             findNavController().navigate(R.id.action_materiFragment_to_pengujianHipotesisFragment)
         }
-        binding.bodyCardviewMateri10.setOnClickListener {
+        binding.cardviewMateri10.setOnClickListener {
             findNavController().navigate(R.id.action_materiFragment_to_regresiKorelasiFragment)
         }
     }

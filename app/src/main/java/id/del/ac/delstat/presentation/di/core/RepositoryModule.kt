@@ -8,6 +8,8 @@ import id.del.ac.delstat.data.repository.analisisdata.AnalisisDataRepositoryImpl
 import id.del.ac.delstat.data.repository.analisisdata.datasource.AnalisisDataRemoteDataSource
 import id.del.ac.delstat.data.repository.chat.ChatRepositoryImpl
 import id.del.ac.delstat.data.repository.chat.datasource.ChatRemoteDataSource
+import id.del.ac.delstat.data.repository.hasilkuis.HasilKuisRepositoryImpl
+import id.del.ac.delstat.data.repository.hasilkuis.datasource.HasilKuisRemoteDataSource
 import id.del.ac.delstat.data.repository.literatur.LiteraturRepositoryImpl
 import id.del.ac.delstat.data.repository.literatur.datasource.LiteraturRemoteDataSource
 import id.del.ac.delstat.data.repository.materi.MateriRepositoryImpl
@@ -57,6 +59,12 @@ class RepositoryModule {
     @Provides
     fun provideChatRepository(chatRemoteDataSource: ChatRemoteDataSource): ChatRepository {
         return ChatRepositoryImpl(chatRemoteDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideHasilKuisRepository(hasilKuisRemoteDataSource: HasilKuisRemoteDataSource): HasilKuisRepository {
+        return HasilKuisRepositoryImpl(hasilKuisRemoteDataSource)
     }
 
 }
