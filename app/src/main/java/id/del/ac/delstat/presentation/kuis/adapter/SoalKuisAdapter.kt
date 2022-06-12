@@ -8,7 +8,9 @@ import com.davemorrissey.labs.subscaleview.ImageSource
 import id.del.ac.delstat.data.model.kuis.SoalKuis
 import id.del.ac.delstat.databinding.ListItemSoalKuisBinding
 
-class SoalKuisAdapter: RecyclerView.Adapter<MySoalKuisViewHolder>() {
+class SoalKuisAdapter(
+    private val onClickPilihanJawaban: (SoalKuis, String) -> Unit
+): RecyclerView.Adapter<MySoalKuisViewHolder>() {
     private val listSoalKuis = ArrayList<SoalKuis>()
 
     fun setList(soalKuis: List<SoalKuis>) {
@@ -24,7 +26,7 @@ class SoalKuisAdapter: RecyclerView.Adapter<MySoalKuisViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MySoalKuisViewHolder, position: Int) {
-        holder.bind(listSoalKuis[position])
+        holder.bind(listSoalKuis[position], onClickPilihanJawaban)
     }
 
     override fun getItemCount(): Int {
@@ -35,7 +37,7 @@ class SoalKuisAdapter: RecyclerView.Adapter<MySoalKuisViewHolder>() {
 
 class MySoalKuisViewHolder(val binding: ListItemSoalKuisBinding): RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(soalKuis: SoalKuis) {
+    fun bind(soalKuis: SoalKuis, onClickPilihanJawaban: (SoalKuis, String) -> Unit) {
         binding.soalSoalKuis.text = soalKuis.soal
         binding.radioJawaban1.text = soalKuis.listPilihanJawaban!![0]
         binding.radioJawaban2.text = soalKuis.listPilihanJawaban!![1]
@@ -49,6 +51,12 @@ class MySoalKuisViewHolder(val binding: ListItemSoalKuisBinding): RecyclerView.V
         if(soalKuis.gambar != null) {
             binding.gambarSoalKuis.setImage(ImageSource.resource(soalKuis.gambar!!))
             binding.gambarSoalKuis.visibility = View.VISIBLE
+        }
+
+        binding.radioGroupJawabanSoalKuis.setOnCheckedChangeListener { radioGroup, i ->
+            val radioButton = radioGroup.findViewById<View>(i)
+            val index = radioGroup.indexOfChild(radioButton)
+            onClickPilihanJawaban(soalKuis, soalKuis.listPilihanJawaban!![index])
         }
     }
 

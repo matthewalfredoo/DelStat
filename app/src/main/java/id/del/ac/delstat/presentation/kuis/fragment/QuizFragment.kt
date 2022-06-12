@@ -67,6 +67,11 @@ class QuizFragment : Fragment() {
         initRecyclerView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        prepareData()
+    }
+
     private fun prepareData() {
         runBlocking {
             bearerToken = userPreferences.getUserToken.first()!!

@@ -10,6 +10,9 @@ data class HasilKuisApiResponse(
     @SerializedName("message")
     val message: String? = null,
 
+    @SerializedName("listHasilKuis")
+    val listHasilKuis: List<HasilKuis>? = null,
+
     @SerializedName("hasilKuis")
-    val hasilKuis: List<HasilKuis>? = null
+    val hasilKuis: HasilKuis? = null
 )

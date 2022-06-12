@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import id.del.ac.delstat.R
 import id.del.ac.delstat.data.model.analisisdata.AnalisisData
 import id.del.ac.delstat.databinding.ListItemAnalisisDataBinding
+import id.del.ac.delstat.util.DateUtil
 
 class AnalisisDataAdapter(
     private val clickListener: (AnalisisData) -> Unit
@@ -45,7 +46,7 @@ class MyAnalisisDataViewHolder(val binding: ListItemAnalisisDataBinding): Recycl
         } else {
             binding.deskripsiAnalisisData.text = analisisData.deskripsi
         }
-        binding.tanggalAnalisisData.text = analisisData.createdAt
+        binding.tanggalAnalisisData.text = DateUtil.getDateTimeWithoutSecond(analisisData.createdAt!!)
         binding.root.setOnClickListener {
             clickListener(analisisData)
         }

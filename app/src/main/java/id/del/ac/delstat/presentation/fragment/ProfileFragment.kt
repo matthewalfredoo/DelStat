@@ -32,6 +32,7 @@ import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.FragmentProfileBinding
 import id.del.ac.delstat.presentation.activity.HomeActivity
 import id.del.ac.delstat.presentation.activity.LoginActivity
+import id.del.ac.delstat.presentation.kuis.activity.HasilKuisActivity
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.util.Helper
 import id.del.ac.delstat.util.SubsamplingScaleImageViewTarget
@@ -140,6 +141,10 @@ class ProfileFragment : Fragment() {
         binding.buttonLogin.setOnClickListener {
             // Log.d("MyTag", "Button Login Clicked")
             startActivity(Intent(activity, LoginActivity::class.java))
+        }
+
+        binding.buttonHasilKuis.setOnClickListener {
+            startActivity(Intent(activity, HasilKuisActivity::class.java))
         }
 
         binding.buttonLogout.setOnClickListener {

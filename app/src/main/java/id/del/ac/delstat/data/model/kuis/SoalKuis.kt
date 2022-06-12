@@ -13,7 +13,9 @@ class SoalKuis(
     var jawabanBenar: String? = null,
     var jawabanBenarResources: Int? = null,
     var listPilihanJawaban: List<String>? = null,
-    var listPilihanJawabanResources: List<Int>? = null
+    var listPilihanJawabanResources: List<Int>? = null,
+
+    var jawabanDipilih: String? = null
 ) {
 
     companion object{
