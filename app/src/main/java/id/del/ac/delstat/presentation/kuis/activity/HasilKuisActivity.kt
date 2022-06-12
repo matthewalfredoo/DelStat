@@ -6,12 +6,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.R
+import id.del.ac.delstat.data.model.kuis.Kuis
+import id.del.ac.delstat.data.model.kuis.KumpulanKuis
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityHasilKuisBinding
 import id.del.ac.delstat.presentation.activity.LoginActivity
@@ -30,6 +33,11 @@ class HasilKuisActivity : AppCompatActivity() {
     lateinit var hasilKuisViewModelFactory: HasilKuisViewModelFactory
     private lateinit var hasilKuisViewModel: HasilKuisViewModel
 
+    private lateinit var listKuis: ArrayList<Kuis>
+    private lateinit var itemsDropdown: ArrayList<String>
+    private lateinit var dropdownAdapter: ArrayAdapter<String>
+    private var selectedIndexKuis: Int = -1
+
     @Inject
     lateinit var userPreferences: UserPreferences
     lateinit var bearerToken: String
@@ -46,7 +54,7 @@ class HasilKuisActivity : AppCompatActivity() {
 
         prepareUI()
         initRecyclerView()
-        getHasilKuis()
+        getHasilKuis(bearerToken)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -67,8 +75,13 @@ class HasilKuisActivity : AppCompatActivity() {
         binding.recyclerViewHasilKuis.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun getHasilKuis() {
+    private fun getHasilKuis(bearerToken: String) {
         hasilKuisViewModel.getHasilKuis(bearerToken)
+        displayHasilKuis()
+    }
+
+    private fun getHasilKuis(bearerToken: String, idKuis: Int) {
+        hasilKuisViewModel.getDetailHasilKuis(bearerToken, idKuis)
         displayHasilKuis()
     }
 
@@ -102,8 +115,36 @@ class HasilKuisActivity : AppCompatActivity() {
             bearerToken = "Bearer $bearerToken"
         }
 
+        setUpDropdown()
+
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Hasil Kuis"
+    }
+
+    private fun setUpDropdown() {
+        itemsDropdown = ArrayList()
+
+        listKuis = KumpulanKuis.kumpulanKuis
+        itemsDropdown.add("Semua Kuis")
+        for(kuis in listKuis) {
+            itemsDropdown.add(kuis.nama!!)
+        }
+
+        dropdownAdapter = ArrayAdapter(this, R.layout.list_item_dropdown_hasilkuis, itemsDropdown)
+        binding.autoCompleteTextViewPilihanKuis.setAdapter(dropdownAdapter)
+        checkChangesOfDropdown()
+    }
+
+    private fun checkChangesOfDropdown() {
+        binding.autoCompleteTextViewPilihanKuis.setOnItemClickListener { adapterView, view, i, l ->
+            selectedIndexKuis = i
+            if(i == 0) {
+                getHasilKuis(bearerToken)
+            }
+            else {
+                getHasilKuis(bearerToken, listKuis[i - 1].id!!)
+            }
+        }
     }
 }

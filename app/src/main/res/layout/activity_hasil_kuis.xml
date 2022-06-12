@@ -14,9 +14,27 @@
         android:indeterminateTint="@color/blue_primary"
         android:visibility="gone" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/menu_dropdown_pilihan_kuis"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/label"
+        android:layout_margin="16dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/auto_complete_text_view_pilihan_kuis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_hasil_kuis"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/menu_dropdown_pilihan_kuis"/>
 
 </RelativeLayout>
