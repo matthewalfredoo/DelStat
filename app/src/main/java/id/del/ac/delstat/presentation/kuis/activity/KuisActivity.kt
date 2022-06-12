@@ -228,6 +228,7 @@ class KuisActivity : AppCompatActivity() {
                     startActivity(
                         Intent(this, HasilKuisActivity::class.java)
                     )
+                    finish()
                 }, 3500)
             } else {
                 Snackbar
