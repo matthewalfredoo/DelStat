@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/container_login"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="520dp"
         android:orientation="vertical"
         android:layout_centerInParent="true">
 
