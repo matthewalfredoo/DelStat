@@ -19,9 +19,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import com.del.d3ti20.util.RealPathUtil
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -29,6 +30,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.BuildConfig
 import id.del.ac.delstat.R
 import id.del.ac.delstat.data.model.analisisdata.AnalisisData
+import id.del.ac.delstat.data.model.chat.ChatApiResponse
+import id.del.ac.delstat.data.model.chat.ChatRoom
 import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityDetailAnalisisDataBinding
@@ -59,6 +62,7 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
     @Inject
     lateinit var chatViewModelFactory: ChatViewModelFactory
     private lateinit var chatViewModel: ChatViewModel
+    private var idChatRoom: Int = ChatRoom.CHAT_ROOM_EMPTY
 
     @Inject
     lateinit var userPreferences: UserPreferences
@@ -91,16 +95,15 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
 
     private val selectFileResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if(result.resultCode == RESULT_OK) {
+            if (result.resultCode == RESULT_OK) {
                 Log.d("MyTag", "File selected")
                 intentData = result.data
-                if(intentData != null) {
+                if (intentData != null) {
                     selectedFileUri = intentData!!.data
                     Log.d("MyTag", "File uri: $selectedFileUri")
                     selectedFileResult()
                 }
-            }
-            else {
+            } else {
                 Snackbar.make(binding.root, "File not selected", Snackbar.LENGTH_SHORT).show()
             }
         }
@@ -166,7 +169,7 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
                 Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()
                 toggleEditMode()
             }
-            if(it.code == 204 && it.message != null && role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {
+            if (it.code == 204 && it.message != null && role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {
                 getAnalisisData()
             }
         })
@@ -294,49 +297,75 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
         // For updating status analisis data
         binding.statusAnalisisData.isEnabled = true
         binding.statusAnalisisData.setOnClickListener {
-
-            val statusList = arrayOf(
-                AnalisisData.STATUS_DIPROSES,
-                AnalisisData.STATUS_DITOLAK,
-                AnalisisData.STATUS_SELESAI
-            )
-
-            val selectedStatus = binding.statusAnalisisData.text.toString()
-            var selectedStatusIndex = statusList.indexOf(selectedStatus)
-
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Ubah Status Request Analisis Data")
-                .setSingleChoiceItems(statusList, selectedStatusIndex) { dialog, which ->
-                    selectedStatusIndex = which
-                    Log.d("status", statusList[which])
-                }
-                .setPositiveButton("Ubah") { dialog, which ->
-                    val status = statusList[selectedStatusIndex]
-                    Log.d("status", status)
-                    dialog.dismiss()
-                    updateStatusAnalisisData(status)
-                }
-                .setNegativeButton("Batal") { dialog, which ->
-                    dialog.dismiss()
-                }
-                .show()
-
-            Log.d("MyTag", statusList[0])
+            prepareDialogUpdateStatus()
         }
 
+        prepareChatAdminDosen()
+    }
+
+    private fun prepareDialogUpdateStatus() {
+        val statusList = arrayOf(
+            AnalisisData.STATUS_DIPROSES,
+            AnalisisData.STATUS_DITOLAK,
+            AnalisisData.STATUS_SELESAI
+        )
+
+        val selectedStatus = binding.statusAnalisisData.text.toString()
+        var selectedStatusIndex = statusList.indexOf(selectedStatus)
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Ubah Status Request Analisis Data")
+            .setSingleChoiceItems(statusList, selectedStatusIndex) { dialog, which ->
+                selectedStatusIndex = which
+                Log.d("status", statusList[which])
+            }
+            .setPositiveButton("Ubah") { dialog, which ->
+                val status = statusList[selectedStatusIndex]
+                Log.d("status", status)
+                dialog.dismiss()
+                updateStatusAnalisisData(status)
+            }
+            .setNegativeButton("Batal") { dialog, which ->
+                dialog.dismiss()
+            }
+            .show()
+
+        Log.d("MyTag", statusList[0])
+    }
+
+    private fun prepareChatAdminDosen() {
         // For button chat
         binding.buttonChatAnalisisData.visibility = View.VISIBLE
         binding.buttonChatAnalisisData.setOnClickListener {
             chatViewModel.storeChatRoom(bearerToken, userRequesterAnalisisData.id!!)
-        }
-
-        // Observing response from server in LiveData
-        chatViewModel.chatApiResponse.observe(this, Observer {
-            if(it.chatRoom != null) {
+            if (idChatRoom != ChatRoom.CHAT_ROOM_EMPTY) {
                 startActivity(
                     Intent(this, DetailChatRoomActivity::class.java)
-                        .putExtra(DetailChatRoomActivity.EXTRA_CHAT_ROOM_ID, it.chatRoom.id)
+                        .putExtra(DetailChatRoomActivity.EXTRA_CHAT_ROOM_ID, idChatRoom)
                 )
+                return@setOnClickListener
+            }
+        }
+
+        // Observing response from server in LiveData if idChatRoom has not been retrieved yet
+        if(idChatRoom == ChatRoom.CHAT_ROOM_EMPTY) {
+            chatViewModel.chatApiResponse.observeOnce(this, Observer<ChatApiResponse> {
+                if (it.chatRoom != null) {
+                    idChatRoom = it.chatRoom.id!!
+                }
+            })
+            binding.buttonChatAnalisisData.performClick()
+        }
+    }
+
+    /**
+     * LiveData extension function to observe once.
+     */
+    fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
+        observe(lifecycleOwner, object : Observer<T> {
+            override fun onChanged(t: T?) {
+                removeObserver(this)
+                observer.onChanged(t)
             }
         })
     }
@@ -426,21 +455,21 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
 
     private fun inputValidations() {
         analisisDataViewModel.analisisDataApiResponse.observe(this, Observer {
-            if (it.code != 200 && it.errors != null){
-                if(it.errors.judul != null){
+            if (it.code != 200 && it.errors != null) {
+                if (it.errors.judul != null) {
                     binding.textInputLayout1.error = it.errors.judul.get(0)
                 }
-                if(it.errors.deskripsi != null){
+                if (it.errors.deskripsi != null) {
                     binding.textInputLayout2.error = it.errors.deskripsi.get(0)
                 }
-                if(it.errors.file != null){
+                if (it.errors.file != null) {
                     binding.inputLayout3.error = it.errors.file.get(0)
                 }
             }
         })
 
         binding.editTextJudul.doOnTextChanged { text, start, before, count ->
-            if(text.isNullOrEmpty()) {
+            if (text.isNullOrEmpty()) {
                 binding.textInputLayout1.error = "Field judul wajib diisi"
             } else {
                 binding.textInputLayout1.error = null
@@ -448,7 +477,7 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
         }
 
         binding.editTextDeskripsi.doOnTextChanged { text, start, before, count ->
-            if(text.isNullOrEmpty()) {
+            if (text.isNullOrEmpty()) {
                 binding.textInputLayout2.error = "Field deskripsi wajib diisi"
             } else {
                 binding.textInputLayout2.error = null
@@ -456,7 +485,7 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
         }
 
         binding.inputFile.doOnTextChanged { text, start, before, count ->
-            if(text.isNullOrEmpty()) {
+            if (text.isNullOrEmpty()) {
                 binding.inputLayout3.error = "Field file wajib diisi"
             } else {
                 binding.inputLayout3.error = null
@@ -483,7 +512,13 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
             val deskripsi = binding.editTextDeskripsi.text.toString()
             val file = selectedFile
 
-            analisisDataViewModel.updateAnalisisData(bearerToken, idAnalisisData, judul, deskripsi, file)
+            analisisDataViewModel.updateAnalisisData(
+                bearerToken,
+                idAnalisisData,
+                judul,
+                deskripsi,
+                file
+            )
         }
     }
 

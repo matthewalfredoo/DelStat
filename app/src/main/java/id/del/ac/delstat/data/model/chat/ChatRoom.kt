@@ -4,7 +4,7 @@ package id.del.ac.delstat.data.model.chat
 import com.google.gson.annotations.SerializedName
 import id.del.ac.delstat.data.model.user.User
 
-data class ChatRoom(
+class ChatRoom(
     @SerializedName("id")
     val id: Int? = null,
 
@@ -28,4 +28,8 @@ data class ChatRoom(
 
     @SerializedName("user")
     val user: User
-)
+) {
+    companion object{
+        const val CHAT_ROOM_EMPTY = -1
+    }
+}

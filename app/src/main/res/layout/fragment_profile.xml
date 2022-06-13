@@ -9,11 +9,10 @@
     <LinearLayout
         android:id="@+id/container_not_login"
         android:layout_width="280dp"
-        android:layout_height="480dp"
+        android:layout_height="440dp"
         android:orientation="vertical"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:paddingBottom="80dp">
+        android:visibility="visible"
+        android:layout_centerInParent="true">
 
         <ImageView
             android:layout_width="wrap_content"
