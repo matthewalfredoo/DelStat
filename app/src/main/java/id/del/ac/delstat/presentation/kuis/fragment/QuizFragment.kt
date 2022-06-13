@@ -96,8 +96,10 @@ class QuizFragment : Fragment() {
     private fun onClickKuis(kuis: Kuis) {
         if (!bearerToken.isNullOrEmpty()) {
             if(role == User.ROLE_ADMIN || role == User.ROLE_DOSEN) {
+                Log.d("MyTag", "onClickKuis: ${kuis.id}")
                 startActivity(
                     Intent(requireActivity(), HasilKuisActivity::class.java)
+                        .putExtra(HasilKuisActivity.EXTRA_ID_KUIS, kuis.id)
                 )
                 return
             }

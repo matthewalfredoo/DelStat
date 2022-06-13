@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import id.del.ac.delstat.R
+import id.del.ac.delstat.data.model.kuis.HasilKuis
 import id.del.ac.delstat.data.model.kuis.Kuis
 import id.del.ac.delstat.data.model.kuis.KumpulanKuis
 import id.del.ac.delstat.data.preferences.UserPreferences
@@ -36,13 +37,18 @@ class HasilKuisActivity : AppCompatActivity() {
     private lateinit var listKuis: ArrayList<Kuis>
     private lateinit var itemsDropdown: ArrayList<String>
     private lateinit var dropdownAdapter: ArrayAdapter<String>
-    private var selectedIndexKuis: Int = -1
+    private var selectedIndexKuis: Int = HasilKuis.HASIL_KUIS_EMPTY
+    private var idKuis: Int = HasilKuis.HASIL_KUIS_EMPTY
 
     @Inject
     lateinit var userPreferences: UserPreferences
     lateinit var bearerToken: String
 
     lateinit var hasilKuisAdapter: HasilKuisAdapter
+
+    companion object {
+        const val EXTRA_ID_KUIS = "extra_id_kuis"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +60,7 @@ class HasilKuisActivity : AppCompatActivity() {
 
         prepareUI()
         initRecyclerView()
-        getHasilKuis(bearerToken)
+        prepareData()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -101,6 +107,15 @@ class HasilKuisActivity : AppCompatActivity() {
         })
     }
 
+    private fun prepareData() {
+        idKuis = intent.getIntExtra(EXTRA_ID_KUIS, HasilKuis.HASIL_KUIS_EMPTY)
+        if(idKuis != HasilKuis.HASIL_KUIS_EMPTY) {
+            processIntent()
+            return
+        }
+        getHasilKuis(bearerToken)
+    }
+
     private fun prepareUI() {
         runBlocking {
             bearerToken = userPreferences.getUserToken.first()!!
@@ -136,6 +151,19 @@ class HasilKuisActivity : AppCompatActivity() {
         checkChangesOfDropdown()
     }
 
+    private fun processIntent() {
+        if(idKuis != HasilKuis.HASIL_KUIS_EMPTY) {
+            Log.d("MyTag", "idKuis: $idKuis")
+            val text = listKuis[idKuis - 1].nama
+            binding.autoCompleteTextViewPilihanKuis.setText(text, false)
+            binding.autoCompleteTextViewPilihanKuis.setSelection(
+                idKuis
+            )
+            checkChangesOfDropdown()
+            getHasilKuis(bearerToken, idKuis)
+        }
+    }
+
     private fun checkChangesOfDropdown() {
         binding.autoCompleteTextViewPilihanKuis.setOnItemClickListener { adapterView, view, i, l ->
             selectedIndexKuis = i
@@ -143,7 +171,7 @@ class HasilKuisActivity : AppCompatActivity() {
                 getHasilKuis(bearerToken)
             }
             else {
-                getHasilKuis(bearerToken, listKuis[i - 1].id!!)
+                getHasilKuis(bearerToken, listKuis[selectedIndexKuis - 1].id!!)
             }
         }
     }

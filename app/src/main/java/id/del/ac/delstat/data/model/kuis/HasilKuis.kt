@@ -3,7 +3,7 @@ package id.del.ac.delstat.data.model.kuis
 
 import com.google.gson.annotations.SerializedName
 
-data class HasilKuis(
+class HasilKuis(
     @SerializedName("id")
     val id: Int,
 
@@ -24,4 +24,8 @@ data class HasilKuis(
 
     @SerializedName("updated_at")
     val updatedAt: String
-)
+) {
+    companion object {
+        const val HASIL_KUIS_EMPTY = -1
+    }
+}
