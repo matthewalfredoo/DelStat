@@ -73,7 +73,7 @@ class CreateLiteraturActivity : AppCompatActivity() {
                     selectedFileResult()
                 }
             } else {
-                Snackbar.make(binding.root, "File not selected", Snackbar.LENGTH_SHORT).show()
+                /*Snackbar.make(binding.root, "File not selected", Snackbar.LENGTH_SHORT).show()*/
             }
         }
 
@@ -110,7 +110,8 @@ class CreateLiteraturActivity : AppCompatActivity() {
         supportActionBar?.title = "Tambah Literatur"
 
         literaturViewModel.literaturApiResponse.observe(this, Observer {
-            Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
+            /*Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()*/
+            Helper.createSnackbar(binding.root, it.message!!).show()
             if (it.code == 201) {
                 Handler(Looper.getMainLooper()).postDelayed({
                     finish()

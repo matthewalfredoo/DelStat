@@ -37,6 +37,7 @@ import id.del.ac.delstat.presentation.notifikasi.viewmodel.NotifikasiViewModel
 import id.del.ac.delstat.presentation.notifikasi.viewmodel.NotifikasiViewModelFactory
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModel
 import id.del.ac.delstat.presentation.user.viewmodel.UserViewModelFactory
+import id.del.ac.delstat.util.Helper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -109,12 +110,14 @@ class HomeActivity : AppCompatActivity() {
 
     private fun prepareUI() {
         userViewModel.userApiResponse.observe(this, Observer {
-            Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
+            /*Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()*/
+            Helper.createSnackbar(binding.root, it.message!!).show()
         })
 
         materiViewModel.materiApiResponse.observe(this, Observer {
             if(it.code == 204) {
-                Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
+                /*Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()*/
+                Helper.createSnackbar(binding.root, it.message!!).show()
             }
         })
 

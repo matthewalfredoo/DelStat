@@ -8,10 +8,10 @@
 
     <LinearLayout
         android:id="@+id/container_not_login"
-        android:layout_width="280dp"
-        android:layout_height="440dp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_centerInParent="true">
 
         <ImageView
@@ -42,7 +42,7 @@
     <LinearLayout
         android:id="@+id/container_login"
         android:layout_width="350dp"
-        android:layout_height="440dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone"
         android:layout_centerInParent="true">
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/foto_profil"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_margin="8dp"
                 android:layout_gravity="center_vertical"/>
             
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/nama"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_margin="8dp"/>
 
             <TextView
@@ -116,7 +116,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:layout_marginVertical="8dp"/>
 
@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/email"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_margin="8dp"/>
 
             <TextView
@@ -142,7 +142,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:layout_marginVertical="8dp"/>
 
@@ -160,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/nomor_telepon"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_margin="8dp"/>
 
             <TextView
@@ -168,7 +168,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:layout_marginVertical="8dp"/>
 
@@ -186,7 +186,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/jenjang"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_margin="8dp"/>
 
             <TextView
@@ -194,7 +194,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:layout_marginVertical="8dp"/>
 
@@ -222,6 +222,7 @@
             android:id="@+id/button_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
             android:text="@string/logout"
             android:textAllCaps="false"
             android:textColor="@color/blue_primary"

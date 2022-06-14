@@ -28,6 +28,7 @@ import id.del.ac.delstat.presentation.activity.LoginActivity
 import id.del.ac.delstat.presentation.chat.adapter.ListChatRoomAdapter
 import id.del.ac.delstat.presentation.chat.viewmodel.ChatViewModel
 import id.del.ac.delstat.presentation.chat.viewmodel.ChatViewModelFactory
+import id.del.ac.delstat.util.Helper
 import id.del.ac.delstat.util.SubsamplingScaleImageViewTarget
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -258,7 +259,8 @@ class ListChatRoomActivity : AppCompatActivity() {
                 }
             } else {
                 binding.chatProgressbar.visibility = View.GONE
-                Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
+                /*Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()*/
+                Helper.createSnackbar(binding.root, it.message!!).show()
             }
         })
     }

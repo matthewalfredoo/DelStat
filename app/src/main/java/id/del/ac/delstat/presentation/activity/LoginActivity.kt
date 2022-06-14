@@ -46,7 +46,8 @@ class LoginActivity : AppCompatActivity() {
         val intentLogin = intent
         val loginMessage = intentLogin.getStringExtra(LOGIN_MESSAGE)
         if(loginMessage != null){
-            Snackbar.make(binding.root, loginMessage, Snackbar.LENGTH_LONG).show()
+            /*Snackbar.make(binding.root, loginMessage, Snackbar.LENGTH_LONG).show()*/
+            Helper.createSnackbar(binding.root, loginMessage).show()
         }
 
         fromUbahPasswordActivity = intentLogin.getBooleanExtra(FROM_UBAH_PASSWORD, false)
@@ -81,7 +82,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         userViewModel.userApiResponse.observe(this, Observer {
-            Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
+            /*Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()*/
+            Helper.createSnackbar(binding.root, it.message!!).show()
             if (it.code == 200) {
                 // Go back to previous activity after successful login
                 if(!fromUbahPasswordActivity) {

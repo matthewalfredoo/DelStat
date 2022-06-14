@@ -61,7 +61,9 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         userViewModel.userApiResponse.observe(this, Observer {
-            Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
+            /*Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()*/
+            Helper.createSnackbar(binding.root, it.message!!).show()
+
             if (it.code == 201) {
                 // Go back to previous activity after successful registration
                 Handler(Looper.getMainLooper()).postDelayed({

@@ -91,7 +91,7 @@ class DetailLiteraturActivity : AppCompatActivity() {
                     selectedFileResult()
                 }
             } else {
-                Snackbar.make(binding.root, "File not selected", Snackbar.LENGTH_SHORT).show()
+                /*Snackbar.make(binding.root, "File not selected", Snackbar.LENGTH_SHORT).show()*/
             }
         }
 
@@ -114,7 +114,7 @@ class DetailLiteraturActivity : AppCompatActivity() {
         editItem.isVisible = false
         deleteItem.isVisible = false
 
-        if(role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {
+        if (role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {
             editItem.isVisible = true
             deleteItem.isVisible = true
         }
@@ -190,7 +190,7 @@ class DetailLiteraturActivity : AppCompatActivity() {
                 }
                 // this is to handle when dialog is dismissed either using negative button or clicked on area outside of the dialog
                 .setOnDismissListener {
-                     toggleDeleteMode()
+                    toggleDeleteMode()
                 }
                 .show()
             return
@@ -245,8 +245,9 @@ class DetailLiteraturActivity : AppCompatActivity() {
 
         literaturViewModel.literaturApiResponse.observe(this, Observer {
             if (it.code == 204 && it.message != null) {
-                Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()
-                if(isEditMode) {
+                /*Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()*/
+                Helper.createSnackbar(binding.root, it.message).show()
+                if (isEditMode) {
                     toggleEditMode()
                 }
             }
@@ -401,11 +402,12 @@ class DetailLiteraturActivity : AppCompatActivity() {
     /* Functions related to get detail literatur and display it on the activity */
     private fun getLiteratur() {
         if (idLiteratur == -1) {
-            Snackbar.make(
+            /*Snackbar.make(
                 binding.root,
                 "Terjadi kesalahan saat mengakses literatur",
                 Snackbar.LENGTH_LONG
-            ).show()
+            ).show()*/
+            Helper.createSnackbar(binding.root, "Terjadi kesalahan saat mengakses literatur").show()
             Handler(Looper.getMainLooper()).postDelayed({
                 finish()
             }, 500)

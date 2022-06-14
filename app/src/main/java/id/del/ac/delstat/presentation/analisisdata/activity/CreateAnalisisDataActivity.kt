@@ -72,7 +72,7 @@ class CreateAnalisisDataActivity : AppCompatActivity() {
                 }
             }
             else {
-                Snackbar.make(binding.root, "File not selected", Snackbar.LENGTH_SHORT).show()
+                /*Snackbar.make(binding.root, "File not selected", Snackbar.LENGTH_SHORT).show()*/
             }
         }
 
@@ -111,7 +111,8 @@ class CreateAnalisisDataActivity : AppCompatActivity() {
         supportActionBar?.title = "Request Analisis Data"
 
         analisisDataViewModel.analisisDataApiResponse.observe(this, Observer {
-            Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_SHORT).show()
+            /*Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_SHORT).show()*/
+            Helper.createSnackbar(binding.root, it.message!!).show()
             if (it.code == 200) {
                 Handler(Looper.getMainLooper()).postDelayed({
                     finish()

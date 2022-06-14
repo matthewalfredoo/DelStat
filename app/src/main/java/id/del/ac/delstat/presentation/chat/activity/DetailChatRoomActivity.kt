@@ -21,6 +21,7 @@ import id.del.ac.delstat.databinding.ActivityDetailChatRoomBinding
 import id.del.ac.delstat.presentation.chat.adapter.ChatRoomAdapter
 import id.del.ac.delstat.presentation.chat.viewmodel.ChatViewModel
 import id.del.ac.delstat.presentation.chat.viewmodel.ChatViewModelFactory
+import id.del.ac.delstat.util.Helper
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
@@ -124,11 +125,12 @@ class DetailChatRoomActivity : AppCompatActivity() {
     private fun prepareUI() {
         chatRoomId = intent.getIntExtra(EXTRA_CHAT_ROOM_ID, -1)
         if (chatRoomId == -1) {
-            Snackbar.make(
+            /*Snackbar.make(
                 binding.root,
                 "Terjadi kesalahan saat mengakses chat",
                 Snackbar.LENGTH_SHORT
-            ).show()
+            ).show()*/
+            Helper.createSnackbar(binding.root, "Terjadi kesalahan saat mengakses chat").show()
             Handler(Looper.getMainLooper()).postDelayed({
                 finish()
             }, 800)

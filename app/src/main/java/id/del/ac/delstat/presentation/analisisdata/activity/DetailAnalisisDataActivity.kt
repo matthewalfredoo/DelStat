@@ -104,7 +104,7 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
                     selectedFileResult()
                 }
             } else {
-                Snackbar.make(binding.root, "File not selected", Snackbar.LENGTH_SHORT).show()
+                /*Snackbar.make(binding.root, "File not selected", Snackbar.LENGTH_SHORT).show()*/
             }
         }
 
@@ -166,7 +166,8 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
 
         analisisDataViewModel.analisisDataApiResponse.observe(this, Observer {
             if (it.code == 204 && it.message != null && role == User.ROLE_SISWA) {
-                Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()
+                /*Snackbar.make(binding.root, it.message, Snackbar.LENGTH_SHORT).show()*/
+                Helper.createSnackbar(binding.root, it.message).show()
                 toggleEditMode()
             }
             if (it.code == 204 && it.message != null && role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {
@@ -187,11 +188,13 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
 
     private fun getAnalisisData() {
         if (idAnalisisData == -1) {
-            Snackbar.make(
+            /*Snackbar.make(
                 binding.root,
                 "Terjadi kesalahan saat mengakses analisis data",
                 Snackbar.LENGTH_LONG
-            ).show()
+            ).show()*/
+            Helper.createSnackbar(binding.root, "Terjadi kesalahan saat mengakses analisis data")
+                .show()
             Handler(Looper.getMainLooper()).postDelayed({
                 finish()
             }, 500)
@@ -348,7 +351,7 @@ class DetailAnalisisDataActivity : AppCompatActivity() {
         }
 
         // Observing response from server in LiveData if idChatRoom has not been retrieved yet
-        if(idChatRoom == ChatRoom.CHAT_ROOM_EMPTY) {
+        if (idChatRoom == ChatRoom.CHAT_ROOM_EMPTY) {
             chatViewModel.chatApiResponse.observeOnce(this, Observer<ChatApiResponse> {
                 if (it.chatRoom != null) {
                     idChatRoom = it.chatRoom.id!!

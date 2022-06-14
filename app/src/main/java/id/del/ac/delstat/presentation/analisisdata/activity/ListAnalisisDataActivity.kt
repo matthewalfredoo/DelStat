@@ -20,6 +20,7 @@ import id.del.ac.delstat.presentation.activity.LoginActivity
 import id.del.ac.delstat.presentation.analisisdata.adapter.AnalisisDataAdapter
 import id.del.ac.delstat.presentation.analisisdata.viewmodel.AnalisisDataViewModel
 import id.del.ac.delstat.presentation.analisisdata.viewmodel.AnalisisDataViewModelFactory
+import id.del.ac.delstat.util.Helper
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
@@ -104,7 +105,8 @@ class ListAnalisisDataActivity : AppCompatActivity() {
                 }
             } else {
                 binding.analisisDataProgressbar.visibility = android.view.View.GONE
-                Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
+                /*Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()*/
+                Helper.createSnackbar(binding.root, it.message!!).show()
             }
         })
     }
