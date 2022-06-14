@@ -24,8 +24,11 @@ class LoginActivity : AppCompatActivity() {
     lateinit var userViewModelFactory: UserViewModelFactory
     lateinit var userViewModel: UserViewModel
 
+    var fromUbahPasswordActivity = false
+
     companion object{
         const val LOGIN_MESSAGE = "login_message"
+        const val FROM_UBAH_PASSWORD = "from_ubah_password"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +48,8 @@ class LoginActivity : AppCompatActivity() {
         if(loginMessage != null){
             Snackbar.make(binding.root, loginMessage, Snackbar.LENGTH_LONG).show()
         }
+
+        fromUbahPasswordActivity = intentLogin.getBooleanExtra(FROM_UBAH_PASSWORD, false)
 
         supportActionBar?.hide()
         /*supportActionBar?.setBackgroundDrawable(AppCompatResources.getDrawable(applicationContext, R.drawable.gradient_list))*/
@@ -79,8 +84,14 @@ class LoginActivity : AppCompatActivity() {
             Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()
             if (it.code == 200) {
                 // Go back to previous activity after successful login
+                if(!fromUbahPasswordActivity) {
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        finish()
+                    }, 500)
+                    return@Observer
+                }
                 Handler(Looper.getMainLooper()).postDelayed({
-                    finish()
+                    startActivity(Intent(this, HomeActivity::class.java))
                 }, 500)
             }
         })

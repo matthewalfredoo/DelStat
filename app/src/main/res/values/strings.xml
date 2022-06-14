@@ -171,4 +171,5 @@
     <string name="penjelasan_pengujian_hipotesis_p_value_1">P-value adalah taraf keberartian terkecil sehingga nilai uji statistic yang diamati masih berarti.</string>
     <string name="kirim_email_reset_password">Kirim Email Reset Password</string>
     <string name="OK">OK</string>
+    <string name="ubah_password">Ubah Password</string>
 </resources>
