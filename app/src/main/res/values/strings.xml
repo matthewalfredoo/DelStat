@@ -8,7 +8,8 @@
     <string name="password">Password</string>
     <string name="login_masuk">Masuk</string>
     <string name="masuk">Masuk</string>
-    <string name="lupa_password">Lupa Password?</string>
+    <string name="lupa_password_question">Lupa Password?</string>
+    <string name="lupa_password">Lupa Password</string>
     <string name="buat_akun">Buat Akun</string>
     <string name="register">Register</string>
     <string name="edit_profil">Edit Profil</string>
@@ -168,4 +169,6 @@
     <string name="penjelasan_pengujian_hipotesis_daerah_penolakan_h0_2">2. Uji satu arah (one tail) ke kanan (H1 lebih besar)</string>
     <string name="penjelasan_pengujian_hipotesis_daerah_penolakan_h0_3">3. Uji dua arah (two tail) (H1 tidak sama dengan)</string>
     <string name="penjelasan_pengujian_hipotesis_p_value_1">P-value adalah taraf keberartian terkecil sehingga nilai uji statistic yang diamati masih berarti.</string>
+    <string name="kirim_email_reset_password">Kirim Email Reset Password</string>
+    <string name="OK">OK</string>
 </resources>

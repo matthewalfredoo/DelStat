@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="id.del.ac.delstat" >
+    package="id.del.ac.delstat">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,7 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DelStat"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".presentation.activity.UbahPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.activity.LupaPasswordActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.kuis.activity.HasilKuisActivity"
             android:exported="false">
@@ -34,63 +40,63 @@
         </activity>
         <activity
             android:name=".presentation.chat.activity.DetailChatRoomActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.chat.activity.ListChatRoomActivity" />
         </activity>
         <activity
             android:name=".presentation.chat.activity.CreateChatRoomActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.chat.activity.ListChatRoomActivity" />
         </activity>
         <activity
             android:name=".presentation.chat.activity.ListChatRoomActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.activity.HomeActivity" />
         </activity>
         <activity
             android:name=".presentation.notifikasi.activity.NotifikasiActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.activity.HomeActivity" />
         </activity>
         <activity
             android:name=".presentation.literatur.activity.CreateLiteraturActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.activity.HomeActivity" />
         </activity>
         <activity
             android:name=".presentation.literatur.activity.DetailLiteraturActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.activity.HomeActivity" />
         </activity>
         <activity
             android:name=".presentation.analisisdata.activity.DetailAnalisisDataActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.analisisdata.activity.ListAnalisisDataActivity" />
         </activity>
         <activity
             android:name=".presentation.analisisdata.activity.CreateAnalisisDataActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.analisisdata.activity.ListAnalisisDataActivity" />
         </activity>
         <activity
             android:name=".presentation.analisisdata.activity.ListAnalisisDataActivity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.activity.HomeActivity" />
@@ -109,7 +115,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.activity.HomeActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

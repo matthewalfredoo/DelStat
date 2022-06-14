@@ -100,6 +100,29 @@ interface DelStatApiService {
         bearerToken: String
     ): Response<UserApiResponse>
 
+    @FormUrlEncoded
+    @POST("api/forgot-password")
+    suspend fun forgotPassword(
+        @Field("email")
+        email: String
+    ): Response<UserApiResponse>
+
+    @FormUrlEncoded
+    @POST("api/change-password")
+    suspend fun changePassword(
+        @Field("token")
+        token: String,
+
+        @Field("email")
+        email: String,
+
+        @Field("password")
+        password: String,
+
+        @Field("password_confirmation")
+        passwordConfirmation: String
+    ): Response<UserApiResponse>
+
     /* End of User-related Services */
 
     /* Materi related Services */

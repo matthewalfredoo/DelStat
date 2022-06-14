@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
+import com.google.android.material.snackbar.Snackbar
 import id.del.ac.delstat.R
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -98,6 +99,14 @@ object Helper {
             )*/
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imageView)
+    }
+
+    fun createSnackbar(view: View, message: String): Snackbar {
+        val snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+        snackbar.setAction("OK") {
+            snackbar.dismiss()
+        }
+        return snackbar
     }
 
 }

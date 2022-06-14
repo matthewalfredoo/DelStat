@@ -39,4 +39,13 @@ interface UserRepository {
 
     suspend fun logout(bearToken: String): UserApiResponse?
 
+    suspend fun forgotPassword(email: String): UserApiResponse?
+
+    suspend fun changePassword(
+        token: String,
+        email: String,
+        password: String,
+        passwordConfirmation: String
+    ): UserApiResponse?
+
 }

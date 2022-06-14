@@ -95,4 +95,31 @@ class UserRepositoryImpl(
         }
         return null
     }
+
+    override suspend fun forgotPassword(email: String): UserApiResponse? {
+        try {
+            val response = userRemoteDataSource.forgotPassword(email)
+            return response.body()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+    override suspend fun changePassword(
+        token: String,
+        email: String,
+        password: String,
+        passwordConfirmation: String
+    ): UserApiResponse? {
+        try {
+            val response = userRemoteDataSource.changePassword(token, email, password, passwordConfirmation)
+            return response.body()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
 }

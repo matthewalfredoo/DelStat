@@ -76,7 +76,7 @@ class UserViewModel(
     fun getUser(bearerToken: String) {
         viewModelScope.launch {
             try {
-                if(checkNetwork()) {
+                if (checkNetwork()) {
                     val response = userRepository.getUser(bearerToken)
                     // if response is null, it means the user is unauthorized anymore and will be logged out automatically
                     if (response == null) {
@@ -103,7 +103,14 @@ class UserViewModel(
         viewModelScope.launch {
             try {
                 if (checkNetwork()) {
-                    val response = userRepository.updateProfile( bearerToken, nama, email, noHp, jenjang, fotoProfil)
+                    val response = userRepository.updateProfile(
+                        bearerToken,
+                        nama,
+                        email,
+                        noHp,
+                        jenjang,
+                        fotoProfil
+                    )
                     if (response == null) {
                         error("Terjadi kesalahan")
                         return@launch
@@ -135,7 +142,12 @@ class UserViewModel(
         viewModelScope.launch {
             try {
                 if (checkNetwork()) {
-                    val response = userRepository.updatePassword( bearerToken, password, newPassword, newPasswordConfirmation)
+                    val response = userRepository.updatePassword(
+                        bearerToken,
+                        password,
+                        newPassword,
+                        newPasswordConfirmation
+                    )
                     if (response == null) {
                         error("Terjadi kesalahan")
                         return@launch
@@ -154,7 +166,7 @@ class UserViewModel(
         viewModelScope.launch {
             try {
                 if (checkNetwork()) {
-                    val response = userRepository.findUsersByRole( bearerToken)
+                    val response = userRepository.findUsersByRole(bearerToken)
                     if (response == null) {
                         error("Terjadi kesalahan")
                         return@launch
@@ -181,6 +193,54 @@ class UserViewModel(
                     // Log.d("MyTag", response.toString())
 
                     userPreferences.clear()
+                }
+            } catch (e: Exception) {
+                error("Terjadi exception")
+                Log.e("MyTag", "exception", e)
+            }
+        }
+    }
+
+    fun forgotPassword(email: String) {
+        viewModelScope.launch {
+            try {
+                if (checkNetwork()) {
+                    val response = userRepository.forgotPassword(email)
+                    if (response == null) {
+                        error("Terjadi kesalahan")
+                        return@launch
+                    }
+                    userApiResponse.value = response!!
+                    Log.d("MyTag", response.toString())
+                }
+            } catch (e: Exception) {
+                error("Terjadi exception")
+                Log.e("MyTag", "exception", e)
+            }
+        }
+    }
+
+    fun changePassword(
+        token: String,
+        email: String,
+        password: String,
+        passwordConfirmation: String
+    ) {
+        viewModelScope.launch {
+            try {
+                if (checkNetwork()) {
+                    val response = userRepository.changePassword(
+                        token,
+                        email,
+                        password,
+                        passwordConfirmation
+                    )
+                    if (response == null) {
+                        error("Terjadi kesalahan")
+                        return@launch
+                    }
+                    userApiResponse.value = response!!
+                    Log.d("MyTag", response.toString())
                 }
             } catch (e: Exception) {
                 error("Terjadi exception")

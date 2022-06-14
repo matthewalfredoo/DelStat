@@ -40,4 +40,13 @@ interface UserRemoteDataSource {
 
     suspend fun logout(bearerToken: String): Response<UserApiResponse>
 
+    suspend fun forgotPassword(email: String): Response<UserApiResponse>
+
+    suspend fun changePassword(
+        token: String,
+        email: String,
+        password: String,
+        passwordConfirmation: String,
+    ): Response<UserApiResponse>
+
 }

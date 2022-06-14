@@ -66,6 +66,19 @@ class UserRemoteDataSourceImpl(private val delStatApiService: DelStatApiService)
         return delStatApiService.logout(bearerToken)
     }
 
+    override suspend fun forgotPassword(email: String): Response<UserApiResponse> {
+        return delStatApiService.forgotPassword(email)
+    }
+
+    override suspend fun changePassword(
+        token: String,
+        email: String,
+        password: String,
+        passwordConfirmation: String
+    ): Response<UserApiResponse> {
+        return delStatApiService.changePassword(token, email, password, passwordConfirmation)
+    }
+
     private fun requestBody(field: String): RequestBody {
         return field.toRequestBody("text/plain".toMediaTypeOrNull())
     }
