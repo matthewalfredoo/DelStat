@@ -34,10 +34,10 @@ class HasilKuisAdapter: RecyclerView.Adapter<MyHasilKuisViewHolder>() {
 }
 
 class MyHasilKuisViewHolder(val binding: ListItemHasilkuisBinding): RecyclerView.ViewHolder(binding.root) {
-    //TODO: tampilkan nama user tiap hasil kuis
     fun bind(hasilKuis: HasilKuis) {
         binding.namaKuis.text = KumpulanKuis.kumpulanKuis[hasilKuis.idKuis - 1].nama
         binding.nilaiHasilKuis.text = "Nilai: ${hasilKuis.nilaiKuis}"
+        binding.namaUserHasilKuis.text = "Dikerjakan oleh: ${hasilKuis.namaUser}"
         binding.tanggalHasilKuis.text = DateUtil.getDateTimeWithoutSecond(hasilKuis.createdAt)
     }
 

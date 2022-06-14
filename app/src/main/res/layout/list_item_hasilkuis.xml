@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
-    android:minHeight="88dp">
+    android:paddingVertical="8dp">
 
     <ImageView
         android:id="@+id/mtrl_list_item_icon"
@@ -18,13 +18,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_toEndOf="@id/mtrl_list_item_icon"
-        android:paddingTop="16dp"
-        android:paddingEnd="16dp"
         android:maxLines="1"
+        android:paddingEnd="16dp"
         android:textAppearance="?attr/textAppearanceSubtitle1"
         android:textColor="@color/blue_primary"
-        tools:text="Nama Kuis"
-        />
+        tools:text="Nama Kuis" />
 
     <TextView
         android:id="@+id/nilai_hasil_kuis"
@@ -41,10 +39,23 @@
         tools:text="Nilai Kuis: 80"/>
 
     <TextView
-        android:id="@+id/tanggal_hasil_kuis"
+        android:id="@+id/nama_user_hasil_kuis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/nilai_hasil_kuis"
+        android:layout_gravity="center_vertical"
+        android:layout_toEndOf="@id/mtrl_list_item_icon"
+        android:paddingEnd="16dp"
+        android:maxLines="1"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="@color/black"
+        tools:text="Dikerjakan Oleh: User Saya"/>
+
+    <TextView
+        android:id="@+id/tanggal_hasil_kuis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nama_user_hasil_kuis"
         android:layout_gravity="center_vertical"
         android:layout_toEndOf="@id/mtrl_list_item_icon"
         android:paddingEnd="16dp"
