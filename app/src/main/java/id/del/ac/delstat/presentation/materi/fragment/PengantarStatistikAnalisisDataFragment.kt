@@ -164,7 +164,7 @@ class PengantarStatistikAnalisisDataFragment : Fragment() {
 
         binding.toggleButton.visibility = View.VISIBLE
         binding.toggleButton.addOnButtonCheckedListener { toggleButton, checkedId, isChecked ->
-            when (checkedId) {
+            when (toggleButton.checkedButtonId) {
                 binding.button1.id -> {
                     currentYoutubePlayerView.visibility = View.GONE
                     currentYoutubePlayerView = binding.youtubePlayerView1

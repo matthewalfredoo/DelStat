@@ -1,6 +1,7 @@
 package id.del.ac.delstat.presentation.materi.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
@@ -220,42 +221,38 @@ class DistribusiPeluangDiskritFragment : Fragment() {
     private fun youtubePlayers() {
         viewLifecycleOwner.lifecycle.addObserver(binding.youtubePlayerView1)
 
-        binding.youtubePlayerView1.addYouTubePlayerListener(object :
-            AbstractYouTubePlayerListener() {
+        binding.youtubePlayerView1.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 youTubePlayer.cueVideo(linkVideo1, 0f)
             }
         })
         currentYoutubePlayerView = binding.youtubePlayerView1
 
-        if (linkVideo2 != "") {
+        if(linkVideo2 != "") {
             binding.button2.visibility = View.VISIBLE
 
             viewLifecycleOwner.lifecycle.addObserver(binding.youtubePlayerView2)
-            binding.youtubePlayerView2.addYouTubePlayerListener(object :
-                AbstractYouTubePlayerListener() {
+            binding.youtubePlayerView2.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     youTubePlayer.cueVideo(linkVideo2, 0f)
                 }
             })
         }
-        if (linkVideo3 != "") {
+        if(linkVideo3 != "") {
             binding.button3.visibility = View.VISIBLE
 
             viewLifecycleOwner.lifecycle.addObserver(binding.youtubePlayerView3)
-            binding.youtubePlayerView3.addYouTubePlayerListener(object :
-                AbstractYouTubePlayerListener() {
+            binding.youtubePlayerView3.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     youTubePlayer.cueVideo(linkVideo3, 0f)
                 }
             })
         }
-        if (linkVideo4 != "") {
+        if(linkVideo4 != "") {
             binding.button4.visibility = View.VISIBLE
 
             viewLifecycleOwner.lifecycle.addObserver(binding.youtubePlayerView4)
-            binding.youtubePlayerView4.addYouTubePlayerListener(object :
-                AbstractYouTubePlayerListener() {
+            binding.youtubePlayerView4.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     youTubePlayer.cueVideo(linkVideo4, 0f)
                 }
@@ -264,7 +261,7 @@ class DistribusiPeluangDiskritFragment : Fragment() {
 
         binding.toggleButton.visibility = View.VISIBLE
         binding.toggleButton.addOnButtonCheckedListener { toggleButton, checkedId, isChecked ->
-            when (checkedId) {
+            when(toggleButton.checkedButtonId) {
                 binding.button1.id -> {
                     currentYoutubePlayerView.visibility = View.GONE
                     currentYoutubePlayerView = binding.youtubePlayerView1
