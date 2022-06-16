@@ -173,4 +173,14 @@
     <string name="OK">OK</string>
     <string name="ubah_password">Ubah Password</string>
     <string name="export_to_pdf">Export</string>
+    <string name="overview_konsep_peluang">Pada materi ini akan dipelajari mengenai definisi sampel, peluang, permutasi, dan kombinasi serta beberapa aturannya.</string>
+    <string name="overview_variabel_acak">Pada materi ini akan dipelajari mengenai peubah acak, ruang sampel, distribusi peluang, dan fungsi peluang.</string>
+    <string name="overview_distribusi_probabilitas_diskrit">Pada materi ini akan dipelajari mengenai jenis peluang diskrit, distribusi seragam, binomial, multinomial, hipergeometrik, geometrik, dan poisson.</string>
+    <string name="overview_distribusi_probabilitas_kontinu">Pada materi ini akan dipelajari mengenai jenis peluang kontinu, distribusi seragam kontinu, normal (Gaussian), gamma dan eksponensial.</string>
+    <string name="overview_statistik_analisis_data">Pada materi ini akan dipelajari mengenai definisi statistik, istilah-istilah dalam statistika, syarat data yang baik, jenis data, populasi, sampel, data tunggal dan kelompok, mean, median, dan modus.</string>
+    <string name="overview_teknik_sampling">Pada materi ini akan dipelajari mengenai jenis populasi, alasan sampling, jenis random sampling, serta distribusi sampel.</string>
+    <string name="overview_anova">Pada materi ini akan dipelajari mengenai definisi ANOVA, jenis-jenis uji ANOVA, model data populasi, hipotesis, jumlah kuadrat total, jumlah kuadrat perlakuan, dan jumlah kuadrat galat.</string>
+    <string name="overview_konsep_estimasi">Pada materi ini akan dipelajari mengenai definisi estimasi, penaksiran, dan jenis-jenisnya.</string>
+    <string name="overview_pengujian_hipotesis">Pada materi ini akan dipelajari mengenai bentuk hipotesis, alasan pengujian, p-value, uji untuk satu rataan, uji untuk dua rataan, uji untuk rataan berpasangan, uji mengenai satu dan dua variansi, serta statistik uji.</string>
+    <string name="overview_regresi_linier">Pada materi ini akan dipelajari mengenai definisi regresi, model regresi linier sederhana, uji serentak melalui ANOVA, RMSE (Root Mean Square Error), definisi korelasi, korelasi Pearson, nilai koefisien korelasi, dan uji korelasi.</string>
 </resources>

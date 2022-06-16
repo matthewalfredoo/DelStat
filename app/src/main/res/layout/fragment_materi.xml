@@ -14,7 +14,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_materi_1"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
@@ -57,7 +57,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+                        android:text="@string/overview_konsep_peluang"
+                        android:justificationMode="inter_word"
+                        tools:targetApi="o" />
 
                 </LinearLayout>
 
@@ -69,7 +71,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_materi_2"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_materi_1"
             android:layout_margin="16dp"
             android:clickable="true"
@@ -113,7 +115,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+                        android:text="@string/overview_variabel_acak"
+                        android:justificationMode="inter_word"
+                        tools:targetApi="o"/>
 
                 </LinearLayout>
 
@@ -125,7 +129,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_materi_3"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_materi_2"
             android:layout_margin="16dp"
             android:clickable="true"
@@ -169,7 +173,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+                        android:text="@string/overview_distribusi_probabilitas_diskrit"
+                        android:justificationMode="inter_word"
+                        tools:targetApi="o" />
 
                 </LinearLayout>
 
@@ -181,7 +187,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_materi_4"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_materi_3"
             android:layout_margin="16dp"
             android:clickable="true"
@@ -225,7 +231,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+                        android:text="@string/overview_distribusi_probabilitas_kontinu"
+                        android:justificationMode="inter_word"
+                        tools:targetApi="o"/>
 
                 </LinearLayout>
 
@@ -237,7 +245,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_materi_5"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_materi_4"
             android:layout_margin="16dp"
             android:clickable="true"
@@ -281,7 +289,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+                        android:text="@string/overview_statistik_analisis_data"
+                        android:justificationMode="inter_word"
+                        tools:targetApi="o" />
 
                 </LinearLayout>
 
@@ -293,7 +303,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_materi_6"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_materi_5"
             android:layout_margin="16dp"
             android:clickable="true"
@@ -337,7 +347,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+                        android:text="@string/overview_teknik_sampling"
+                        android:justificationMode="inter_word"
+                        tools:targetApi="o" />
 
                 </LinearLayout>
 
@@ -349,7 +361,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_materi_7"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_materi_6"
             android:layout_margin="16dp"
             android:clickable="true"
@@ -393,7 +405,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+                        android:text="@string/overview_anova"
+                        android:justificationMode="inter_word"
+                        tools:targetApi="o" />
 
                 </LinearLayout>
 
@@ -405,7 +419,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_materi_8"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_materi_7"
             android:layout_margin="16dp"
             android:clickable="true"
@@ -449,7 +463,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+                        android:text="@string/overview_konsep_estimasi"
+                        android:justificationMode="inter_word"
+                        tools:targetApi="o" />
 
                 </LinearLayout>
 
@@ -461,7 +477,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_materi_9"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_materi_8"
             android:layout_margin="16dp"
             android:clickable="true"
@@ -505,7 +521,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+                        android:text="@string/overview_pengujian_hipotesis"
+                        android:justificationMode="inter_word"
+                        tools:targetApi="o" />
 
                 </LinearLayout>
 
@@ -517,7 +535,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_materi_10"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/cardview_materi_9"
             android:layout_margin="16dp"
             android:clickable="true"
@@ -561,7 +579,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+                        android:text="@string/overview_regresi_linier"
+                        android:justificationMode="inter_word"
+                        tools:targetApi="o" />
 
                 </LinearLayout>
 
