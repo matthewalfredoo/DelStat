@@ -172,4 +172,5 @@
     <string name="kirim_email_reset_password">Kirim Email Reset Password</string>
     <string name="OK">OK</string>
     <string name="ubah_password">Ubah Password</string>
+    <string name="export_to_pdf">Export</string>
 </resources>

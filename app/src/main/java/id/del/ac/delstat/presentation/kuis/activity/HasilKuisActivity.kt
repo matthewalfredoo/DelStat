@@ -1,9 +1,11 @@
 package id.del.ac.delstat.presentation.kuis.activity
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
@@ -12,10 +14,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import id.del.ac.delstat.BuildConfig
 import id.del.ac.delstat.R
 import id.del.ac.delstat.data.model.kuis.HasilKuis
 import id.del.ac.delstat.data.model.kuis.Kuis
 import id.del.ac.delstat.data.model.kuis.KumpulanKuis
+import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityHasilKuisBinding
 import id.del.ac.delstat.presentation.activity.LoginActivity
@@ -40,9 +44,13 @@ class HasilKuisActivity : AppCompatActivity() {
     private var selectedIndexKuis: Int = HasilKuis.HASIL_KUIS_EMPTY
     private var idKuis: Int = HasilKuis.HASIL_KUIS_EMPTY
 
+    private val linkExportHasilKuis: String = BuildConfig.BASE_URL + "hasilkuis/export_pdf"
+    private lateinit var exportItem: MenuItem
+
     @Inject
     lateinit var userPreferences: UserPreferences
     lateinit var bearerToken: String
+    lateinit var role: String
 
     lateinit var hasilKuisAdapter: HasilKuisAdapter
 
@@ -63,16 +71,36 @@ class HasilKuisActivity : AppCompatActivity() {
         prepareData()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_actionbar_hasilkuiactivity, menu)
+        exportItem = menu?.findItem(R.id.export_hasil_kuis_pdf)!!
+        if(role != User.ROLE_DOSEN) {
+            exportItem.isVisible = false
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
                 return true
             }
+            R.id.export_hasil_kuis_pdf -> {
+                exportHasilKuisPdf()
+                return true
+            }
             else -> {
                 return super.onOptionsItemSelected(item)
             }
         }
+    }
+
+    private fun exportHasilKuisPdf() {
+        val intent = Intent(Intent.ACTION_VIEW)
+            .setDataAndType(Uri.parse(linkExportHasilKuis), "application/*")
+            .setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+        startActivity(intent)
     }
 
     private fun initRecyclerView() {
@@ -128,6 +156,7 @@ class HasilKuisActivity : AppCompatActivity() {
                 finish()
             }
             bearerToken = "Bearer $bearerToken"
+            role = userPreferences.getUserRole.first()!!
         }
 
         setUpDropdown()
