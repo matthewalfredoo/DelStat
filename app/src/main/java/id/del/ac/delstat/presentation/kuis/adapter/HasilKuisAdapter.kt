@@ -1,14 +1,18 @@
 package id.del.ac.delstat.presentation.kuis.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.del.ac.delstat.data.model.kuis.HasilKuis
 import id.del.ac.delstat.data.model.kuis.KumpulanKuis
+import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.databinding.ListItemHasilkuisBinding
 import id.del.ac.delstat.util.DateUtil
 
-class HasilKuisAdapter: RecyclerView.Adapter<MyHasilKuisViewHolder>() {
+class HasilKuisAdapter(
+    private val role: String
+): RecyclerView.Adapter<MyHasilKuisViewHolder>() {
     private val listHasilKuis = ArrayList<HasilKuis>()
 
     fun setList(hasilKuis: List<HasilKuis>) {
@@ -24,7 +28,7 @@ class HasilKuisAdapter: RecyclerView.Adapter<MyHasilKuisViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyHasilKuisViewHolder, position: Int) {
-        holder.bind(listHasilKuis[position])
+        holder.bind(listHasilKuis[position], role)
     }
 
     override fun getItemCount(): Int {
@@ -34,10 +38,13 @@ class HasilKuisAdapter: RecyclerView.Adapter<MyHasilKuisViewHolder>() {
 }
 
 class MyHasilKuisViewHolder(val binding: ListItemHasilkuisBinding): RecyclerView.ViewHolder(binding.root) {
-    fun bind(hasilKuis: HasilKuis) {
+    fun bind(hasilKuis: HasilKuis, role: String) {
         binding.namaKuis.text = KumpulanKuis.kumpulanKuis[hasilKuis.idKuis - 1].nama
         binding.nilaiHasilKuis.text = "Nilai: ${hasilKuis.nilaiKuis}"
-        binding.namaUserHasilKuis.text = "Dikerjakan oleh: ${hasilKuis.namaUser}"
+        if(role != User.ROLE_SISWA ) {
+            binding.namaUserHasilKuis.visibility = View.VISIBLE
+            binding.namaUserHasilKuis.text = "Dikerjakan oleh: ${hasilKuis.namaUser}"
+        }
         binding.tanggalHasilKuis.text = DateUtil.getDateTimeWithoutSecond(hasilKuis.createdAt)
     }
 

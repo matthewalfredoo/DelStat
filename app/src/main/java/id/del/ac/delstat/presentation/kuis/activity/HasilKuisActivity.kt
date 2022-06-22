@@ -104,7 +104,7 @@ class HasilKuisActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        hasilKuisAdapter = HasilKuisAdapter()
+        hasilKuisAdapter = HasilKuisAdapter(role)
         binding.recyclerViewHasilKuis.adapter = hasilKuisAdapter
         binding.recyclerViewHasilKuis.layoutManager = LinearLayoutManager(this)
     }

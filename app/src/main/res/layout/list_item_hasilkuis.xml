@@ -47,6 +47,7 @@
         android:layout_toEndOf="@id/mtrl_list_item_icon"
         android:paddingEnd="16dp"
         android:maxLines="1"
+        android:visibility="gone"
         android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="@color/black"
         tools:text="Dikerjakan Oleh: User Saya"/>
