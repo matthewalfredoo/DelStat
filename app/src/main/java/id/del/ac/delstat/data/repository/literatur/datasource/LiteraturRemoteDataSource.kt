@@ -7,7 +7,10 @@ import java.io.File
 
 interface LiteraturRemoteDataSource {
 
-    suspend fun getLiteratur(): Response<LiteraturApiResponse>
+    suspend fun getLiteratur(
+        judul: String? = null,
+        tag: String? = null
+    ): Response<LiteraturApiResponse>
 
     suspend fun getDetailLiteratur(id: Int): Response<LiteraturApiResponse>
 

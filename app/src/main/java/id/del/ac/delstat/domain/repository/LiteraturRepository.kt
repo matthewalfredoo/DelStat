@@ -6,7 +6,10 @@ import java.io.File
 
 interface LiteraturRepository {
 
-    suspend fun getLiteratur(): LiteraturApiResponse?
+    suspend fun getLiteratur(
+        judul: String? = null,
+        tag: String? = null
+    ): LiteraturApiResponse?
 
     suspend fun getDetailLiteratur(id: Int): LiteraturApiResponse?
 

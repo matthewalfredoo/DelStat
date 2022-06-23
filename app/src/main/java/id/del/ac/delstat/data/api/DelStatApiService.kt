@@ -160,7 +160,13 @@ interface DelStatApiService {
     /* Literature related Services */
 
     @GET("api/literatur")
-    suspend fun getLiteratur(): Response<LiteraturApiResponse>
+    suspend fun getLiteratur(
+        @Query("judul")
+        judul: String? = null,
+
+        @Query("tag")
+        tag: String? = null
+    ): Response<LiteraturApiResponse>
 
     @GET("api/literatur/{id}")
     suspend fun getDetailLiteratur(

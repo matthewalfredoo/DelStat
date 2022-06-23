@@ -18,6 +18,7 @@ import id.del.ac.delstat.data.model.user.User
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.FragmentLiteraturBinding
 import id.del.ac.delstat.presentation.activity.HomeActivity
+import id.del.ac.delstat.presentation.literatur.activity.CariLiteraturActivity
 import id.del.ac.delstat.presentation.literatur.activity.CreateLiteraturActivity
 import id.del.ac.delstat.presentation.literatur.activity.DetailLiteraturActivity
 import id.del.ac.delstat.presentation.literatur.adapter.LiteraturAdapter
@@ -77,6 +78,12 @@ class LiteraturFragment : Fragment() {
     private fun prepareUI() {
         runBlocking {
             role = userPreferences.getUserRole.first()!!
+        }
+
+        binding.buttonSearchLiteratur.setOnClickListener {
+            startActivity(
+                Intent(requireActivity(), CariLiteraturActivity::class.java)
+            )
         }
 
         if (role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {

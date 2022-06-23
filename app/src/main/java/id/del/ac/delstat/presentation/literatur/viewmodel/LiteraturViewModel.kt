@@ -20,13 +20,18 @@ class LiteraturViewModel(
 ) : AndroidViewModel(app) {
     /* Properties declaration */
     val literaturApiResponse: MutableLiveData<LiteraturApiResponse> = MutableLiveData()
+    val loadingProgressBar: MutableLiveData<Boolean> = MutableLiveData()
     /* End of properties declaration */
 
-    fun getLiteratur() {
+    fun getLiteratur(
+        judul: String? = null,
+        tag: String? = null
+    ) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
-                    val response = literaturRepository.getLiteratur()
+                    val response = literaturRepository.getLiteratur(judul, tag)
                     if (response == null) {
                         error()
                         return@launch
@@ -37,6 +42,7 @@ class LiteraturViewModel(
                 error("Terjadi exception")
                 Log.e("LiteraturViewModel", e.message, e)
             }
+            loadingProgressBar.value = false
         }
     }
 

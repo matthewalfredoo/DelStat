@@ -20,6 +20,13 @@
         android:theme="@style/Theme.DelStat"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.literatur.activity.CariLiteraturActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.activity.HomeActivity" />
+        </activity>
+        <activity
             android:name=".presentation.activity.UbahPasswordActivity"
             android:exported="true">
             <intent-filter>
@@ -41,9 +48,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
                     android:host="delstat.org"
-                    android:pathPattern="/api/change-password" />
+                    android:pathPattern="/api/change-password"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity

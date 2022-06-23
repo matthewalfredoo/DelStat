@@ -15,8 +15,11 @@ class LiteraturRemoteDataSourceImpl(
     private val delStatApiService: DelStatApiService
 ) : LiteraturRemoteDataSource {
 
-    override suspend fun getLiteratur(): Response<LiteraturApiResponse> {
-        return delStatApiService.getLiteratur()
+    override suspend fun getLiteratur(
+        judul: String?,
+        tag: String?
+    ): Response<LiteraturApiResponse> {
+        return delStatApiService.getLiteratur(judul, tag)
     }
 
     override suspend fun getDetailLiteratur(id: Int): Response<LiteraturApiResponse> {

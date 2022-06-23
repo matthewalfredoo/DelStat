@@ -9,9 +9,12 @@ class LiteraturRepositoryImpl(
     private val literaturRemoteDataSource: LiteraturRemoteDataSource
 ) : LiteraturRepository {
 
-    override suspend fun getLiteratur(): LiteraturApiResponse? {
+    override suspend fun getLiteratur(
+        judul: String?,
+        tag: String?
+    ): LiteraturApiResponse? {
         try {
-            val response = literaturRemoteDataSource.getLiteratur()
+            val response = literaturRemoteDataSource.getLiteratur(judul, tag)
             return response.body()
         } catch (e: Exception) {
             e.printStackTrace()

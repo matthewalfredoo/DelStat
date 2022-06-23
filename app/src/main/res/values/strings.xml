@@ -183,4 +183,6 @@
     <string name="overview_konsep_estimasi">Pada materi ini akan dipelajari mengenai definisi estimasi, penaksiran, dan jenis-jenisnya.</string>
     <string name="overview_pengujian_hipotesis">Pada materi ini akan dipelajari mengenai bentuk hipotesis, alasan pengujian, p-value, uji untuk satu rataan, uji untuk dua rataan, uji untuk rataan berpasangan, uji mengenai satu dan dua variansi, serta statistik uji.</string>
     <string name="overview_regresi_linier">Pada materi ini akan dipelajari mengenai definisi regresi, model regresi linier sederhana, uji serentak melalui ANOVA, RMSE (Root Mean Square Error), definisi korelasi, korelasi Pearson, nilai koefisien korelasi, dan uji korelasi.</string>
+    <string name="literatur_search_hint">Cari Judul</string>
+    <string name="filter_literatur">Filter Tag</string>
 </resources>

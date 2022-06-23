@@ -16,6 +16,10 @@ class LiteraturAdapter(
         listLiteratur.addAll(literatur)
     }
 
+    fun emptyList() {
+        listLiteratur.clear()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyLiteraturViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ListItemLiteraturBinding.inflate(layoutInflater, parent, false)
