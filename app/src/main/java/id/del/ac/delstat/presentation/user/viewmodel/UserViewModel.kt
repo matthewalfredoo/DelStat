@@ -24,10 +24,12 @@ class UserViewModel(
 ) : AndroidViewModel(app) {
     /* Properties Declaration */
     val userApiResponse: MutableLiveData<UserApiResponse> = MutableLiveData()
+    val loadingProgressBar: MutableLiveData<Boolean> = MutableLiveData()
     /* End of Properties Declaration */
 
     fun register(nama: String, email: String, noHp: String, password: String) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = userRepository.register(nama, email, noHp, password)
@@ -41,11 +43,13 @@ class UserViewModel(
                 error("Terjadi exception")
                 e.printStackTrace()
             }
+            loadingProgressBar.value = false
         }
     }
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = userRepository.login(email, password)
@@ -70,6 +74,7 @@ class UserViewModel(
                 error("Terjadi exception")
                 Log.e("MyTag", "exception", e)
             }
+            loadingProgressBar.value = false
         }
     }
 
@@ -101,6 +106,7 @@ class UserViewModel(
         fotoProfil: File? = null
     ) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = userRepository.updateProfile(
@@ -130,6 +136,7 @@ class UserViewModel(
                 error("Terjadi exception")
                 Log.e("MyTag", "exception", e)
             }
+            loadingProgressBar.value = false
         }
     }
 
@@ -140,6 +147,7 @@ class UserViewModel(
         newPasswordConfirmation: String
     ) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = userRepository.updatePassword(
@@ -159,11 +167,13 @@ class UserViewModel(
                 error("Terjadi exception")
                 Log.e("MyTag", "exception", e)
             }
+            loadingProgressBar.value = false
         }
     }
 
     fun findUsersByRole(bearerToken: String) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = userRepository.findUsersByRole(bearerToken)
@@ -177,11 +187,13 @@ class UserViewModel(
                 error("Terjadi exception saat mengambil data user")
                 Log.e("MyTag", "exception", e)
             }
+            loadingProgressBar.value = false
         }
     }
 
     fun logout(bearerToken: String) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = userRepository.logout(bearerToken)
@@ -198,11 +210,13 @@ class UserViewModel(
                 error("Terjadi exception")
                 Log.e("MyTag", "exception", e)
             }
+            loadingProgressBar.value = false
         }
     }
 
     fun forgotPassword(email: String) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = userRepository.forgotPassword(email)
@@ -217,6 +231,7 @@ class UserViewModel(
                 error("Terjadi exception")
                 Log.e("MyTag", "exception", e)
             }
+            loadingProgressBar.value = false
         }
     }
 
@@ -227,6 +242,7 @@ class UserViewModel(
         passwordConfirmation: String
     ) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = userRepository.changePassword(
@@ -246,6 +262,7 @@ class UserViewModel(
                 error("Terjadi exception")
                 Log.e("MyTag", "exception", e)
             }
+            loadingProgressBar.value = false
         }
     }
 

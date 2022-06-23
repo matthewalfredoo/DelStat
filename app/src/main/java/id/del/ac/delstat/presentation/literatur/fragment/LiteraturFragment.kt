@@ -100,7 +100,7 @@ class LiteraturFragment : Fragment() {
                 binding.buttonSearchLiteratur.layoutParams
             )
             params.gravity = Gravity.BOTTOM or Gravity.END
-            params.setMargins(32, 32, 32, 32)
+            params.setMargins(64, 64, 64, 64)
             binding.buttonSearchLiteratur.layoutParams = params
             binding.buttonAddLiteratur.visibility = View.GONE
         }

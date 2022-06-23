@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -61,6 +62,9 @@ class LoginActivity : AppCompatActivity() {
         animationDrawable.setExitFadeDuration(4000)
         animationDrawable.start()
 
+        // observe loading status from the view model
+        observeLoadingStatus()
+
         binding.buttonLogin.setOnClickListener {
             login()
 
@@ -99,6 +103,16 @@ class LoginActivity : AppCompatActivity() {
         })
 
         inputValidation()
+    }
+
+    private fun observeLoadingStatus() {
+        userViewModel.loadingProgressBar.observe(this, Observer {
+            if (it) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        })
     }
 
     private fun inputValidation() {

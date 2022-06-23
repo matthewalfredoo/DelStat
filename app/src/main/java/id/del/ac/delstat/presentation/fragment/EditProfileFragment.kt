@@ -200,6 +200,9 @@ class EditProfileFragment : Fragment() {
             role = userPreferences.getUserRole.first()!!
         }
 
+        // observe loading status from the view model
+        observeLoadingStatus()
+
         binding.apply {
             editTextNamaEditProfile.setText(nama)
             editTextEmailEditProfile.setText(email)
@@ -243,6 +246,16 @@ class EditProfileFragment : Fragment() {
         }
 
         inputValidation()
+    }
+
+    private fun observeLoadingStatus() {
+        userViewModel.loadingProgressBar.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        })
     }
 
     private fun showJenjangDialog() {

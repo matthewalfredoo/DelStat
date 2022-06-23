@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.Observer
 import com.google.android.material.transition.MaterialFadeThrough
 import id.del.ac.delstat.R
 import id.del.ac.delstat.data.preferences.UserPreferences
@@ -62,6 +63,9 @@ class EditPasswordFragment : Fragment() {
             bearerToken = userPreferences.getUserToken.first()!!
         }
 
+        // observe loading status from the view model
+        observeLoadingStatus()
+
         binding.buttonEditPassword.setOnClickListener {
             updatePassword()
 
@@ -75,6 +79,16 @@ class EditPasswordFragment : Fragment() {
         }
 
         inputValidation()
+    }
+
+    private fun observeLoadingStatus() {
+        userViewModel.loadingProgressBar.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        })
     }
 
     private fun checkInput(): Boolean {

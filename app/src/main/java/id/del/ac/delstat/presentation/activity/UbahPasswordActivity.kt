@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -70,6 +71,9 @@ class UbahPasswordActivity : AppCompatActivity() {
         animationDrawable.setExitFadeDuration(4000)
         animationDrawable.start()
 
+        // observe loading status from the view model
+        observeLoadingStatus()
+
         binding.buttonUbahPassword.setOnClickListener {
             /* Hiding the keyboard */
             val view = this.currentFocus
@@ -96,6 +100,16 @@ class UbahPasswordActivity : AppCompatActivity() {
                     )
                     finish()
                 }, 2000)
+            }
+        })
+    }
+
+    private fun observeLoadingStatus() {
+        userViewModel.loadingProgressBar.observe(this, Observer {
+            if (it) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
             }
         })
     }

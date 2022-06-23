@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.literatur.activity.CreateLiteraturActivity">
 
-    <ProgressBar
-        android:id="@+id/literatur_progressbar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true"
-        android:indeterminateTint="@color/blue_primary"
-        android:visibility="gone" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_1"
         style="?attr/textInputOutlinedStyle"
@@ -140,5 +132,13 @@
         android:text="@string/tambah"
         android:textColor="@color/white"
         android:theme="@style/Theme.Material3.DynamicColors.Light" />
+
+    <ProgressBar
+        android:id="@+id/literatur_progressbar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/blue_primary"
+        android:visibility="gone" />
 
 </RelativeLayout>
