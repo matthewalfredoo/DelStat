@@ -11,6 +11,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.widget.doOnTextChanged
@@ -119,6 +120,9 @@ class CreateLiteraturActivity : AppCompatActivity() {
             }
         })
 
+        // observe loading status from the view model
+        observeLoadingStatus()
+
         // Related to inputs
         binding.inputFile.setOnClickListener {
             selectFile()
@@ -146,6 +150,16 @@ class CreateLiteraturActivity : AppCompatActivity() {
         binding.buttonCreateLiteratur.setOnClickListener {
             addLiteratur()
         }
+    }
+
+    private fun observeLoadingStatus() {
+        literaturViewModel.loadingProgressBar.observe(this, Observer {
+            if (it) {
+                binding.literaturProgressbar.visibility = View.VISIBLE
+            } else {
+                binding.literaturProgressbar.visibility = View.GONE
+            }
+        })
     }
 
     private fun tagDialog() {

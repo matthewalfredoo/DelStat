@@ -4,10 +4,13 @@ import android.app.ProgressDialog.show
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.setMargins
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -86,9 +89,19 @@ class LiteraturFragment : Fragment() {
             )
         }
 
+        // observe loading status from the view model
+        observeLoadingStatus()
+
         if (role == User.ROLE_DOSEN || role == User.ROLE_ADMIN) {
             binding.buttonAddLiteratur.visibility = View.VISIBLE
         } else {
+            // set gravity of buttonSearchLiteratur to bottom|end
+            val params = CoordinatorLayout.LayoutParams(
+                binding.buttonSearchLiteratur.layoutParams
+            )
+            params.gravity = Gravity.BOTTOM or Gravity.END
+            params.setMargins(32, 32, 32, 32)
+            binding.buttonSearchLiteratur.layoutParams = params
             binding.buttonAddLiteratur.visibility = View.GONE
         }
 
@@ -102,6 +115,16 @@ class LiteraturFragment : Fragment() {
             getLiteratur()
             binding.swipeRefreshData.isRefreshing = false
         }
+    }
+
+    private fun observeLoadingStatus() {
+        literaturViewModel.loadingProgressBar.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                binding.literaturProgressbar.visibility = View.VISIBLE
+            } else {
+                binding.literaturProgressbar.visibility = View.GONE
+            }
+        })
     }
 
     private fun initRecyclerView() {

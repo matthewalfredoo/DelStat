@@ -218,6 +218,9 @@ class DetailLiteraturActivity : AppCompatActivity() {
         // getting and displaying literatur data
         getLiteratur()
 
+        // observe loading status from the view model
+        observeLoadingStatus()
+
         // ALl about inputs for update are here
         tagsList = arrayOf(
             Materi.TAG_MATERI_1_KONSEP_PELUANG,
@@ -250,6 +253,16 @@ class DetailLiteraturActivity : AppCompatActivity() {
                 if (isEditMode) {
                     toggleEditMode()
                 }
+            }
+        })
+    }
+
+    private fun observeLoadingStatus() {
+        literaturViewModel.loadingProgressBar.observe(this, Observer {
+            if (it) {
+                binding.literaturProgressbar.visibility = View.VISIBLE
+            } else {
+                binding.literaturProgressbar.visibility = View.GONE
             }
         })
     }

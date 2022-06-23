@@ -48,6 +48,7 @@ class LiteraturViewModel(
 
     fun getDetailLieratur(id: Int) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = literaturRepository.getDetailLiteratur(id)
@@ -61,6 +62,7 @@ class LiteraturViewModel(
                 error("Terjadi exception")
                 Log.e("LiteraturViewModel", e.message, e)
             }
+            loadingProgressBar.value = false
         }
     }
 
@@ -73,6 +75,7 @@ class LiteraturViewModel(
         file: File?
     ) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = literaturRepository.storeLiteratur(
@@ -93,6 +96,7 @@ class LiteraturViewModel(
                 error("Terjadi exception")
                 Log.e("LiteraturViewModel", e.message, e)
             }
+            loadingProgressBar.value = false
         }
     }
 
@@ -106,6 +110,7 @@ class LiteraturViewModel(
         file: File?
     ) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = literaturRepository.updateLiteratur(
@@ -121,11 +126,13 @@ class LiteraturViewModel(
                 error("Terjadi exception")
                 Log.e("LiteraturViewModel", e.message, e)
             }
+            loadingProgressBar.value = false
         }
     }
 
     fun deleteLiteratur(bearerToken: String, id: Int) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if (checkNetwork()) {
                     val response = literaturRepository.deleteLiteratur(bearerToken, id)
@@ -139,6 +146,7 @@ class LiteraturViewModel(
                 error("Terjadi exception")
                 Log.e("LiteraturViewModel", e.message, e)
             }
+            loadingProgressBar.value = false
         }
     }
 
