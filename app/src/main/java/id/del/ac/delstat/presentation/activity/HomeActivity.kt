@@ -208,7 +208,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun proceedNotifikasiActivity() {
-        // TODO: consider using MaterialDialog instead of creating a new activity
         Log.d("MyTag", "Proceed notifikasi")
         if(!bearerToken.isNullOrEmpty()) {
             NotifikasiDialogFragment().show(supportFragmentManager, NotifikasiDialogFragment.TAG)
