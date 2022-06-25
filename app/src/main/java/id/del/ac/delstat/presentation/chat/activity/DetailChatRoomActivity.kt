@@ -44,6 +44,8 @@ class DetailChatRoomActivity : AppCompatActivity() {
     lateinit var userPreferences: UserPreferences
     private lateinit var bearerToken: String
     private var loggedInUserId: Int = -1
+    private var isFirstTime: Boolean = true
+    private var chatSize: Int = 0
 
     lateinit var chatRoomAdapter: ChatRoomAdapter
 
@@ -95,14 +97,26 @@ class DetailChatRoomActivity : AppCompatActivity() {
 
         chatViewModel.chatApiResponse.observe(this, Observer {
             Log.d("MyTag", it.toString())
-            if (it.code == 200 && it.chatRoom != null && it.chats != null) {
+            if (it.code == 200 && it.chatRoom != null && it.chats != null && isFirstTime) {
                 supportActionBar?.title = it.chatRoom.user.nama
 
                 chatRoomAdapter.setList(it.chats)
                 chatRoomAdapter.notifyDataSetChanged()
 
                 // scroll down to the last message in the list
-                binding.recyclerViewChat.scrollToPosition(it.chats.size - 1)
+                chatSize = it.chats.size - 1
+                binding.recyclerViewChat.scrollToPosition(chatSize)
+
+                isFirstTime = false
+
+                binding.chatProgressbar.visibility = View.GONE
+            }
+
+            if(it.code == 200 && it.chatRoom != null && it.chats != null && !isFirstTime) {
+                chatRoomAdapter.setList(it.chats)
+                chatRoomAdapter.notifyDataSetChanged()
+
+                chatSize = it.chats.size - 1
 
                 binding.chatProgressbar.visibility = View.GONE
             }
@@ -160,6 +174,7 @@ class DetailChatRoomActivity : AppCompatActivity() {
         binding.swipeRefreshData.setOnRefreshListener {
             getChats()
             binding.swipeRefreshData.isRefreshing = false
+            binding.recyclerViewChat.scrollToPosition(chatSize)
         }
     }
 

@@ -246,15 +246,11 @@ class CreateChatRoomActivity : AppCompatActivity() {
     }
 
     private fun displayUserChatRoom() {
-        binding.chatProgressbar.visibility = View.VISIBLE
-
         userViewModel.userApiResponse.observe(this, Observer {
             if(it.code == 200 && it.listUser != null) {
                 userChatRoomAdapter.setList(it.listUser)
                 userChatRoomAdapter.notifyDataSetChanged()
-                binding.chatProgressbar.visibility = View.GONE
             } else {
-                binding.chatProgressbar.visibility = View.GONE
                 /*Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()*/
                 Helper.createSnackbar(binding.root, it.message!!).show()
             }
@@ -270,6 +266,9 @@ class CreateChatRoomActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Chat Baru"
+
+        // observe loading status from the view model
+        observeLoadingStatus()
 
         chatViewModel.chatApiResponse.observe(this, Observer {
             Log.d("ChatRoom", it.toString())
@@ -295,5 +294,15 @@ class CreateChatRoomActivity : AppCompatActivity() {
             getUserChatRoom()
             binding.swipeRefreshData.isRefreshing = false
         }
+    }
+
+    private fun observeLoadingStatus() {
+        chatViewModel.loadingProgressBar.observe(this, Observer {
+            if (it) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        })
     }
 }

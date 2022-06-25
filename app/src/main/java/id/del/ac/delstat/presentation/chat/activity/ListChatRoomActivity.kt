@@ -245,20 +245,16 @@ class ListChatRoomActivity : AppCompatActivity() {
     }
 
     private fun displayChatRooms() {
-        binding.chatProgressbar.visibility = View.VISIBLE
-
         chatViewModel.chatApiResponse.observe(this, Observer {
             if(it.code == 200 && it.listChatRoom != null) {
                 listChatRoomAdapter.setList(it.listChatRoom)
                 listChatRoomAdapter.notifyDataSetChanged()
-                binding.chatProgressbar.visibility = View.GONE
                 binding.containerChatEmpty.visibility = View.GONE
 
                 if(it.listChatRoom.isEmpty()){
                     binding.containerChatEmpty.visibility = View.VISIBLE
                 }
             } else {
-                binding.chatProgressbar.visibility = View.GONE
                 /*Snackbar.make(binding.root, it.message!!, Snackbar.LENGTH_LONG).show()*/
                 Helper.createSnackbar(binding.root, it.message!!).show()
             }
@@ -283,6 +279,9 @@ class ListChatRoomActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Chat"
 
+        // observe loading status from the view model
+        observeLoadingStatus()
+
         binding.buttonChat.setOnClickListener {
             startActivity(
                 Intent(this, CreateChatRoomActivity::class.java)
@@ -294,4 +293,15 @@ class ListChatRoomActivity : AppCompatActivity() {
             binding.swipeRefreshData.isRefreshing = false
         }
     }
+
+    private fun observeLoadingStatus() {
+        chatViewModel.loadingProgressBar.observe(this, Observer {
+            if (it) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        })
+    }
+
 }

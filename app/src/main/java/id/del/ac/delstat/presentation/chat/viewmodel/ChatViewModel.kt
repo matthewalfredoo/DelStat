@@ -17,6 +17,7 @@ class ChatViewModel(
 ) : AndroidViewModel(app) {
     /* Properties Declaration */
     val chatApiResponse: MutableLiveData<ChatApiResponse> = MutableLiveData()
+    val loadingProgressBar: MutableLiveData<Boolean> = MutableLiveData()
     /* End of Properties Declaration */
 
     fun getChatRooms(bearerToken: String) {
@@ -39,6 +40,7 @@ class ChatViewModel(
 
     fun getChatRoom(bearerToken: String, id: Int) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if(checkNetwork()) {
                     val response = chatRepository.getChatRoom(bearerToken, id)
@@ -52,11 +54,13 @@ class ChatViewModel(
                 error("Terjadi exception saat mengambil data chat")
                 Log.e("ChatViewModel", e.message, e)
             }
+            loadingProgressBar.value = false
         }
     }
 
     fun storeChatRoom(bearerToken: String, idUser: Int) {
         viewModelScope.launch {
+            loadingProgressBar.value = true
             try {
                 if(checkNetwork()) {
                     val response = chatRepository.storeChatRoom(bearerToken, idUser)
@@ -70,6 +74,7 @@ class ChatViewModel(
                 error("Terjadi exception saat mengambil data chat")
                 Log.e("ChatViewModel", e.message, e)
             }
+            loadingProgressBar.value = false
         }
     }
 
