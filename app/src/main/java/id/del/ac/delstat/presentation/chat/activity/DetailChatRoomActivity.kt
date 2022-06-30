@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -14,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import id.del.ac.delstat.R
 import id.del.ac.delstat.data.api.DelStatApiService
 import id.del.ac.delstat.data.preferences.UserPreferences
 import id.del.ac.delstat.databinding.ActivityDetailChatRoomBinding
@@ -44,8 +42,9 @@ class DetailChatRoomActivity : AppCompatActivity() {
     lateinit var userPreferences: UserPreferences
     private lateinit var bearerToken: String
     private var loggedInUserId: Int = -1
-    private var isFirstTime: Boolean = true
+    private var mustScrollToLatest: Boolean = true
     private var chatSize: Int = 0
+    private var chatSizePrev: Int = 0
 
     lateinit var chatRoomAdapter: ChatRoomAdapter
 
@@ -96,8 +95,8 @@ class DetailChatRoomActivity : AppCompatActivity() {
         binding.chatProgressbar.visibility = View.VISIBLE
 
         chatViewModel.chatApiResponse.observe(this, Observer {
-            Log.d("MyTag", it.toString())
-            if (it.code == 200 && it.chatRoom != null && it.chats != null && isFirstTime) {
+            if (it.code == 200 && it.chatRoom != null && it.chats != null) {
+                Log.d("MyTag", "${chatSize}")
                 supportActionBar?.title = it.chatRoom.user.nama
 
                 chatRoomAdapter.setList(it.chats)
@@ -105,18 +104,8 @@ class DetailChatRoomActivity : AppCompatActivity() {
 
                 // scroll down to the last message in the list
                 chatSize = it.chats.size - 1
-                binding.recyclerViewChat.scrollToPosition(chatSize)
 
-                isFirstTime = false
-
-                binding.chatProgressbar.visibility = View.GONE
-            }
-
-            if(it.code == 200 && it.chatRoom != null && it.chats != null && !isFirstTime) {
-                chatRoomAdapter.setList(it.chats)
-                chatRoomAdapter.notifyDataSetChanged()
-
-                chatSize = it.chats.size - 1
+                scrollChat()
 
                 binding.chatProgressbar.visibility = View.GONE
             }
@@ -126,6 +115,16 @@ class DetailChatRoomActivity : AppCompatActivity() {
                 Snackbar.make(binding.root, it.message, Snackbar.LENGTH_LONG).show()
             }
         })
+    }
+
+    private fun scrollChat() {
+        if(mustScrollToLatest && chatSizePrev != chatSize) {
+            binding.recyclerViewChat.scrollToPosition(chatSize)
+            chatSizePrev = chatSize // chatSize will always change dynamically since it is updated in the displayChats() function using LiveData observer
+            if(chatSizePrev == chatSize) {
+                mustScrollToLatest = false
+            }
+        }
     }
 
     private fun handleGetChatsPeriodically() {
@@ -194,6 +193,13 @@ class DetailChatRoomActivity : AppCompatActivity() {
             binding.editTextChat.text?.clear()
             chatViewModel.storeChat(bearerToken, chatRoomId, message)
         }
+        mustScrollToLatest = true
         getChats()
+        while(chatSizePrev != chatSize) {
+            binding.recyclerViewChat.scrollToPosition(chatSize)
+            if(chatSizePrev == chatSize) {
+                break
+            }
+        }
     }
 }
