@@ -44,7 +44,7 @@ class HasilKuisActivity : AppCompatActivity() {
     private var selectedIndexKuis: Int = HasilKuis.HASIL_KUIS_EMPTY
     private var idKuis: Int = HasilKuis.HASIL_KUIS_EMPTY
 
-    private val linkExportHasilKuis: String = BuildConfig.BASE_URL + "hasilkuis/export_pdf"
+    private val linkExportHasilKuis: String = BuildConfig.BASE_URL + "hasilkuis/export"
     private lateinit var exportItem: MenuItem
 
     @Inject
