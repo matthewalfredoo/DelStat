@@ -104,8 +104,12 @@ class DetailChatRoomActivity : AppCompatActivity() {
 
                 // scroll down to the last message in the list
                 chatSize = it.chats.size - 1
+                if(chatSizePrev != chatSize) {
+                    chatSizePrev = chatSize
+                    binding.recyclerViewChat.scrollToPosition(chatSize)
+                }
 
-                scrollChat()
+                /*scrollChat()*/
 
                 binding.chatProgressbar.visibility = View.GONE
             }
@@ -117,12 +121,17 @@ class DetailChatRoomActivity : AppCompatActivity() {
         })
     }
 
+    /* Not used - but better just to stay around */
     private fun scrollChat() {
         if(mustScrollToLatest && chatSizePrev != chatSize) {
-            binding.recyclerViewChat.scrollToPosition(chatSize)
-            chatSizePrev = chatSize // chatSize will always change dynamically since it is updated in the displayChats() function using LiveData observer
-            if(chatSizePrev == chatSize) {
-                mustScrollToLatest = false
+            while(chatSizePrev != chatSize) {
+                binding.recyclerViewChat.scrollToPosition(chatSize)
+                chatSizePrev = chatSize
+
+                if(chatSizePrev == chatSize) {
+                    mustScrollToLatest = false
+                    break
+                }
             }
         }
     }
@@ -195,11 +204,5 @@ class DetailChatRoomActivity : AppCompatActivity() {
         }
         mustScrollToLatest = true
         getChats()
-        while(chatSizePrev != chatSize) {
-            binding.recyclerViewChat.scrollToPosition(chatSize)
-            if(chatSizePrev == chatSize) {
-                break
-            }
-        }
     }
 }
