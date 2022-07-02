@@ -36,8 +36,20 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="192.168.100.9"
+                    android:host="192.168.100.7"
                     android:pathPattern="/api/change-password"
+                    android:port="8000"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="192.168.100.7"
+                    android:pathPattern="/change-password"
                     android:port="8000"
                     android:scheme="http" />
             </intent-filter>
@@ -50,6 +62,17 @@
                 <data
                     android:host="delstat.org"
                     android:pathPattern="/api/change-password"
+                    android:scheme="https" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="delstat.org"
+                    android:pathPattern="/change-password"
                     android:scheme="https" />
             </intent-filter>
         </activity>
@@ -144,7 +167,18 @@
             android:exported="false" />
         <activity
             android:name=".presentation.activity.LoginActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="delstat.org"
+                    android:pathPattern="/auth"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.activity.HomeActivity"
             android:exported="true">

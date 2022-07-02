@@ -92,6 +92,11 @@ class LoginActivity : AppCompatActivity() {
                 // Go back to previous activity after successful login
                 if(!fromUbahPasswordActivity) {
                     Handler(Looper.getMainLooper()).postDelayed({
+                        if(isTaskRoot) {
+                            startActivity(Intent(this, HomeActivity::class.java))
+                        } else {
+                            finish()
+                        }
                         finish()
                     }, 500)
                     return@Observer
