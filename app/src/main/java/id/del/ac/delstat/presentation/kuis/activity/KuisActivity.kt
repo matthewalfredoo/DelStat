@@ -47,7 +47,7 @@ class KuisActivity : AppCompatActivity() {
     private var nilaiKuis: Double = 0.0
 
     private var timer: CountDownTimer? = null
-    private var quizDuration = TimeUnit.MINUTES.toMillis(10) // duration of quiz is 10 minutes
+    private var quizDuration = TimeUnit.MINUTES.toMillis(30) // duration of quiz is 30 minutes
 
     private lateinit var soalKuisAdapter: SoalKuisAdapter
 
